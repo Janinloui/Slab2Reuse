@@ -21,7 +21,7 @@ const SelectToZoom: React.FC<{ children: any }> = ({ children }) => {
 export const ThreeScene: React.FC = () => {
   const data = useTableStore((s) => s.elements);
   return (
-    <Canvas style={{ height: '800px' }}>
+    <Canvas>
       <ambientLight intensity={Math.PI / 2} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
