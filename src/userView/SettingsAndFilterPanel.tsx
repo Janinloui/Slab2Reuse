@@ -7,12 +7,11 @@ export const SettingsAndFilterPanel: React.FC = () => (
     style={{
       display: 'flex',
       top: 0,
-      right: 0,
+      right: '50%',
       left: 0,
       padding: 10,
       position: 'fixed',
       zIndex: 10,
-      width: '100%',
       backgroundColor: 'white',
       flexDirection: 'row',
       gap: 12,
