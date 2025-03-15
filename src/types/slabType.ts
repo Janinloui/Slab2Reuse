@@ -1,17 +1,19 @@
+import { SlabKeyType } from '../enums/attributeNames';
+
 export type SlabType = {
-  id: string;
-  planReference: string;
-  location_x: number;
-  location_y: number;
-  location_z: number;
-  strength: string;
-  dimensions_l: number;
-  dimensions_w: number;
-  dimensions_h: number;
-  liveload: number;
-  typeOfElement: string;
-  rebarDiameterTop: number;
-  rebarAmountTop: number;
-  rebarDiameterBottom: number;
-  rebarAmountBottom: number;
+  [SlabKeyType.Id]: string;
+  [SlabKeyType.PlanReference]: string;
+  [SlabKeyType.Location_x]: number;
+  [SlabKeyType.Location_y]: number;
+  [SlabKeyType.Location_z]: number;
+  [SlabKeyType.Strength]: string;
+  [SlabKeyType.Dimensions_l]: number;
+  [SlabKeyType.Dimensions_w]: number;
+  [SlabKeyType.Dimensions_h]: number;
+  [SlabKeyType.Liveload]: number;
+  [SlabKeyType.TypeOfElement]: string;
+  [SlabKeyType.RebarDiameterTop]: number;
+  [SlabKeyType.RebarAmountTop]: number;
+  [SlabKeyType.RebarDiameterBottom]: number;
+  [SlabKeyType.RebarAmountBottom]: number;
 };
