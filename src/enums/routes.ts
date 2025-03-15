@@ -1,4 +1,4 @@
-export enum Routes {
+export enum Slab2ReuseRoutes {
   Landing = '/',
   ExampleData = '/table-only/example-data',
   Viewer = '/viewer',
