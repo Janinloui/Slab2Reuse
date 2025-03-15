@@ -1,6 +1,6 @@
 import { SlabType } from '../types/slabType';
 
-export const StartData: SlabType[] = [
+export const exampleData: SlabType[] = [
   {
     id: '0',
     planReference: 'U-Y/1-8',
