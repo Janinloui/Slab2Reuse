@@ -72,6 +72,16 @@ export const rebarRenderer = (element: Partial<SlabType>) =>
 
 export const DefaultRenderValues: Record<UserCategory, string[]> = {
   [UserCategory.Ubermensch]: AllDefinedRenders.filter((s) => AllDefinedRenders.includes(s)),
+  [UserCategory.Slab2Reuse]: [
+    DerivativeAttributeNames.Type,
+    DerivativeAttributeNames.Location,
+    DerivativeAttributeNames.Count,
+    SlabKeyType.PlanReference,
+    SlabKeyType.Dimensions_l,
+    SlabKeyType.Dimensions_w,
+    SlabKeyType.Dimensions_h,
+    'edit',
+  ],
   [UserCategory.Architect]: [
     DerivativeAttributeNames.Type,
     DerivativeAttributeNames.Count,
