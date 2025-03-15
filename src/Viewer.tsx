@@ -1,13 +1,13 @@
-import { CsvUpload } from './table/io/CsvUpload';
 import { SlabTable } from './table/SlabTable';
 import { ThreeScene } from './webgl/ThreeScene';
 
-export const App: React.FC = () => {
+export const Viewer: React.FC = () => {
   return (
     <>
-      <ThreeScene key='scene' />
+      <div style={{ height: '50vh' }}>
+        <ThreeScene key='scene' />
+      </div>
       <SlabTable key='slabTable' />
-      <CsvUpload key='csvUpload' />
     </>
   );
 };
