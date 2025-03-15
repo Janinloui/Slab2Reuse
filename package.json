@@ -23,7 +23,7 @@
     "three": "^0.174.0",
     "zustand": "^5.0.3"
   },
-  "name": "aec-flow",
+  "name": "slab-2-reuse",
   "module": "index.ts",
   "type": "module",
   "peerDependencies": {

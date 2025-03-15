@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     outDir: './build',
   },
-  base: '/aec-flow/',
+  base: '/Slab2Reuse/',
   resolve: {
     alias: {
       src: '/src',
