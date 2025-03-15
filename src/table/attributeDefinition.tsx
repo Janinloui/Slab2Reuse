@@ -1,27 +1,11 @@
+import { SlabKeyType } from '../enums/attributeNames';
+import { DerivativeAttributeNames } from '../enums/derivativeAttributeNames';
 import { UserCategory } from '../enums/user';
 import { SlabType } from '../types/slabType';
 
-const CostumUIKeys = ['location', 'rebarRenderer', 'type', 'weight', 'count'];
-export const PartTypeKeys = [
-  'id',
-  'planReference',
-  'location_x',
-  'location_y',
-  'location_z',
-  'strength',
-  'dimensions_l',
-  'dimensions_w',
-  'dimensions_h',
-  'liveload',
-  'typeOfElement',
-  'rebarDiameterTop',
-  'rebarAmountTop',
-  'rebarDiameterBottom',
-  'rebarAmountBottom',
-];
 const EditKey = 'edit';
 
-export const suffixMap: Record<string, string> = {
+export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, string>> = {
   location_x: 'm',
   location_y: 'm',
   location_z: 'm',
@@ -36,67 +20,111 @@ export const suffixMap: Record<string, string> = {
   rebarAmountBottom: '',
 };
 
-export const AllDefinedRenders = [...CostumUIKeys, ...PartTypeKeys, EditKey];
-export const RenderLocal: Record<string, string> = {
-  id: 'Id',
-  planReference: 'Plan Reference',
-  type: 'Type',
-  location_x: 'X Coordinate',
-  location_y: 'Y Coordinate',
-  location_z: 'Z Coordinate',
-  strength: 'Strength',
-  dimensions_l: 'Length',
-  dimensions_w: 'Width',
-  dimensions_h: 'Height',
-  weight: 'Weight',
-  liveload: 'Live Load',
-  typeOfElement: 'Element Type',
-  rebarDiameterTop: 'Rebar Diameter Top',
-  rebarAmountTop: 'Rebar Amount Top',
-  rebarDiameterBottom: 'Rebar Diameter Bottom',
-  rebarAmountBottom: 'Rebar Diameter Bottom',
-  location: 'Location',
-  rebarRenderer: 'Rebar',
-  count: 'Count',
-  edit: 'Edit Element',
+export const AllDefinedRenders: (SlabKeyType | DerivativeAttributeNames | 'edit')[] = [
+  ...Object.values(DerivativeAttributeNames),
+  ...Object.values(SlabKeyType),
+  EditKey,
+];
+export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit', string> = {
+  [SlabKeyType.Id]: 'Id',
+  [SlabKeyType.PlanReference]: 'Plan Reference',
+  [DerivativeAttributeNames.Type]: 'Type',
+  [SlabKeyType.Location_x]: 'X Coordinate',
+  [SlabKeyType.Location_y]: 'Y Coordinate',
+  [SlabKeyType.Location_z]: 'Z Coordinate',
+  [SlabKeyType.Strength]: 'Strength',
+  [SlabKeyType.Dimensions_l]: 'Length',
+  [SlabKeyType.Dimensions_w]: 'Width',
+  [SlabKeyType.Dimensions_h]: 'Height',
+  [DerivativeAttributeNames.Weight]: 'Weight',
+  [SlabKeyType.Liveload]: 'Live Load',
+  [SlabKeyType.TypeOfElement]: 'Element Type',
+  [SlabKeyType.RebarDiameterTop]: 'Rebar Diameter Top',
+  [SlabKeyType.RebarAmountTop]: 'Rebar Amount Top',
+  [SlabKeyType.RebarDiameterBottom]: 'Rebar Diameter Bottom',
+  [SlabKeyType.RebarAmountBottom]: 'Rebar Diameter Bottom',
+  [DerivativeAttributeNames.Location]: 'Location',
+  [DerivativeAttributeNames.RebarRenderer]: 'Rebar',
+  [DerivativeAttributeNames.Count]: 'Count',
+  ['edit']: 'Edit Element',
 };
 
-export const locationRenderer = (element: SlabType) => `(${element.location_x.toFixed(2)}, ${element.location_y.toFixed(2)}, ${element.location_z.toFixed(2)})`;
-export const rebarRenderer = (element: SlabType) => (
-  <>
-    <span>
-      {`${element.rebarAmountBottom.toFixed(0)}ø${element.rebarDiameterBottom.toFixed(1)}`}
-      <sub>Bottom</sub>
-    </span>{' '}
-    <span>
-      {`${element.rebarAmountTop.toFixed(0)}ø${element.rebarDiameterTop.toFixed(1)}`}
-      <sub>Top</sub>
-    </span>
-  </>
-);
+export const locationRenderer = (element: Partial<SlabType>) =>
+  `(${element[SlabKeyType.Location_x]?.toFixed(2)}, ${element[SlabKeyType.Location_y]?.toFixed(2)}, ${element[SlabKeyType.Location_z]?.toFixed(2)})`;
+export const rebarRenderer = (element: Partial<SlabType>) =>
+  element[SlabKeyType.RebarAmountBottom] &&
+  element[SlabKeyType.RebarDiameterBottom] &&
+  element[SlabKeyType.RebarAmountTop] &&
+  element[SlabKeyType.RebarDiameterTop] ? (
+    <>
+      <span>
+        {`${element[SlabKeyType.RebarAmountBottom].toFixed(0)}ø${element[SlabKeyType.RebarDiameterBottom].toFixed(1)}`}
+        <sub>Bottom</sub>
+      </span>{' '}
+      <span>
+        {`${element[SlabKeyType.RebarAmountTop].toFixed(0)}ø${element[SlabKeyType.RebarDiameterTop].toFixed(1)}`}
+        <sub>Top</sub>
+      </span>
+    </>
+  ) : (
+    'missing data'
+  );
 
 export const DefaultRenderValues: Record<UserCategory, string[]> = {
   [UserCategory.Ubermensch]: AllDefinedRenders.filter((s) => AllDefinedRenders.includes(s)),
-  [UserCategory.Architect]: ['type', 'count', 'planReference', 'dimensions_l', 'dimensions_w', 'dimensions_h'].filter((s) => AllDefinedRenders.includes(s)),
-  [UserCategory.Engineer]: ['type', 'location', 'weight', 'planReference', 'dimensions_l', 'dimensions_h', 'strength', 'liveload', 'edit'].filter((s) =>
-    AllDefinedRenders.includes(s)
-  ),
-  [UserCategory.Client]: ['type', 'typeOfElement', 'count'].filter((s) => AllDefinedRenders.includes(s)),
-  [UserCategory.Contracter]: ['id', 'type', 'planReference', 'location', 'weight', 'dimensions_l', 'dimensions_w', 'dimensions_h', 'edit'],
+  [UserCategory.Architect]: [
+    DerivativeAttributeNames.Type,
+    DerivativeAttributeNames.Count,
+    SlabKeyType.PlanReference,
+    SlabKeyType.Dimensions_l,
+    SlabKeyType.Dimensions_w,
+    SlabKeyType.Dimensions_h,
+  ],
+  [UserCategory.Engineer]: [
+    DerivativeAttributeNames.Type,
+    DerivativeAttributeNames.Location,
+    DerivativeAttributeNames.Weight,
+    SlabKeyType.PlanReference,
+    SlabKeyType.Dimensions_l,
+    SlabKeyType.Dimensions_h,
+    SlabKeyType.Strength,
+    SlabKeyType.Liveload,
+    'edit',
+  ],
+  [UserCategory.Client]: [DerivativeAttributeNames.Type, SlabKeyType.TypeOfElement, DerivativeAttributeNames.Count],
+  [UserCategory.Contracter]: [
+    SlabKeyType.Id,
+    DerivativeAttributeNames.Type,
+    SlabKeyType.PlanReference,
+    DerivativeAttributeNames.Location,
+    DerivativeAttributeNames.Weight,
+    SlabKeyType.Dimensions_l,
+    SlabKeyType.Dimensions_w,
+    SlabKeyType.Dimensions_h,
+    'edit',
+  ],
 };
 
 export const reduceAndUseCount = [UserCategory.Architect, UserCategory.Client];
 
-export const typeRenderer = (element: SlabType) =>
-  `${element.typeOfElement} (${element.dimensions_l.toFixed()}, ${element.dimensions_w.toFixed()}, ${element.dimensions_h.toFixed()})`;
+export const typeRenderer = (element: Partial<SlabType>) =>
+  element[SlabKeyType.Dimensions_l] && element[SlabKeyType.Dimensions_w] && element[SlabKeyType.Dimensions_h]
+    ? `${element.typeOfElement} (${element[SlabKeyType.Dimensions_l].toFixed()}, ${element[SlabKeyType.Dimensions_w].toFixed()}, ${element[
+        SlabKeyType.Dimensions_h
+      ].toFixed()})`
+    : undefined;
 
-export const getPartsWithUniqueType = (slabs: SlabType[]): SlabType[] => {
-  const slabMap: { [type: string]: SlabType } = {};
+export const getPartsWithUniqueType = (slabs: Partial<SlabType>[]): Partial<SlabType>[] => {
+  const slabMap: { [type: string]: Partial<SlabType> } = {};
   slabs.map((slab) => {
-    slabMap[typeRenderer(slab)] = slab;
+    const localType = typeRenderer(slab);
+    if (localType !== undefined) slabMap[localType] = slab;
   });
 
   return Object.values(slabMap);
 };
 
-export const getWeight = (element: SlabType) => element.dimensions_l * element.dimensions_w * element.dimensions_h * 0.6 * 0.0000025;
+export const getWeight = (element: Partial<SlabType>) =>
+  element[SlabKeyType.Dimensions_l] && element[SlabKeyType.Dimensions_w] && element[SlabKeyType.Dimensions_h]
+    ? element.dimensions_l * element.dimensions_w * element.dimensions_h * 0.6 * 0.0000025
+    : undefined;
