@@ -1,12 +1,13 @@
 import { ColumnType } from 'antd/es/table';
 import { SlabType } from '../types/slabType';
-import { locationRenderer, PartTypeKeys, RenderLocal, suffixMap, typeRenderer, rebarRenderer, getWeight } from './attributeDefinition';
+import { locationRenderer, RenderLocal, suffixMap, typeRenderer, rebarRenderer, getWeight } from './attributeDefinition';
 import { useTableStore } from '../state/tableStore';
 import { EditElement } from '../element/EditElement';
+import { SlabKeyType } from '../enums/attributeNames';
 
-export const columnTypeMap: { [attribute: string]: ColumnType<SlabType> } = {
+export const columnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>> } = {
   ...Object.fromEntries(
-    PartTypeKeys.map((dataIndex) => [
+    Object.values(SlabKeyType).map((dataIndex) => [
       dataIndex,
       {
         title: RenderLocal[dataIndex],
@@ -15,11 +16,11 @@ export const columnTypeMap: { [attribute: string]: ColumnType<SlabType> } = {
         ...(suffixMap[dataIndex] !== undefined
           ? {
               render: (value) => `${value} ${suffixMap[dataIndex]}`,
-              sorter: (a: SlabType, b: SlabType) => ((a[dataIndex as keyof SlabType] as number) - b[dataIndex as keyof SlabType]) as number,
+              sorter: (a: Partial<SlabType>, b: Partial<SlabType>) => (a[dataIndex] as number) - (b[dataIndex] as number),
             }
           : {
-              sorter: (a: SlabType, b: SlabType) =>
-                (a[dataIndex as keyof SlabType] as string).localeCompare(b[dataIndex as keyof SlabType] as string, undefined, { numeric: true }),
+              sorter: (a: Partial<SlabType>, b: Partial<SlabType>) =>
+                (a[dataIndex as SlabKeyType] as string).localeCompare(b[dataIndex as SlabKeyType] as string, undefined, { numeric: true }),
             }),
       },
     ])
@@ -38,13 +39,27 @@ export const columnTypeMap: { [attribute: string]: ColumnType<SlabType> } = {
     title: RenderLocal['type'],
     key: 'type',
     render: (_, element) => typeRenderer(element),
-    sorter: (a, b) => typeRenderer(a).localeCompare(typeRenderer(b)),
+    sorter: (a, b) => {
+      const tA = typeRenderer(a);
+      const tB = typeRenderer(b);
+      if (typeof tA === 'string' && typeof tB === 'string') return tA.localeCompare(tB);
+      return -1;
+    },
   },
   weight: {
     title: RenderLocal['weight'],
     key: 'weight',
-    render: (_, element) => `${getWeight(element).toFixed(0)} kg`,
-    sorter: (a, b) => getWeight(a) - getWeight(b),
+    render: (_, element) => {
+      const w = getWeight(element);
+      return typeof w === 'number' ? `${w.toFixed(0)} kg` : w;
+    },
+    sorter: (a, b) => {
+      const wA = getWeight(a);
+      const wB = getWeight(b);
+
+      if (typeof wA === 'number' && typeof wB === 'number') return wA - wB;
+      else return -1;
+    },
   },
   count: {
     title: RenderLocal['count'],

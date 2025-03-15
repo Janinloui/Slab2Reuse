@@ -5,7 +5,7 @@ import { StartData } from './data';
 import { DefaultRenderValues } from '../table/attributeDefinition';
 
 type TableStore = {
-  elements: SlabType[];
+  elements: Partial<SlabType>[];
   updateElement: (element: SlabType) => void;
   userCategory: UserCategory;
   setUserCategory: (c: UserCategory) => void;
