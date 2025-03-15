@@ -28,8 +28,8 @@ export const ThreeScene: React.FC = () => {
       <Suspense fallback={null}>
         <Bounds fit clip observe margin={1.2}>
           <SelectToZoom>
-            {data.map((s) => (
-              <Slab slab={s} />
+            {data.map((s, i) => (
+              <Slab key={`slab-${i}-${s.id}`} slab={s} />
             ))}
           </SelectToZoom>
         </Bounds>

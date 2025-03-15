@@ -42,7 +42,7 @@ export const ActiveSettings: React.FC = () => {
         />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {AllDefinedRenders.map((s) => (
-            <span style={{ paddingTop: 12, display: 'flex', flexDirection: 'row', gap: 6, alignItems: 'center' }}>
+            <span key={s} style={{ paddingTop: 12, display: 'flex', flexDirection: 'row', gap: 6, alignItems: 'center' }}>
               <Checkbox onChange={() => onChange(s)} checked={activeStrings.has(s)} />
               {RenderLocal[s]}
             </span>

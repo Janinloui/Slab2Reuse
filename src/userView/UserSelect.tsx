@@ -8,7 +8,9 @@ export const UserSelect: React.FC = () => {
   return (
     <Select value={activeGlobalUserCategory} onChange={(v) => useTableStore.getState().setUserCategory(v)}>
       {Object.values(UserCategory).map((category) => (
-        <Select.Option value={category}>{category}</Select.Option>
+        <Select.Option key={category} value={category}>
+          {category}
+        </Select.Option>
       ))}
     </Select>
   );
