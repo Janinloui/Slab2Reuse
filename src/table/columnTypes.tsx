@@ -4,6 +4,7 @@ import { locationRenderer, RenderLocal, suffixMap, typeRenderer, rebarRenderer, 
 import { useTableStore } from '../state/tableStore';
 import { EditElement } from '../element/EditElement';
 import { SlabKeyType } from '../enums/attributeNames';
+import { MissingData } from './MissingData';
 
 export const columnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>> } = {
   ...Object.fromEntries(
@@ -15,10 +16,11 @@ export const columnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>>
         key: dataIndex,
         ...(suffixMap[dataIndex] !== undefined
           ? {
-              render: (value) => `${value} ${suffixMap[dataIndex]}`,
+              render: (value) => (value !== undefined && !Number.isNaN(value) ? `${value} ${suffixMap[dataIndex]}` : <MissingData />),
               sorter: (a: Partial<SlabType>, b: Partial<SlabType>) => (a[dataIndex] as number) - (b[dataIndex] as number),
             }
           : {
+              render: (value) => (value !== undefined ? value : <MissingData />),
               sorter: (a: Partial<SlabType>, b: Partial<SlabType>) =>
                 (a[dataIndex as SlabKeyType] as string).localeCompare(b[dataIndex as SlabKeyType] as string, undefined, { numeric: true }),
             }),
@@ -28,17 +30,17 @@ export const columnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>>
   location: {
     title: RenderLocal['location'],
     key: 'location',
-    render: (_, element) => locationRenderer(element),
+    render: (_, element) => locationRenderer(element) ?? <MissingData />,
   },
   rebarRenderer: {
     title: RenderLocal['rebarRenderer'],
     key: 'rebarRenderer',
-    render: (_, element) => rebarRenderer(element),
+    render: (_, element) => rebarRenderer(element) ?? <MissingData />,
   },
   type: {
     title: RenderLocal['type'],
     key: 'type',
-    render: (_, element) => typeRenderer(element),
+    render: (_, element) => typeRenderer(element) ?? <MissingData />,
     sorter: (a, b) => {
       const tA = typeRenderer(a);
       const tB = typeRenderer(b);
@@ -51,7 +53,7 @@ export const columnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>>
     key: 'weight',
     render: (_, element) => {
       const w = getWeight(element);
-      return typeof w === 'number' ? `${w.toFixed(0)} kg` : w;
+      return typeof w === 'number' ? `${w.toFixed(0)} kg` : <MissingData />;
     },
     sorter: (a, b) => {
       const wA = getWeight(a);

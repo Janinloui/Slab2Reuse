@@ -2,6 +2,7 @@ import { SlabKeyType } from '../enums/attributeNames';
 import { DerivativeAttributeNames } from '../enums/derivativeAttributeNames';
 import { UserCategory } from '../enums/user';
 import { SlabType } from '../types/slabType';
+import { MissingData } from './MissingData';
 
 const EditKey = 'edit';
 
@@ -50,7 +51,11 @@ export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit'
 };
 
 export const locationRenderer = (element: Partial<SlabType>) =>
-  `(${element[SlabKeyType.Location_x]?.toFixed(2)}, ${element[SlabKeyType.Location_y]?.toFixed(2)}, ${element[SlabKeyType.Location_z]?.toFixed(2)})`;
+  element[SlabKeyType.Location_x] !== undefined && element[SlabKeyType.Location_y] !== undefined
+    ? element[SlabKeyType.Location_z] !== undefined
+      ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${element[SlabKeyType.Location_z]?.toFixed(2)})`
+      : `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)})`
+    : undefined;
 export const rebarRenderer = (element: Partial<SlabType>) =>
   element[SlabKeyType.RebarAmountBottom] &&
   element[SlabKeyType.RebarDiameterBottom] &&
@@ -66,9 +71,7 @@ export const rebarRenderer = (element: Partial<SlabType>) =>
         <sub>Top</sub>
       </span>
     </>
-  ) : (
-    'missing data'
-  );
+  ) : undefined;
 
 export const DefaultRenderValues: Record<UserCategory, string[]> = {
   [UserCategory.Ubermensch]: AllDefinedRenders.filter((s) => AllDefinedRenders.includes(s)),
