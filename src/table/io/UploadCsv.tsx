@@ -45,7 +45,7 @@ export const UploadCSV: React.FC<UploadCSVProps> = ({ initNew }) => {
         return false;
       }}
     >
-      <Button icon={<UploadOutlined />}>{initNew ? 'start a new project from a csv' : 'load in an existing project'} </Button>
+      <Button icon={<UploadOutlined />}>{initNew ? 'start a new project from a .csv' : 'load in an existing project from a .csv'} </Button>
     </Upload>
   );
 };
