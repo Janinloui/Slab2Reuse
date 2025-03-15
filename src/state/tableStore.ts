@@ -21,7 +21,7 @@ export const useTableStore = create<TableStore>((set) => ({
       if (index !== -1) s.elements[index] = { ...element };
       return { elements: [...s.elements] };
     }),
-  userCategory: UserCategory.Ubermensch,
+  userCategory: UserCategory.Slab2Reuse,
   setUserCategory: (userCategory: UserCategory) => set((s) => ({ userCategory })),
   userAttributeMap: DefaultRenderValues,
   setUserAttributeMap: (userCategory, attributes) => set((s) => ({ userAttributeMap: { ...s.userAttributeMap, [userCategory]: attributes } })),
