@@ -35,3 +35,12 @@ export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string'> = {
   [SlabKeyType.RebarDiameterBottom]: 'number',
   [SlabKeyType.RebarAmountBottom]: 'number',
 };
+
+export const StabTypeGeometryAttributes = [
+  SlabKeyType.Dimensions_l,
+  SlabKeyType.Dimensions_w,
+  SlabKeyType.Dimensions_h,
+  SlabKeyType.Location_x,
+  SlabKeyType.Location_y,
+  SlabKeyType.Location_z,
+];
