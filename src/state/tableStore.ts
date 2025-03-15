@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { SlabType } from '../types/slabType';
 import { UserCategory } from '../enums/user';
-import { StartData } from './data';
 import { DefaultRenderValues } from '../table/attributeDefinition';
 
 type TableStore = {
@@ -14,7 +13,7 @@ type TableStore = {
 };
 
 export const useTableStore = create<TableStore>((set) => ({
-  elements: StartData,
+  elements: [],
   updateElement: (element: SlabType) =>
     set((s) => {
       const index = s.elements.findIndex((e) => e.id === element.id);
