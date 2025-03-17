@@ -4,6 +4,7 @@ import { columnTypeMap } from './columnTypes';
 import { SettingsAndFilterPanel } from '../userView/SettingsAndFilterPanel';
 import { useEffect, useState } from 'react';
 import { getPartsWithUniqueType, reduceAndUseCount } from './attributeDefinition';
+import { AddElement } from '../element/AddElement';
 
 export const SlabTable: React.FC = () => {
   const elements = useTableStore((s) => s.elements);
@@ -26,6 +27,7 @@ export const SlabTable: React.FC = () => {
         columns={columns}
         style={{ paddingTop: 45 }}
       />
+      <AddElement />
     </>
   );
 };
