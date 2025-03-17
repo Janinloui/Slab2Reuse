@@ -1,6 +1,5 @@
-import React from 'react';
-import { UploadOutlined } from '@ant-design/icons';
-import { Button, message, Upload } from 'antd';
+import React, { ReactNode } from 'react';
+import { message, Upload } from 'antd';
 import Papa from 'papaparse';
 import { CsvData, initNewProject, loadProject } from '../../lib/csv';
 import { useTableStore } from '../../state/tableStore';
@@ -16,9 +15,10 @@ const papaConfig: Papa.ParseConfig<unknown, undefined> & {
 
 type UploadCSVProps = {
   initNew?: boolean;
+  children: ReactNode;
 };
 
-export const UploadCSV: React.FC<UploadCSVProps> = ({ initNew }) => {
+export const UploadCSV: React.FC<UploadCSVProps> = ({ initNew, children }) => {
   const navigate = useNavigate();
 
   return (
@@ -45,7 +45,7 @@ export const UploadCSV: React.FC<UploadCSVProps> = ({ initNew }) => {
         return false;
       }}
     >
-      <Button icon={<UploadOutlined />}>{initNew ? 'start a new project from a .csv' : 'load in an existing project from a .csv'} </Button>
+      {children}
     </Upload>
   );
 };
