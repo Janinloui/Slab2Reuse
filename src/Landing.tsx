@@ -21,11 +21,6 @@ export const Landing: React.FC = () => {
       <span style={{ fontSize: 25, display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center', paddingLeft: 30 }}>
         Welcome to <p style={{ fontWeight: 'bold' }}>Slab2Reuse</p> 💫
       </span>
-      <UploadCSV initNew={true}>
-        <Button style={buttonStyles} type='text' icon={<FaUpload />}>
-          start a new project from a .csv
-        </Button>
-      </UploadCSV>
       <UploadCSV>
         <Button style={buttonStyles} type='text' icon={<FaUpload />}>
           load in an existing project from a .csv
