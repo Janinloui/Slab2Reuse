@@ -14,13 +14,13 @@ export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
   return isValid ? (
     <mesh
       key={slab.id}
-      position={[slab[SlabKeyType.Location_x]!, -slab[SlabKeyType.Location_y]!, slab[SlabKeyType.Location_z]!]}
+      position={[slab[SlabKeyType.Location_x]!, -slab[SlabKeyType.Location_z]!, slab[SlabKeyType.Location_y]!]}
       ref={ref}
       onClick={() => click(!clicked)}
       onPointerOver={() => hover(true)}
       onPointerOut={() => hover(false)}
     >
-      <boxGeometry args={[slab.dimensions_w, slab.dimensions_h, slab.dimensions_l]} />
+      <boxGeometry args={[slab.dimensions_l, slab.dimensions_h, slab.dimensions_w]} />
       <meshStandardMaterial color={clicked ? 'red' : hovered ? 'hotpink' : slab.condition ? getColorForCondition(slab.condition) : 'orange'} />
     </mesh>
   ) : null;
