@@ -17,6 +17,7 @@ export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, s
   liveload: 'kN/m2',
   rebarDiameterTop: 'mm',
   rebarDiameterBottom: 'mm',
+  [SlabKeyType.Yaw]: '°',
 };
 
 export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit', string | undefined> = {
@@ -38,6 +39,7 @@ export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit'
   [SlabKeyType.RebarDiameterBottom]: 'Rebar Diameter Bottom',
   [SlabKeyType.RebarAmountBottom]: 'Rebar Diameter Bottom',
   [SlabKeyType.Condition]: 'Visual Condition',
+  [SlabKeyType.Yaw]: 'Yaw',
   [DerivativeAttributeNames.Location]: 'Location',
   [DerivativeAttributeNames.RebarRenderer]: 'Rebar',
   [DerivativeAttributeNames.Count]: 'Count',
