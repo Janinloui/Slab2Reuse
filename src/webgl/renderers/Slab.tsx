@@ -14,6 +14,7 @@ export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
   return isValid ? (
     <mesh
       key={slab.id}
+      rotation={[0, slab.rotZAxis_yaw ? (slab.rotZAxis_yaw * Math.PI) / 180 : 0, 0]}
       position={[slab[SlabKeyType.Location_x]!, -slab[SlabKeyType.Location_z]!, slab[SlabKeyType.Location_y]!]}
       ref={ref}
       onClick={() => click(!clicked)}
