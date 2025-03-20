@@ -3,6 +3,7 @@ import { useTableStore } from '../state/tableStore';
 import Slab from './renderers/Slab';
 import { Bounds, OrbitControls, useBounds } from '@react-three/drei';
 import { Suspense, useEffect } from 'react';
+import { getViewForSlab } from '../lib/3d';
 
 // This component wraps children in a group with a click handler
 // Clicking any object will refresh and fit bounds
@@ -13,13 +14,11 @@ const SelectToZoom: React.FC<{ children: any }> = ({ children }) => {
   useEffect(() => {
     if (selectedIds) {
       const slab = useTableStore.getState().elements.find((p) => selectedIds.includes(p.id!));
-      if (slab)
-        api.to({
-          target: [slab.location_x!, -slab.location_z!, slab.location_y!],
-          position: [slab.location_x! - 1000, -slab.location_z! - 1000, slab.location_y! - 1000],
-        });
-      else api.fit();
-    } else api.fit();
+      if (slab) {
+        const view = getViewForSlab(slab);
+        view ? api.to(view) : api.fit();
+      } else api.fit();
+    }
   }, [selectedIds]);
 
   return (
@@ -40,7 +39,7 @@ export const ThreeScene: React.FC = () => {
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
       <Suspense fallback={null}>
-        <Bounds fit clip observe margin={1.2}>
+        <Bounds fit clip margin={1.2}>
           <SelectToZoom>
             {data.map((s, i) => (
               <Slab key={`slab-${i}-${s.id}`} slab={s} />
