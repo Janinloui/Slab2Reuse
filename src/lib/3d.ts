@@ -1,6 +1,10 @@
 import { Vector3 } from 'three';
 import { SlabType, StabTypeGeometryAttributes } from '../types/slabType';
 
+export const FLOOR_TO_FLOOR = 3000;
+
+export const getZForSlab = (slab: Partial<SlabType>) => (slab.floor ?? 0) * FLOOR_TO_FLOOR;
+
 /**
  * Helper method to check whether a mesh can be rendered for the Partial<SlabType>
  * @param slab: Partial<SlabType>
@@ -14,7 +18,7 @@ export const getCenterOfV3 = (vertices: Vector3[]): Vector3 =>
 export const getViewForSlab = (slab: Partial<SlabType>) =>
   hasGeometryData(slab)
     ? {
-        target: [slab.location_x!, -slab.location_z!, slab.location_y!] as [number, number, number],
-        position: [slab.location_x!, -slab.location_z! + 5000, slab.location_y!] as [number, number, number],
+        target: [slab.location_x!, -getZForSlab(slab), slab.location_y!] as [number, number, number],
+        position: [slab.location_x!, -getZForSlab(slab) + 5000, slab.location_y!] as [number, number, number],
       }
     : undefined;
