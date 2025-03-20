@@ -1,6 +1,7 @@
 import { SlabKeyType } from '../enums/attributeNames';
 import { DerivativeAttributeNames } from '../enums/derivativeAttributeNames';
 import { UserCategory } from '../enums/user';
+import { getZForSlab } from '../lib/3d';
 import { SlabType } from '../types/slabType';
 
 const EditKey = 'edit';
@@ -66,7 +67,7 @@ export const AllDefinedRenders: (SlabKeyType | DerivativeAttributeNames | 'edit'
 export const locationRenderer = (element: Partial<SlabType>) =>
   element[SlabKeyType.Location_x] !== undefined && element[SlabKeyType.Location_y] !== undefined
     ? element[SlabKeyType.Floor] !== undefined
-      ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${element[SlabKeyType.Floor]?.toFixed(2)})`
+      ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${getZForSlab(element).toFixed(2)})`
       : `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)})`
     : undefined;
 //renders the rebar of the element in a human readable format (A string) (amount ødiameter)
