@@ -25,17 +25,17 @@ const derivativeColumnTypeMap: Record<DerivativeAttributeNames, ColumnType<Parti
   [DerivativeAttributeNames.Location]: {
     title: RenderLocal[DerivativeAttributeNames.Location],
     key: DerivativeAttributeNames.Location,
-    render: (_, element) => locationRenderer(element) ?? <MissingData />,
+    render: (_, element) => locationRenderer(element) ?? <MissingData key={element.id + DerivativeAttributeNames.Location} />,
   },
   [DerivativeAttributeNames.RebarRenderer]: {
     title: RenderLocal[DerivativeAttributeNames.RebarRenderer],
     key: DerivativeAttributeNames.RebarRenderer,
-    render: (_, element) => rebarRenderer(element) ?? <MissingData />,
+    render: (_, element) => rebarRenderer(element) ?? <MissingData key={element.id + DerivativeAttributeNames.RebarRenderer} />,
   },
   [DerivativeAttributeNames.Type]: {
     title: RenderLocal[DerivativeAttributeNames.Type],
     key: DerivativeAttributeNames.Type,
-    render: (_, element) => getType(element) ?? <MissingData />,
+    render: (_, element) => getType(element) ?? <MissingData key={element.id + DerivativeAttributeNames.Type} />,
     sorter: (a, b) => {
       const tA = getType(a);
       const tB = getType(b);
@@ -48,7 +48,7 @@ const derivativeColumnTypeMap: Record<DerivativeAttributeNames, ColumnType<Parti
     key: DerivativeAttributeNames.Weight,
     render: (_, element) => {
       const w = getWeight(element);
-      return typeof w === 'number' ? `${w.toFixed(0)} kg` : <MissingData />;
+      return typeof w === 'number' ? `${w.toFixed(0)} kg` : <MissingData key={element.id + DerivativeAttributeNames.Weight} />;
     },
     sorter: (a, b) => {
       const wA = getWeight(a);
@@ -74,7 +74,7 @@ const derivativeColumnTypeMap: Record<DerivativeAttributeNames, ColumnType<Parti
     key: DerivativeAttributeNames.ReboundTestMean,
     render: (_, element) => {
       const mean = getReboundTestMean(element);
-      return mean !== undefined ? `${mean.toFixed(0)} MPa` : <MissingData />;
+      return mean !== undefined ? `${mean.toFixed(0)} MPa` : <MissingData key={element.id + DerivativeAttributeNames.ReboundTestMean} />;
     },
     sorter: (a, b) => {
       const mA = getReboundTestMean(a);
@@ -89,7 +89,7 @@ const derivativeColumnTypeMap: Record<DerivativeAttributeNames, ColumnType<Parti
     key: DerivativeAttributeNames.ReboundTestStdv,
     render: (_, element) => {
       const stdv = getReboundTestMaxStandardDeviation(element);
-      return stdv !== undefined ? `${stdv.toFixed(0)} MPa` : <MissingData />;
+      return stdv !== undefined ? `${stdv.toFixed(0)} MPa` : <MissingData key={element.id + DerivativeAttributeNames.ReboundTestStdv} />;
     },
     sorter: (a, b) => {
       const sA = getReboundTestMaxStandardDeviation(a);
@@ -116,11 +116,11 @@ export const ColumnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>>
         key: dataIndex,
         ...(suffixMap[dataIndex] !== undefined
           ? {
-              render: (value) => (value !== undefined && !Number.isNaN(value) ? `${value} ${suffixMap[dataIndex]}` : <MissingData />),
+              render: (value, e) => (value !== undefined && !Number.isNaN(value) ? `${value} ${suffixMap[dataIndex]}` : <MissingData key={e.id + dataIndex} />),
               sorter: (a: Partial<SlabType>, b: Partial<SlabType>) => (a[dataIndex] as number) - (b[dataIndex] as number),
             }
           : {
-              render: (value) => (value !== undefined ? value : <MissingData />),
+              render: (value, e) => (value !== undefined ? value : <MissingData key={e.id + dataIndex} />),
               sorter: (a: Partial<SlabType>, b: Partial<SlabType>) =>
                 (a[dataIndex as SlabKeyType] as string).localeCompare(b[dataIndex as SlabKeyType] as string, undefined, { numeric: true }),
             }),
@@ -132,7 +132,7 @@ export const ColumnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>>
     key: 'condition',
     render: (_, element) => {
       const condition = element[SlabKeyType.Condition];
-      return condition ? <VisualConditionTag condition={condition} /> : <MissingData />;
+      return condition ? <VisualConditionTag condition={condition} /> : <MissingData key={element.id + SlabKeyType.Condition} />;
     },
   },
   ...derivativeColumnTypeMap,
