@@ -1,5 +1,5 @@
 import { SlabKeyType } from '../enums/attributeNames';
-import { SlabType, SlabTypeValueMap } from '../types/slabType';
+import { DefaultDataMap, SlabType, SlabTypeValueMap } from '../types/slabType';
 
 export type CsvData = Record<string, string>[];
 /**
@@ -38,6 +38,27 @@ const canMapAttributes = (mappingTable: MappingTable, requiredKeys: SlabKeyType[
 };
 
 /**
+ * Method that parses every entry depending on its type defined in the SlabTypeValueMap
+ * @param attributeName - value to be checked whether it exists in mappingTable
+ * @param value - value for the respective attribute
+ * @param mappingTable - mapping table mapping attributes of the CSV to those of the SlabType
+ * @returns correct value as defined in mappingTable
+ */
+const parsingEntry = (attributeName: string, value: string, mappingTable: MappingTable) => {
+  if (!mappingTable[attributeName]) return undefined;
+  switch (SlabTypeValueMap[mappingTable[attributeName]]) {
+    case 'string':
+      return value;
+    case 'number':
+      return Number(value);
+    case 'numberArray':
+      return atob(JSON.parse(value)) as unknown as number[];
+    case 'nestedNumberArray':
+      return atob(JSON.parse(value)) as unknown as number[][];
+  }
+};
+
+/**
  * Method that tries to parse the CSV Entry (key, value) to a Partial<SlabType>: Record<SlabKeyType, number | string>
  * @param entry - Record<string, string>
  * @param mappingTable
@@ -46,7 +67,7 @@ const canMapAttributes = (mappingTable: MappingTable, requiredKeys: SlabKeyType[
 const mapEntry = (entry: Record<string, string>, mappingTable: MappingTable): Partial<SlabType> =>
   Object.fromEntries(
     Object.entries(entry)
-      .map(([key, value]) => (mappingTable[key] ? [mappingTable[key], SlabTypeValueMap[mappingTable[key]] === 'number' ? Number(value) : value] : undefined))
+      .map(([key, value]) => [mappingTable[key], parsingEntry(key, value, mappingTable)])
       .filter((s) => s !== undefined)
   );
 const getMappedData = (csvData: CsvData, mappingTable: MappingTable): Partial<SlabType>[] => csvData.map((entry) => mapEntry(entry, mappingTable));
@@ -75,6 +96,19 @@ const addNewIds = (data: Partial<SlabType>[]): Partial<SlabType>[] => data.map((
 const hasAttribute = (data: Partial<SlabType>[], attribute: SlabKeyType): boolean => data.every((e) => e[attribute] !== undefined);
 
 /**
+ * Data that can be added with boilerplate if the rest isn't available
+ * @param data - Partial<SlabType>[]
+ * @returns Partial<SlabType>[]
+ */
+const addDefaultData = (data: Partial<SlabType>[]): Partial<SlabType>[] =>
+  data.map((slab) => {
+    const missingKeysForWhichDefaultIsDefined = new Set(Object.keys(DefaultDataMap)).difference(new Set(Object.keys(slab))) as Set<SlabKeyType>;
+    if (missingKeysForWhichDefaultIsDefined.size)
+      return { ...slab, ...Object.fromEntries([...missingKeysForWhichDefaultIsDefined].map((k) => [k, DefaultDataMap[k]])) };
+    return slab;
+  });
+
+/**
  * Don't use with existing projects
  * Method that returns a Partial<SlabType> Array from csv data, populate with NEW IDS
  * @param csvData - CsvData
@@ -82,7 +116,7 @@ const hasAttribute = (data: Partial<SlabType>[], attribute: SlabKeyType): boolea
  */
 export const initNewProject = (csvData: CsvData): Partial<SlabType>[] => {
   const slabData = getSlabTypesFromCsv(csvData, [SlabKeyType.PlanReference]);
-  return hasAttribute(slabData, SlabKeyType.Id) ? slabData : addNewIds(slabData);
+  return addDefaultData(hasAttribute(slabData, SlabKeyType.Id) ? slabData : addNewIds(slabData));
 };
 
 /**
@@ -92,5 +126,31 @@ export const initNewProject = (csvData: CsvData): Partial<SlabType>[] => {
  */
 export const loadProject = (csvData: CsvData): Partial<SlabType>[] => {
   const slabData = getSlabTypesFromCsv(csvData, [SlabKeyType.PlanReference, SlabKeyType.Id]);
-  return hasAttribute(slabData, SlabKeyType.Id) ? slabData : addNewIds(slabData);
+  return addDefaultData(slabData);
 };
+
+/**
+ * helper method to prepare element data for storing in the csv
+ * @param attribute - SlabKeyType
+ * @param value - string | number | number[] | number[][]
+ */
+const getCSVValueForData = (attribute: SlabKeyType, value: any): string => {
+  switch (SlabTypeValueMap[attribute]) {
+    case 'string':
+      return value as string;
+    case 'number':
+      return (Math.round(value * 1e3) * 1e-3).toFixed(3);
+    case 'numberArray':
+    case 'nestedNumberArray':
+      return btoa(JSON.stringify(value));
+  }
+};
+
+/**
+ * Method to construct csv data based on the elements
+ * @returns Record<string, string>
+ */
+const getCSVObjectFromSlabType = (element: Partial<SlabType>): Record<string, string> =>
+  Object.fromEntries(Object.entries(element).map(([key, value]) => [key, getCSVValueForData(key as SlabKeyType, value)]));
+
+export const getCSVDataFromSlabTypes = (elements: Partial<SlabType>[]): Record<string, string>[] => elements.map(getCSVObjectFromSlabType);

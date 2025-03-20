@@ -4,4 +4,7 @@ export enum DerivativeAttributeNames {
   Type = 'type',
   Weight = 'weight',
   Count = 'count',
+  ReboundTestMean = 'reboundTestAverage',
+  ReboundTestStdv = 'reboundTestStdv',
+  ReboundTestEdit = 'reboundTestEdit',
 }
