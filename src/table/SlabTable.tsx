@@ -26,7 +26,7 @@ export const SlabTable: React.FC = () => {
 
   // Add state for current page
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
+  const [pageSize, setPageSize] = useState(10);
 
   const tableRef = useRef<HTMLDivElement>(null);
 
