@@ -147,3 +147,18 @@ export const getWeight = (element: Partial<SlabType>) =>
   element[SlabKeyType.Dimensions_l] && element[SlabKeyType.Dimensions_w] && element[SlabKeyType.Dimensions_h]
     ? element.dimensions_l * element.dimensions_w * element.dimensions_h * 0.6 * 0.0000025
     : undefined;
+
+export const getReboundTestMean = (element: Partial<SlabType>): number | undefined =>
+  element.reboundTestData && element.reboundTestData.length
+    ? element.reboundTestData.map((v) => v.reduce((a, b) => a + b / (v.length ?? 1), 0)).reduce((a, b) => a + b / element.reboundTestData!.length, 0)
+    : undefined;
+
+export const getReboundTestMaxStandardDeviation = (element: Partial<SlabType>): number | undefined =>
+  element.reboundTestData && element.reboundTestData.length
+    ? Math.max(
+        ...element.reboundTestData.map((v) => {
+          const mean = v.reduce((a, b) => a + b / (v.length ?? 1), 0);
+          return Math.sqrt(v.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / (v.length ?? 1));
+        })
+      )
+    : undefined;
