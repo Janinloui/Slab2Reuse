@@ -9,7 +9,7 @@ const EditKey = 'edit';
 export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, string>> = {
   [SlabKeyType.Location_x]: 'm',
   [SlabKeyType.Location_y]: 'm',
-  [SlabKeyType.Location_z]: 'm',
+  [SlabKeyType.Level]: '',
   [DerivativeAttributeNames.Weight]: 'kg',
   [SlabKeyType.Dimensions_l]: 'mm',
   [SlabKeyType.Dimensions_w]: 'mm',
@@ -20,13 +20,20 @@ export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, s
   [SlabKeyType.Yaw]: '°',
 };
 
+export const levelRenderer = (level: number | undefined): string | undefined => {
+  if (level === undefined) return undefined;
+  if (level > 0) return `OG${level}`;
+  if (level === 0) return `EG`;
+  return `UG${Math.abs(level)}`;
+};
+
 export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit', string | undefined> = {
   [SlabKeyType.Id]: 'Id',
   [SlabKeyType.PlanReference]: 'Plan Reference',
   [DerivativeAttributeNames.Type]: 'Type',
   [SlabKeyType.Location_x]: 'X Coordinate',
   [SlabKeyType.Location_y]: 'Y Coordinate',
-  [SlabKeyType.Location_z]: 'Z Coordinate',
+  [SlabKeyType.Level]: 'level',
   [SlabKeyType.Strength]: 'Strength',
   [SlabKeyType.Dimensions_l]: 'Length',
   [SlabKeyType.Dimensions_w]: 'Width',
@@ -58,8 +65,8 @@ export const AllDefinedRenders: (SlabKeyType | DerivativeAttributeNames | 'edit'
 
 export const locationRenderer = (element: Partial<SlabType>) =>
   element[SlabKeyType.Location_x] !== undefined && element[SlabKeyType.Location_y] !== undefined
-    ? element[SlabKeyType.Location_z] !== undefined
-      ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${element[SlabKeyType.Location_z]?.toFixed(2)})`
+    ? element[SlabKeyType.Level] !== undefined
+      ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${element[SlabKeyType.Level]?.toFixed(2)})`
       : `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)})`
     : undefined;
 //renders the rebar of the element in a human readable format (A string) (amount ødiameter)

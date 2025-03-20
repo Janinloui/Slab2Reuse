@@ -9,7 +9,7 @@ export type SlabType = {
   [SlabKeyType.PlanReference]: string;
   [SlabKeyType.Location_x]: number;
   [SlabKeyType.Location_y]: number;
-  [SlabKeyType.Location_z]: number;
+  [SlabKeyType.Level]: number;
   [SlabKeyType.Strength]: string;
   [SlabKeyType.Dimensions_l]: number;
   [SlabKeyType.Dimensions_w]: number;
@@ -33,7 +33,7 @@ export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string' | 'enum' 
   [SlabKeyType.PlanReference]: 'string',
   [SlabKeyType.Location_x]: 'number',
   [SlabKeyType.Location_y]: 'number',
-  [SlabKeyType.Location_z]: 'number',
+  [SlabKeyType.Level]: 'number',
   [SlabKeyType.Strength]: 'string',
   [SlabKeyType.Dimensions_l]: 'number',
   [SlabKeyType.Dimensions_w]: 'number',
@@ -55,11 +55,11 @@ export const StabTypeGeometryAttributes = [
   SlabKeyType.Dimensions_h,
   SlabKeyType.Location_x,
   SlabKeyType.Location_y,
-  SlabKeyType.Location_z,
+  SlabKeyType.Level,
 ];
 
 export const DefaultDataMap: Partial<Record<SlabKeyType, any>> = {
-  [SlabKeyType.Location_z]: 0,
+  [SlabKeyType.Level]: 0,
   [SlabKeyType.ReboundTestData]: [],
   [SlabKeyType.Yaw]: 0,
 };
