@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { SlabType } from '../types/slabType';
 import { UserCategory } from '../enums/user';
-import { DefaultRenderValues } from '../table/attributeDefinition';
+import { DefaultRenderValues, RenderLocal } from '../table/attributeDefinition';
 import { SlabKeyType } from '../enums/attributeNames';
 
 type TableStore = {
@@ -25,7 +25,8 @@ export const useTableStore = create<TableStore>((set, get) => ({
   userCategory: UserCategory.Slab2Reuse,
   setUserCategory: (userCategory: UserCategory) => set((s) => ({ userCategory })),
   userAttributeMap: DefaultRenderValues,
-  setUserAttributeMap: (userCategory, attributes) => set((s) => ({ userAttributeMap: { ...s.userAttributeMap, [userCategory]: attributes } })),
+  setUserAttributeMap: (userCategory, attributes) =>
+    set((s) => ({ userAttributeMap: { ...s.userAttributeMap, [userCategory]: attributes.filter((s) => RenderLocal[s as SlabKeyType] !== undefined) } })),
   addElement: (element) => {
     if (!element[SlabKeyType.Id]) element[SlabKeyType.Id] = new Date().getMilliseconds().toString();
     set((s) => ({ elements: [...s.elements, element] }));
