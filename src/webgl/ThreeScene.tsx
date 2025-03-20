@@ -2,12 +2,26 @@ import { Canvas } from '@react-three/fiber';
 import { useTableStore } from '../state/tableStore';
 import Slab from './renderers/Slab';
 import { Bounds, OrbitControls, useBounds } from '@react-three/drei';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 
 // This component wraps children in a group with a click handler
 // Clicking any object will refresh and fit bounds
 const SelectToZoom: React.FC<{ children: any }> = ({ children }) => {
   const api = useBounds();
+  const selectedIds = useTableStore((s) => s.selectedElementIds);
+
+  useEffect(() => {
+    if (selectedIds) {
+      const slab = useTableStore.getState().elements.find((p) => selectedIds.includes(p.id!));
+      if (slab)
+        api.to({
+          target: [slab.location_x!, -slab.location_z!, slab.location_y!],
+          position: [slab.location_x! - 1000, -slab.location_z! - 1000, slab.location_y! - 1000],
+        });
+      else api.fit();
+    } else api.fit();
+  }, [selectedIds]);
+
   return (
     <group
       onClick={(e) => (e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit())}
@@ -39,4 +53,4 @@ export const ThreeScene: React.FC = () => {
   );
 };
 
-//responsible for rendering a 3D scene 
+//responsible for rendering a 3D scene
