@@ -12,6 +12,9 @@ type TableStore = {
   userAttributeMap: Record<UserCategory, string[]>;
   setUserAttributeMap: (userCategory: UserCategory, attributes: string[]) => void;
   addElement: (element: Partial<SlabType>) => void;
+  selectedElementIds: string[];
+  setSelectedElementIds: (...ids: string[]) => void;
+  clearSelection: () => void;
 };
 
 export const useTableStore = create<TableStore>((set, get) => ({
@@ -36,6 +39,9 @@ export const useTableStore = create<TableStore>((set, get) => ({
     if (!element[SlabKeyType.Id]) element[SlabKeyType.Id] = new Date().getMilliseconds().toString();
     set((s) => ({ elements: [...s.elements, element] }));
   },
+  selectedElementIds: [],
+  setSelectedElementIds: (...ids) => set(() => ({ selectedElementIds: ids })),
+  clearSelection: () => set(() => ({ selectedElementIds: [] })),
 }));
 
 //handles the process of adding, updating and deleting elements in the table

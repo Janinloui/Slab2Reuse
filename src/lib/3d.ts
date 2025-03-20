@@ -10,3 +10,11 @@ export const hasGeometryData = (slab: Partial<SlabType>): boolean => StabTypeGeo
 
 export const getCenterOfV3 = (vertices: Vector3[]): Vector3 =>
   vertices.reduce((a: Vector3, b: Vector3) => a.add(b), new Vector3()).multiplyScalar(1 / vertices.length);
+
+export const getViewForSlab = (slab: Partial<SlabType>) =>
+  hasGeometryData(slab)
+    ? {
+        target: [slab.location_x!, -slab.location_z!, slab.location_y!] as [number, number, number],
+        position: [slab.location_x!, -slab.location_z! + 5000, slab.location_y!] as [number, number, number],
+      }
+    : undefined;
