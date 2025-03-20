@@ -14,4 +14,5 @@ export enum SlabKeyType {
   RebarAmountTop = 'rebarAmountTop',
   RebarDiameterBottom = 'rebarDiameterBottom',
   RebarAmountBottom = 'rebarAmountBottom',
+  ReboundTestData = 'reboundTestData',
 }
