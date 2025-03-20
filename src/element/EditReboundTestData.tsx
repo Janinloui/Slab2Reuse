@@ -7,6 +7,8 @@ import { LuListPlus } from 'react-icons/lu';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import { FaHammer } from 'react-icons/fa6';
 import { BiTrash } from 'react-icons/bi';
+import { UploadReboundTestCSV } from '../table/io/UploadReboundTest.Csv';
+import DownloadReboundTestCSV from '../table/io/DownloadReboundTestCsv';
 
 const EditReboundArray: React.FC<{ values: number[]; update: (newNumbers: number[]) => void }> = ({ values, update }) => {
   return (
@@ -77,6 +79,10 @@ export const EditReboundTestData: React.FC<{ element: Partial<SlabType> }> = ({ 
           <LuListPlus size={20} onClick={addArray} />
           <span>
             <Button onClick={() => setOpen(false)}>close</Button>
+          </span>
+          <span style={{ display: 'flex', flexDirection: 'row', gap: 8 }}>
+            <DownloadReboundTestCSV element={element as SlabType} />
+            <UploadReboundTestCSV element={element as SlabType} setElement={(e) => useTableStore.getState().updateElement(element.id!, e)} />
           </span>
         </div>
       }
