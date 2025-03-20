@@ -29,7 +29,7 @@ export const AddElement: React.FC = () => {
         onClose={() => setOpen(false)}
         open={open}
         footer={
-          <span className='flex gap-4 py-2'>
+          <span style={{ display: 'flex', flexDirection: 'row', gap: 4 }}>
             <Button onClick={addElement} type='primary'>
               add element
             </Button>
