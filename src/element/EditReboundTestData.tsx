@@ -84,7 +84,6 @@ export const EditReboundTestData: React.FC<{ element: Partial<SlabType> }> = ({ 
     >
       <Button onClick={() => setOpen(!open)}>
         <FaHammer size={20} />
-        Rebound
       </Button>
     </Popover>
   );
