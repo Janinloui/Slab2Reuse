@@ -48,7 +48,7 @@ export const EditElement: React.FC<{ element: Partial<SlabType> }> = ({ element 
         onClose={() => setOpen(false)}
         open={open}
         footer={
-          <span className='flex flex-row gap-2'>
+          <span style={{ display: 'flex', flexDirection: 'row', gap: 4 }}>
             <Button onClick={updateElement} type='primary'>
               edit element
             </Button>
