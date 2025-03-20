@@ -1,4 +1,4 @@
-import { Button, Drawer, Form, Input } from 'antd';
+import { Button, Drawer, Form, Input, Select } from 'antd';
 import { SlabType } from '../types/slabType';
 import { useRef, useState } from 'react';
 import { DefaultRenderValues, RenderLocal, suffixMap, typeRenderer } from '../table/attributeDefinition';
@@ -39,7 +39,15 @@ export const EditElement: React.FC<{ element: Partial<SlabType> }> = ({ element 
             {DefaultRenderValues[activeGlobalUserCategory].map((v) =>
               Object.values(SlabKeyType).includes(v as SlabKeyType) ? (
                 <Form.Item label={RenderLocal[v as SlabKeyType]} name={v}>
-                  <Input />
+                  {v === SlabKeyType.Condition ? (
+                    <Select>
+                      <Select.Option value="Good">Good</Select.Option>
+                      <Select.Option value="Repairable">Repairable</Select.Option>
+                      <Select.Option value="Broken">Broken</Select.Option>
+                    </Select>
+                  ) : (
+                    <Input />
+                  )}
                 </Form.Item>
               ) : null
             )}

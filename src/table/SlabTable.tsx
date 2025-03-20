@@ -16,6 +16,10 @@ export const SlabTable: React.FC = () => {
     setColumns(userAttributeMap[userCategory].map((s) => columnTypeMap[s]));
   }, [userCategory, userAttributeMap]);
 
+  useEffect(() => {
+    console.log('Elements updated:', elements); // Debugging log
+  }, [elements]);
+
   return (
     <>
       <SettingsAndFilterPanel />

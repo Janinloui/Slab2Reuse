@@ -19,8 +19,13 @@ export const useTableStore = create<TableStore>((set, get) => ({
   updateElement: (element: SlabType) =>
     set((s) => {
       const index = s.elements.findIndex((e) => e.id === element.id);
-      if (index !== -1) s.elements[index] = { ...element };
-      return { elements: [...s.elements] };
+      if (index !== -1) {
+        const updatedElements = [...s.elements]; // Create a new array reference
+        updatedElements[index] = { ...element }; // Update the specific element
+        console.log('Updated Elements:', updatedElements); // Debugging log
+        return { elements: updatedElements }; // Return the new array
+      }
+      return { elements: s.elements }; // No changes if the element is not found
     }),
   userCategory: UserCategory.Slab2Reuse,
   setUserCategory: (userCategory: UserCategory) => set((s) => ({ userCategory })),
