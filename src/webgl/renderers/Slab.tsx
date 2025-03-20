@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Mesh } from 'three';
 import { SlabType } from '../../types/slabType';
-import { hasGeometryData } from '../../lib/3d';
+import { getZForSlab, hasGeometryData } from '../../lib/3d';
 import { SlabKeyType } from '../../enums/attributeNames';
 import { getColorForCondition } from '../../lib/colors';
 import { useTableStore } from '../../state/tableStore';
@@ -23,7 +23,7 @@ export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
     <mesh
       key={slab.id}
       rotation={[0, slab.rotZAxis_yaw ? (slab.rotZAxis_yaw * Math.PI) / 180 : 0, 0]}
-      position={[slab[SlabKeyType.Location_x]!, -slab[SlabKeyType.Location_z]!, slab[SlabKeyType.Location_y]!]}
+      position={[slab[SlabKeyType.Location_x]!, -getZForSlab(slab), slab[SlabKeyType.Location_y]!]}
       ref={ref}
       onClick={() => {
         if (!selected) useTableStore.getState().setSelectedElementIds(slab.id!);
