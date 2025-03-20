@@ -32,7 +32,7 @@ export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
       onPointerOver={() => hover(true)}
       onPointerOut={() => hover(false)}
     >
-      <boxGeometry args={[slab.dimensions_l, slab.dimensions_h, slab.dimensions_w]} />
+      <boxGeometry args={[slab[SlabKeyType.Dimensions_l]!, slab[SlabKeyType.Dimensions_h]!, slab[SlabKeyType.Dimensions_w]!]} />
       <meshStandardMaterial color={selected ? '#9a9af9' : hovered ? 'hotpink' : slab.condition ? getColorForCondition(slab.condition) : 'orange'} />
     </mesh>
   ) : null;
