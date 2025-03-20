@@ -3,6 +3,7 @@ import { Mesh } from 'three';
 import { SlabType } from '../../types/slabType';
 import { hasGeometryData } from '../../lib/3d';
 import { SlabKeyType } from '../../enums/attributeNames';
+import { getColorForCondition } from '../../lib/colors';
 
 export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
   const isValid = hasGeometryData(slab);
@@ -20,7 +21,7 @@ export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
       onPointerOut={() => hover(false)}
     >
       <boxGeometry args={[slab.dimensions_w, slab.dimensions_h, slab.dimensions_l]} />
-      <meshStandardMaterial color={clicked ? 'red' : hovered ? 'hotpink' : 'orange'} />
+      <meshStandardMaterial color={clicked ? 'red' : hovered ? 'hotpink' : slab.condition ? getColorForCondition(slab.condition) : 'orange'} />
     </mesh>
   ) : null;
 };
