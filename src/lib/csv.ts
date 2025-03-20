@@ -53,9 +53,9 @@ const parsingEntry = (attributeName: string, value: string, mappingTable: Mappin
     case 'number':
       return Number(value);
     case 'numberArray':
-      return atob(JSON.parse(value)) as unknown as number[];
+      return JSON.parse(atob(value)) as unknown as number[];
     case 'nestedNumberArray':
-      return atob(JSON.parse(value)) as unknown as number[][];
+      return JSON.parse(atob(value)) as unknown as number[][];
   }
 };
 
