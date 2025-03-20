@@ -20,6 +20,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '1',
@@ -39,6 +40,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '2',
@@ -58,6 +60,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '3',
@@ -77,6 +80,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '4',
@@ -96,6 +100,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '5',
@@ -115,6 +120,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '6',
@@ -134,6 +140,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '7',
@@ -153,6 +160,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '8',
@@ -172,6 +180,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '9',
@@ -191,6 +200,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '10',
@@ -210,6 +220,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '11',
@@ -229,6 +240,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '12',
@@ -248,6 +260,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '13',
@@ -267,6 +280,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '14',
@@ -286,6 +300,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '15',
@@ -305,6 +320,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '16',
@@ -324,6 +340,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '17',
@@ -343,6 +360,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '18',
@@ -362,6 +380,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '19',
@@ -381,6 +400,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '20',
@@ -400,6 +420,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '21',
@@ -419,6 +440,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '22',
@@ -438,6 +460,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '23',
@@ -457,6 +480,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '24',
@@ -476,6 +500,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '25',
@@ -495,6 +520,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '26',
@@ -514,6 +540,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 4,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '27',
@@ -533,6 +560,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 4,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '28',
@@ -552,6 +580,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '29',
@@ -571,6 +600,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '30',
@@ -590,6 +620,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 4,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '31',
@@ -609,6 +640,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 4,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '32',
@@ -628,6 +660,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '33',
@@ -647,6 +680,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '34',
@@ -666,6 +700,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 4,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '35',
@@ -685,6 +720,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 4,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '36',
@@ -704,6 +740,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '37',
@@ -723,6 +760,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '38',
@@ -742,6 +780,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '39',
@@ -761,6 +800,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '40',
@@ -780,6 +820,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '41',
@@ -799,6 +840,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '42',
@@ -818,6 +860,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '43',
@@ -837,6 +880,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '44',
@@ -856,6 +900,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '45',
@@ -875,6 +920,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '46',
@@ -894,6 +940,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '47',
@@ -913,6 +960,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '48',
@@ -932,6 +980,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '49',
@@ -951,6 +1000,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '50',
@@ -970,6 +1020,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '51',
@@ -989,6 +1040,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '52',
@@ -1008,6 +1060,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '53',
@@ -1027,6 +1080,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '54',
@@ -1046,6 +1100,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '55',
@@ -1065,6 +1120,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 6,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '56',
@@ -1084,6 +1140,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '57',
@@ -1103,6 +1160,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '58',
@@ -1122,6 +1180,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '59',
@@ -1141,6 +1200,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '60',
@@ -1160,6 +1220,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '61',
@@ -1179,6 +1240,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '62',
@@ -1198,6 +1260,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '63',
@@ -1217,6 +1280,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '64',
@@ -1236,6 +1300,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '65',
@@ -1255,6 +1320,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '66',
@@ -1274,6 +1340,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '67',
@@ -1293,6 +1360,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '68',
@@ -1312,6 +1380,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '69',
@@ -1331,6 +1400,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '70',
@@ -1350,6 +1420,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '71',
@@ -1369,6 +1440,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '72',
@@ -1388,6 +1460,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '73',
@@ -1407,6 +1480,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '74',
@@ -1426,6 +1500,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '75',
@@ -1445,6 +1520,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '76',
@@ -1464,6 +1540,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '77',
@@ -1483,6 +1560,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '78',
@@ -1502,6 +1580,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '79',
@@ -1521,6 +1600,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '80',
@@ -1540,6 +1620,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '81',
@@ -1559,6 +1640,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '82',
@@ -1578,6 +1660,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '83',
@@ -1597,6 +1680,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '84',
@@ -1616,6 +1700,7 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
   {
     id: '85',
@@ -1635,5 +1720,6 @@ export const exampleData: SlabType[] = [
     rebarAmountBottom: 8,
     reboundTestData: [],
     condition: VisualCondition.Good,
+    rotZAxis_yaw: 0,
   },
 ];
