@@ -7,16 +7,17 @@ const EditKey = 'edit';
 
 //maps atrributes to their respective suffixes (Units)
 export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, string>> = {
-  location_x: 'm',
-  location_y: 'm',
-  location_z: 'm',
-  weight: 'kg',
-  dimensions_l: 'mm',
-  dimensions_w: 'mm',
-  dimensions_h: 'mm',
-  liveload: 'kN/m2',
-  rebarDiameterTop: 'mm',
-  rebarDiameterBottom: 'mm',
+  [SlabKeyType.Location_x]: 'm',
+  [SlabKeyType.Location_y]: 'm',
+  [SlabKeyType.Location_z]: 'm',
+  [DerivativeAttributeNames.Weight]: 'kg',
+  [SlabKeyType.Dimensions_l]: 'mm',
+  [SlabKeyType.Dimensions_w]: 'mm',
+  [SlabKeyType.Dimensions_h]: 'mm',
+  [SlabKeyType.Liveload]: 'kN/m2',
+  [SlabKeyType.RebarDiameterTop]: 'mm',
+  [SlabKeyType.RebarDiameterBottom]: 'mm',
+  [SlabKeyType.Yaw]: '°',
 };
 
 export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit', string | undefined> = {
@@ -38,6 +39,7 @@ export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit'
   [SlabKeyType.RebarDiameterBottom]: 'Rebar Diameter Bottom',
   [SlabKeyType.RebarAmountBottom]: 'Rebar Diameter Bottom',
   [SlabKeyType.Condition]: 'Visual Condition',
+  [SlabKeyType.Yaw]: 'Yaw',
   [DerivativeAttributeNames.Location]: 'Location',
   [DerivativeAttributeNames.RebarRenderer]: 'Rebar',
   [DerivativeAttributeNames.Count]: 'Count',

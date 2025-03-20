@@ -18,4 +18,5 @@ export enum SlabKeyType {
   RebarAmountBottom = 'rebarAmountBottom',
   Condition = 'condition',
   ReboundTestData = 'reboundTestData',
+  Yaw = 'rotZAxis_yaw',
 }

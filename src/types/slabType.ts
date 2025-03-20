@@ -22,6 +22,7 @@ export type SlabType = {
   [SlabKeyType.RebarAmountBottom]: number;
   [SlabKeyType.Condition]: VisualCondition;
   [SlabKeyType.ReboundTestData]: number[][];
+  [SlabKeyType.Yaw]: number;
 };
 
 /**
@@ -45,6 +46,7 @@ export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string' | 'enum' 
   [SlabKeyType.RebarAmountBottom]: 'number',
   [SlabKeyType.Condition]: 'enum',
   [SlabKeyType.ReboundTestData]: 'nestedNumberArray',
+  [SlabKeyType.Yaw]: 'number',
 };
 
 export const StabTypeGeometryAttributes = [
@@ -59,4 +61,5 @@ export const StabTypeGeometryAttributes = [
 export const DefaultDataMap: Partial<Record<SlabKeyType, any>> = {
   [SlabKeyType.Location_z]: 0,
   [SlabKeyType.ReboundTestData]: [],
+  [SlabKeyType.Yaw]: 0,
 };
