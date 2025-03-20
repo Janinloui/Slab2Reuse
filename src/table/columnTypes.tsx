@@ -95,6 +95,11 @@ const derivativeColumnTypeMap: Record<DerivativeAttributeNames, ColumnType<Parti
       else return -1;
     },
   },
+  [DerivativeAttributeNames.ReboundTestEdit]: {
+    title: RenderLocal[DerivativeAttributeNames.ReboundTestEdit],
+    key: DerivativeAttributeNames.ReboundTestEdit,
+    render: (_, element) => <EditReboundTestData element={element} />,
+  },
 };
 
 export const ColumnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>> } = {
