@@ -9,7 +9,7 @@ const EditKey = 'edit';
 export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, string>> = {
   [SlabKeyType.Location_x]: 'm',
   [SlabKeyType.Location_y]: 'm',
-  [SlabKeyType.Level]: '',
+  [SlabKeyType.Floor]: '',
   [DerivativeAttributeNames.Weight]: 'kg',
   [SlabKeyType.Dimensions_l]: 'mm',
   [SlabKeyType.Dimensions_w]: 'mm',
@@ -33,7 +33,7 @@ export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit'
   [DerivativeAttributeNames.Type]: 'Type',
   [SlabKeyType.Location_x]: 'X Coordinate',
   [SlabKeyType.Location_y]: 'Y Coordinate',
-  [SlabKeyType.Level]: 'level',
+  [SlabKeyType.Floor]: 'Floor',
   [SlabKeyType.Strength]: 'Strength',
   [SlabKeyType.Dimensions_l]: 'Length',
   [SlabKeyType.Dimensions_w]: 'Width',
@@ -65,8 +65,8 @@ export const AllDefinedRenders: (SlabKeyType | DerivativeAttributeNames | 'edit'
 
 export const locationRenderer = (element: Partial<SlabType>) =>
   element[SlabKeyType.Location_x] !== undefined && element[SlabKeyType.Location_y] !== undefined
-    ? element[SlabKeyType.Level] !== undefined
-      ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${element[SlabKeyType.Level]?.toFixed(2)})`
+    ? element[SlabKeyType.Floor] !== undefined
+      ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${element[SlabKeyType.Floor]?.toFixed(2)})`
       : `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)})`
     : undefined;
 //renders the rebar of the element in a human readable format (A string) (amount ødiameter)

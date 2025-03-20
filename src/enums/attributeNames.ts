@@ -5,7 +5,7 @@ export enum SlabKeyType {
   PlanReference = 'planReference',
   Location_x = 'location_x',
   Location_y = 'location_y',
-  Level = 'level',
+  Floor = 'floor',
   Strength = 'strength',
   Dimensions_l = 'dimensions_l',
   Dimensions_w = 'dimensions_w',

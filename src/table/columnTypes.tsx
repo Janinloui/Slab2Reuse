@@ -116,7 +116,7 @@ export const ColumnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>>
         title: RenderLocal[dataIndex],
         dataIndex,
         key: dataIndex,
-        ...(dataIndex === SlabKeyType.Level
+        ...(dataIndex === SlabKeyType.Floor
           ? {
               render: (value, e) =>
                 value !== undefined ? levelRenderer(value as number) : <MissingData key={e.id + dataIndex} />,
