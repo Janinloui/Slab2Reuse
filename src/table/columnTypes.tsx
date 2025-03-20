@@ -19,7 +19,6 @@ import { DerivativeAttributeNames } from '../enums/derivativeAttributeNames';
 import { EditReboundTestData } from '../element/EditReboundTestData';
 import { VisualConditionTag } from './VisualConditionTag';
 
-
 // mapping of slab attributes and derived attributes to table column configuration
 //Dynamic rendering of columns based on the slab attributes (SlabKeyType) using Object.Values
 
@@ -116,46 +115,31 @@ export const ColumnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>>
         title: RenderLocal[dataIndex],
         dataIndex,
         key: dataIndex,
-        ...(dataIndex === SlabKeyType.Floor
+        ...(suffixMap[dataIndex] !== undefined
           ? {
-              render: (value, e) =>
-                value !== undefined ? levelRenderer(value as number) : <MissingData key={e.id + dataIndex} />,
-              sorter: (a: Partial<SlabType>, b: Partial<SlabType>) =>
-                (a[dataIndex] as number || 0) - (b[dataIndex] as number || 0),
-            }
-          : suffixMap[dataIndex] !== undefined
-          ? {
-              render: (value, e) =>
-                value !== undefined && !Number.isNaN(value)
-                  ? `${value} ${suffixMap[dataIndex]}`
-                  : <MissingData key={e.id + dataIndex} />,
-              sorter: (a: Partial<SlabType>, b: Partial<SlabType>) =>
-                (a[dataIndex] as number || 0) - (b[dataIndex] as number || 0),
+              render: (value, e) => (value !== undefined && !Number.isNaN(value) ? `${value} ${suffixMap[dataIndex]}` : <MissingData key={e.id + dataIndex} />),
+              sorter: (a: Partial<SlabType>, b: Partial<SlabType>) => ((a[dataIndex] as number) || 0) - ((b[dataIndex] as number) || 0),
             }
           : {
-              render: (value, e) =>
-                value !== undefined ? value : <MissingData key={e.id + dataIndex} />,
+              render: (value, e) => (value !== undefined ? value : <MissingData key={e.id + dataIndex} />),
               sorter: (a: Partial<SlabType>, b: Partial<SlabType>) =>
-                (a[dataIndex as SlabKeyType] as string).localeCompare(
-                  b[dataIndex as SlabKeyType] as string,
-                  undefined,
-                  { numeric: true }
-                ),
+                (a[dataIndex as SlabKeyType] as string).localeCompare(b[dataIndex as SlabKeyType] as string, undefined, { numeric: true }),
             }),
       },
     ])
   ),
   [SlabKeyType.Condition]: {
+    dataIndex: SlabKeyType.Condition,
     title: RenderLocal[SlabKeyType.Condition],
     key: 'condition',
-    render: (_, element) => {
-      const condition = element[SlabKeyType.Condition];
-      return condition ? (
-        <VisualConditionTag condition={condition} />
-      ) : (
-        <MissingData key={element.id + SlabKeyType.Condition} />
-      );
-    },
+    render: (condition, element) => (condition ? <VisualConditionTag condition={condition} /> : <MissingData key={element.id + SlabKeyType.Condition} />),
+  },
+  [SlabKeyType.Floor]: {
+    dataIndex: SlabKeyType.Floor,
+    title: RenderLocal[SlabKeyType.Floor],
+    key: 'floor',
+    render: (value, e) => (value !== undefined ? levelRenderer(value) : <MissingData key={e.id + SlabKeyType.Floor} />),
+    sorter: (a: Partial<SlabType>, b: Partial<SlabType>) => (a[SlabKeyType.Floor] ?? 0) - (b[SlabKeyType.Floor] ?? 0),
   },
   ...derivativeColumnTypeMap,
   edit: {
