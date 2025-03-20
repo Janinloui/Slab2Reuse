@@ -1,23 +1,45 @@
-import { Button, Drawer, Form, Input, Select } from 'antd';
-import { SlabType } from '../types/slabType';
+import { Button, Drawer, Form, Input, InputNumber, Select } from 'antd';
+import { SlabType, SlabTypeValueMap } from '../types/slabType';
 import { useRef, useState } from 'react';
-import { DefaultRenderValues, RenderLocal, suffixMap, typeRenderer } from '../table/attributeDefinition';
+import { DefaultRenderValues, RenderLocal, suffixMap, getType } from '../table/attributeDefinition';
 import { useTableStore } from '../state/tableStore';
 import { SlabKeyType } from '../enums/attributeNames';
+import { VisualCondition } from '../enums/visualCondition';
+import { VisualConditionTag } from '../table/VisualConditionTag';
+
+const InputRendererForData = (attributeName: SlabKeyType) => {
+  switch (SlabTypeValueMap[attributeName]) {
+    case 'string':
+      return <Input />;
+    case 'number':
+      return <InputNumber addonAfter={suffixMap[attributeName]} />;
+    case 'enum':
+      switch (attributeName) {
+        case SlabKeyType.Condition:
+          return (
+            <Select>
+              {Object.values(VisualCondition).map((v) => (
+                <Select.Option key={v} value={v} label={v} children={<VisualConditionTag condition={v} />} />
+              ))}
+            </Select>
+          );
+      }
+    default:
+      return null;
+  }
+};
 
 export const EditElement: React.FC<{ element: Partial<SlabType> }> = ({ element }) => {
   const activeGlobalUserCategory = useTableStore((s) => s.userCategory);
   const [open, setOpen] = useState(false);
   const formRef = useRef<any>(null);
 
-  function updateElement() {
+  const updateElement = () => {
     if (!formRef.current) return;
     const values = formRef.current.getFieldsValue();
-    // casting the values that are in the suffix map to numbers
-    Object.keys(suffixMap).forEach((k) => (values[k] = Number(values[k])));
-    useTableStore.getState().updateElement(values as SlabType);
+    useTableStore.getState().updateElement(element.id!, values as SlabType);
     setOpen(false);
-  }
+  };
 
   return (
     <>
@@ -26,7 +48,7 @@ export const EditElement: React.FC<{ element: Partial<SlabType> }> = ({ element 
         onClose={() => setOpen(false)}
         open={open}
         footer={
-          <span className='flex gap-4 py-2'>
+          <span className='flex flex-row gap-2'>
             <Button onClick={updateElement} type='primary'>
               edit element
             </Button>
@@ -35,19 +57,11 @@ export const EditElement: React.FC<{ element: Partial<SlabType> }> = ({ element 
         }
       >
         {open && element ? (
-          <Form<Partial<SlabType>> ref={formRef} initialValues={element} title={typeRenderer(element)} layout='vertical' autoComplete='off'>
+          <Form<Partial<SlabType>> ref={formRef} initialValues={element} title={getType(element)} layout='vertical' autoComplete='off'>
             {DefaultRenderValues[activeGlobalUserCategory].map((v) =>
               Object.values(SlabKeyType).includes(v as SlabKeyType) ? (
                 <Form.Item label={RenderLocal[v as SlabKeyType]} name={v}>
-                  {v === SlabKeyType.Condition ? (
-                    <Select>
-                      <Select.Option value="Good">Good</Select.Option>
-                      <Select.Option value="Repairable">Repairable</Select.Option>
-                      <Select.Option value="Broken">Broken</Select.Option>
-                    </Select>
-                  ) : (
-                    <Input />
-                  )}
+                  {InputRendererForData(v as SlabKeyType)}
                 </Form.Item>
               ) : null
             )}

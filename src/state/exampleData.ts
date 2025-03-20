@@ -1,3 +1,4 @@
+import { VisualCondition } from '../enums/visualCondition';
 import { SlabType } from '../types/slabType';
 
 export const exampleData: SlabType[] = [
@@ -17,6 +18,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '1',
@@ -34,6 +37,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '2',
@@ -51,6 +56,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '3',
@@ -68,6 +75,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '4',
@@ -85,6 +94,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '5',
@@ -102,6 +113,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '6',
@@ -119,6 +132,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '7',
@@ -136,6 +151,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '8',
@@ -153,6 +170,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '9',
@@ -170,6 +189,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '10',
@@ -187,6 +208,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '11',
@@ -204,6 +227,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '12',
@@ -221,6 +246,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '13',
@@ -238,6 +265,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '14',
@@ -255,6 +284,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '15',
@@ -272,6 +303,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '16',
@@ -289,6 +322,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '17',
@@ -306,6 +341,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '18',
@@ -323,6 +360,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '19',
@@ -340,6 +379,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '20',
@@ -357,6 +398,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '21',
@@ -374,6 +417,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '22',
@@ -391,6 +436,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '23',
@@ -408,6 +455,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '24',
@@ -425,6 +474,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '25',
@@ -442,6 +493,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '26',
@@ -459,6 +512,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '27',
@@ -476,6 +531,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '28',
@@ -493,6 +550,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '29',
@@ -510,6 +569,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '30',
@@ -527,6 +588,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '31',
@@ -544,6 +607,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '32',
@@ -561,6 +626,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '33',
@@ -578,6 +645,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '34',
@@ -595,6 +664,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '35',
@@ -612,6 +683,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '36',
@@ -629,6 +702,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '37',
@@ -646,6 +721,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '38',
@@ -663,6 +740,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '39',
@@ -680,6 +759,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '40',
@@ -697,6 +778,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '41',
@@ -714,6 +797,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '42',
@@ -731,6 +816,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '43',
@@ -748,6 +835,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '44',
@@ -765,6 +854,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '45',
@@ -782,6 +873,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '46',
@@ -799,6 +892,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '47',
@@ -816,6 +911,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '48',
@@ -833,6 +930,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '49',
@@ -850,6 +949,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '50',
@@ -867,6 +968,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '51',
@@ -884,6 +987,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '52',
@@ -901,6 +1006,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '53',
@@ -918,6 +1025,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '54',
@@ -935,6 +1044,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '55',
@@ -952,6 +1063,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '56',
@@ -969,6 +1082,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '57',
@@ -986,6 +1101,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '58',
@@ -1003,6 +1120,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '59',
@@ -1020,6 +1139,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '60',
@@ -1037,6 +1158,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '61',
@@ -1054,6 +1177,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '62',
@@ -1071,6 +1196,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '63',
@@ -1088,6 +1215,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '64',
@@ -1105,6 +1234,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '65',
@@ -1122,6 +1253,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '66',
@@ -1139,6 +1272,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '67',
@@ -1156,6 +1291,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '68',
@@ -1173,6 +1310,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '69',
@@ -1190,6 +1329,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '70',
@@ -1207,6 +1348,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '71',
@@ -1224,6 +1367,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '72',
@@ -1241,6 +1386,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '73',
@@ -1258,6 +1405,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '74',
@@ -1275,6 +1424,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '75',
@@ -1292,6 +1443,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '76',
@@ -1309,6 +1462,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '77',
@@ -1326,6 +1481,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '78',
@@ -1343,6 +1500,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '79',
@@ -1360,6 +1519,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '80',
@@ -1377,6 +1538,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '81',
@@ -1394,6 +1557,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '82',
@@ -1411,6 +1576,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '83',
@@ -1428,6 +1595,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '84',
@@ -1445,6 +1614,8 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
   {
     id: '85',
@@ -1462,5 +1633,7 @@ export const exampleData: SlabType[] = [
     rebarAmountTop: 0,
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
+    reboundTestData: [],
+    condition: VisualCondition.Good,
   },
 ];

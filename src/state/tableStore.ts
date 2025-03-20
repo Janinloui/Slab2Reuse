@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 import { SlabType } from '../types/slabType';
 import { UserCategory } from '../enums/user';
-import { DefaultRenderValues } from '../table/attributeDefinition';
+import { DefaultRenderValues, RenderLocal } from '../table/attributeDefinition';
 import { SlabKeyType } from '../enums/attributeNames';
 
 type TableStore = {
   elements: Partial<SlabType>[];
-  updateElement: (element: SlabType) => void;
+  updateElement: (id: string, element: Partial<SlabType>) => void;
   userCategory: UserCategory;
   setUserCategory: (c: UserCategory) => void;
   userAttributeMap: Record<UserCategory, string[]>;
@@ -16,12 +16,12 @@ type TableStore = {
 
 export const useTableStore = create<TableStore>((set, get) => ({
   elements: [],
-  updateElement: (element: SlabType) =>
+  updateElement: (id: string, element: Partial<SlabType>) =>
     set((s) => {
-      const index = s.elements.findIndex((e) => e.id === element.id);
+      const index = s.elements.findIndex((e) => e.id === id);
       if (index !== -1) {
         const updatedElements = [...s.elements]; // Create a new array reference
-        updatedElements[index] = { ...element }; // Update the specific element
+        updatedElements[index] = { ...s.elements[index], ...element }; // Update the specific element
         console.log('Updated Elements:', updatedElements); // Debugging log
         return { elements: updatedElements }; // Return the new array
       }
@@ -30,7 +30,8 @@ export const useTableStore = create<TableStore>((set, get) => ({
   userCategory: UserCategory.Slab2Reuse,
   setUserCategory: (userCategory: UserCategory) => set((s) => ({ userCategory })),
   userAttributeMap: DefaultRenderValues,
-  setUserAttributeMap: (userCategory, attributes) => set((s) => ({ userAttributeMap: { ...s.userAttributeMap, [userCategory]: attributes } })),
+  setUserAttributeMap: (userCategory, attributes) =>
+    set((s) => ({ userAttributeMap: { ...s.userAttributeMap, [userCategory]: attributes.filter((s) => RenderLocal[s as SlabKeyType] !== undefined) } })),
   addElement: (element) => {
     if (!element[SlabKeyType.Id]) element[SlabKeyType.Id] = new Date().getMilliseconds().toString();
     set((s) => ({ elements: [...s.elements, element] }));

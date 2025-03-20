@@ -1,3 +1,5 @@
+//standardized attribute names for the slabType
+
 export enum SlabKeyType {
   Id = 'id',
   PlanReference = 'planReference',
@@ -15,5 +17,5 @@ export enum SlabKeyType {
   RebarDiameterBottom = 'rebarDiameterBottom',
   RebarAmountBottom = 'rebarAmountBottom',
   Condition = 'condition',
+  ReboundTestData = 'reboundTestData',
 }
-//standardized attribute names for the slabType

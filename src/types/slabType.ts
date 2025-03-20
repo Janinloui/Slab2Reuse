@@ -1,4 +1,8 @@
+//This file defines the datastructure for slab elements
+//and the mapping of the attributes to the table columns
+
 import { SlabKeyType } from '../enums/attributeNames';
+import { VisualCondition } from '../enums/visualCondition';
 
 export type SlabType = {
   [SlabKeyType.Id]: string;
@@ -16,10 +20,14 @@ export type SlabType = {
   [SlabKeyType.RebarAmountTop]: number;
   [SlabKeyType.RebarDiameterBottom]: number;
   [SlabKeyType.RebarAmountBottom]: number;
-  [SlabKeyType.Condition]: 'Good'| 'Repairable' | 'Broken';
+  [SlabKeyType.Condition]: VisualCondition;
+  [SlabKeyType.ReboundTestData]: number[][];
 };
 
-export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string'> = {
+/**
+ * Map that describes what the type values of each of the SlabKeys are
+ */
+export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string' | 'enum' | 'numberArray' | 'nestedNumberArray'> = {
   [SlabKeyType.Id]: 'string',
   [SlabKeyType.PlanReference]: 'string',
   [SlabKeyType.Location_x]: 'number',
@@ -35,7 +43,8 @@ export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string'> = {
   [SlabKeyType.RebarAmountTop]: 'number',
   [SlabKeyType.RebarDiameterBottom]: 'number',
   [SlabKeyType.RebarAmountBottom]: 'number',
-  [SlabKeyType.Condition]: 'string',
+  [SlabKeyType.Condition]: 'enum',
+  [SlabKeyType.ReboundTestData]: 'nestedNumberArray',
 };
 
 export const StabTypeGeometryAttributes = [
@@ -47,6 +56,7 @@ export const StabTypeGeometryAttributes = [
   SlabKeyType.Location_z,
 ];
 
-
-//This file defines the datastructure for slab elements 
-//and the mapping of the attributes to the table columns
+export const DefaultDataMap: Partial<Record<SlabKeyType, any>> = {
+  [SlabKeyType.Location_z]: 0,
+  [SlabKeyType.ReboundTestData]: [],
+};

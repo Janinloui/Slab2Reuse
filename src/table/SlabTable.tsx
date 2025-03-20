@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 import { useTableStore } from '../state/tableStore';
-import { columnTypeMap } from './columnTypes';
+import { ColumnTypeMap } from './columnTypes';
 import { SettingsAndFilterPanel } from '../userView/SettingsAndFilterPanel';
 import { useEffect, useState } from 'react';
 import { getPartsWithUniqueType, reduceAndUseCount } from './attributeDefinition';
@@ -10,10 +10,10 @@ export const SlabTable: React.FC = () => {
   const elements = useTableStore((s) => s.elements);
   const userCategory = useTableStore((s) => s.userCategory);
   const userAttributeMap = useTableStore((s) => s.userAttributeMap);
-  const [columns, setColumns] = useState(userAttributeMap[userCategory].map((s) => columnTypeMap[s]));
+  const [columns, setColumns] = useState(userAttributeMap[userCategory].map((s) => ColumnTypeMap[s]));
 
   useEffect(() => {
-    setColumns(userAttributeMap[userCategory].map((s) => columnTypeMap[s]));
+    setColumns(userAttributeMap[userCategory].map((s) => ColumnTypeMap[s]).filter((s) => s !== undefined)); // filtering out columns that are not defined, right now only for the rebound test data, which doesn't have a renderer in the tabel defined for it
   }, [userCategory, userAttributeMap]);
 
   useEffect(() => {

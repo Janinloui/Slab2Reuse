@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { message, Upload } from 'antd';
 import Papa from 'papaparse';
-import { CsvData, initNewProject, loadProject } from '../../lib/csv';
+import { CsvData, loadProject } from '../../lib/csv';
 import { useTableStore } from '../../state/tableStore';
 import { useNavigate } from 'react-router-dom';
 import { Slab2ReuseRoutes } from '../../enums/routes';
@@ -14,11 +14,10 @@ const papaConfig: Papa.ParseConfig<unknown, undefined> & {
 };
 
 type UploadCSVProps = {
-  initNew?: boolean;
   children: ReactNode;
 };
 
-export const UploadCSV: React.FC<UploadCSVProps> = ({ initNew, children }) => {
+export const UploadCSV: React.FC<UploadCSVProps> = ({ children }) => {
   const navigate = useNavigate();
 
   return (
@@ -31,7 +30,7 @@ export const UploadCSV: React.FC<UploadCSVProps> = ({ initNew, children }) => {
         reader.onload = (e) => {
           const result = Papa.parse(e.target!.result as any, papaConfig);
           try {
-            const elements = initNew ? initNewProject(result.data as CsvData) : loadProject(result.data as CsvData);
+            const elements = loadProject(result.data as CsvData);
             useTableStore.setState((s) => ({ elements }));
           } catch (e) {
             message.error('importing the csv failed, check the console for more information');

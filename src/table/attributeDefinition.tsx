@@ -11,24 +11,15 @@ export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, s
   location_y: 'm',
   location_z: 'm',
   weight: 'kg',
-  dimensions_l: 'm',
-  dimensions_w: 'm',
-  dimensions_h: 'm',
+  dimensions_l: 'mm',
+  dimensions_w: 'mm',
+  dimensions_h: 'mm',
   liveload: 'kN/m2',
   rebarDiameterTop: 'mm',
   rebarDiameterBottom: 'mm',
-  rebarAmountTop: '',
-  rebarAmountBottom: '',
 };
 
-export const AllDefinedRenders: (SlabKeyType | DerivativeAttributeNames | 'edit')[] = [
-  ...Object.values(DerivativeAttributeNames),
-  ...Object.values(SlabKeyType),
-  EditKey,
-];
-
-//maps attributes to userfriendly names for display in the UI
-export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit', string> = {
+export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit', string | undefined> = {
   [SlabKeyType.Id]: 'Id',
   [SlabKeyType.PlanReference]: 'Plan Reference',
   [DerivativeAttributeNames.Type]: 'Type',
@@ -51,9 +42,18 @@ export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit'
   [DerivativeAttributeNames.RebarRenderer]: 'Rebar',
   [DerivativeAttributeNames.Count]: 'Count',
   ['edit']: 'Edit Element',
+  [SlabKeyType.ReboundTestData]: undefined,
+  [DerivativeAttributeNames.ReboundTestMean]: 'Rebound Mean',
+  [DerivativeAttributeNames.ReboundTestStdv]: 'Rebound Stdv',
+  [DerivativeAttributeNames.ReboundTestEdit]: 'Rebound Edit',
 };
 
-//renders the location of the element in a human readable format (A string) (x,y,z)
+export const AllDefinedRenders: (SlabKeyType | DerivativeAttributeNames | 'edit')[] = [
+  ...Object.values(DerivativeAttributeNames),
+  ...Object.values(SlabKeyType).filter((s) => RenderLocal[s] !== undefined),
+  EditKey,
+];
+
 export const locationRenderer = (element: Partial<SlabType>) =>
   element[SlabKeyType.Location_x] !== undefined && element[SlabKeyType.Location_y] !== undefined
     ? element[SlabKeyType.Location_z] !== undefined
@@ -62,25 +62,27 @@ export const locationRenderer = (element: Partial<SlabType>) =>
     : undefined;
 //renders the rebar of the element in a human readable format (A string) (amount ødiameter)
 export const rebarRenderer = (element: Partial<SlabType>) =>
-  element[SlabKeyType.RebarAmountBottom] &&
-  element[SlabKeyType.RebarDiameterBottom] &&
-  element[SlabKeyType.RebarAmountTop] &&
-  element[SlabKeyType.RebarDiameterTop] ? (
-    <>
-      <span>
-        {`${element[SlabKeyType.RebarAmountBottom].toFixed(0)}ø${element[SlabKeyType.RebarDiameterBottom].toFixed(1)}`}
-        <sub>Bottom</sub>
-      </span>{' '}
-      <span>
-        {`${element[SlabKeyType.RebarAmountTop].toFixed(0)}ø${element[SlabKeyType.RebarDiameterTop].toFixed(1)}`}
-        <sub>Top</sub>
-      </span>
-    </>
+  (element[SlabKeyType.RebarAmountBottom] && element[SlabKeyType.RebarDiameterBottom]) ||
+  (element[SlabKeyType.RebarAmountTop] && element[SlabKeyType.RebarDiameterTop]) ? (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      {element[SlabKeyType.RebarAmountTop] && element[SlabKeyType.RebarDiameterTop] ? (
+        <span>
+          {`${element[SlabKeyType.RebarAmountTop].toFixed(0)}ø${element[SlabKeyType.RebarDiameterTop].toFixed(1)}`}
+          <sub>Top</sub>
+        </span>
+      ) : null}
+      {element[SlabKeyType.RebarAmountBottom] && element[SlabKeyType.RebarDiameterBottom] ? (
+        <span>
+          {`${element[SlabKeyType.RebarAmountBottom].toFixed(0)}ø${element[SlabKeyType.RebarDiameterBottom].toFixed(1)}`}
+          <sub>Bottom</sub>
+        </span>
+      ) : null}
+    </div>
   ) : undefined;
 
 //specifies the default attributes to be displayed for each user category
 export const DefaultRenderValues: Record<UserCategory, string[]> = {
-  [UserCategory.Ubermensch]: AllDefinedRenders.filter((s) => AllDefinedRenders.includes(s)),
+  [UserCategory.Ubermensch]: AllDefinedRenders,
   [UserCategory.Slab2Reuse]: [
     DerivativeAttributeNames.Type,
     DerivativeAttributeNames.Location,
@@ -127,7 +129,7 @@ export const DefaultRenderValues: Record<UserCategory, string[]> = {
 
 export const reduceAndUseCount = [UserCategory.Architect, UserCategory.Client];
 
-export const typeRenderer = (element: Partial<SlabType>) =>
+export const getType = (element: Partial<SlabType>) =>
   element[SlabKeyType.Dimensions_l] && element[SlabKeyType.Dimensions_w] && element[SlabKeyType.Dimensions_h]
     ? `${element.typeOfElement} (${element[SlabKeyType.Dimensions_l].toFixed()}, ${element[SlabKeyType.Dimensions_w].toFixed()}, ${element[
         SlabKeyType.Dimensions_h
@@ -138,7 +140,7 @@ export const typeRenderer = (element: Partial<SlabType>) =>
 export const getPartsWithUniqueType = (slabs: Partial<SlabType>[]): Partial<SlabType>[] => {
   const slabMap: { [type: string]: Partial<SlabType> } = {};
   slabs.map((slab) => {
-    const localType = typeRenderer(slab);
+    const localType = getType(slab);
     if (localType !== undefined) slabMap[localType] = slab;
   });
 
@@ -150,4 +152,17 @@ export const getWeight = (element: Partial<SlabType>) =>
     ? element.dimensions_l * element.dimensions_w * element.dimensions_h * 0.6 * 0.0000025
     : undefined;
 
-    //this file handles the rendering of the table and the attributes that are displayed in the table
+export const getReboundTestMean = (element: Partial<SlabType>): number | undefined =>
+  element.reboundTestData && element.reboundTestData.length
+    ? element.reboundTestData.map((v) => v.reduce((a, b) => a + b / (v.length ?? 1), 0)).reduce((a, b) => a + b / element.reboundTestData!.length, 0)
+    : undefined;
+
+export const getReboundTestMaxStandardDeviation = (element: Partial<SlabType>): number | undefined =>
+  element.reboundTestData && element.reboundTestData.length
+    ? Math.max(
+        ...element.reboundTestData.map((v) => {
+          const mean = v.reduce((a, b) => a + b / (v.length ?? 1), 0);
+          return Math.sqrt(v.map((x) => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / (v.length ?? 1));
+        })
+      )
+    : undefined;
