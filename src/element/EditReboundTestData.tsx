@@ -67,16 +67,17 @@ export const EditReboundTestData: React.FC<{ element: Partial<SlabType> }> = ({ 
       title={`Editing Rebound Test Data for: ${getType(element) ?? element.id}`}
       content={
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          {element.reboundTestData!.map((vs, i, array) =>
-            array.length - 1 === i ? (
-              <span style={{ display: 'flex', flexDirection: 'row', gap: 8, alignItems: 'center' }}>
+          {element.reboundTestData &&
+            element.reboundTestData.map((vs, i, array) =>
+              array.length - 1 === i ? (
+                <span style={{ display: 'flex', flexDirection: 'row', gap: 8, alignItems: 'center' }}>
+                  <EditReboundArray key={i} values={vs} update={(newNumbers: number[]) => updateReboundElementArrayIndex(i, newNumbers)} />
+                  <BiTrash size={20} onClick={deleteLastIndex} />
+                </span>
+              ) : (
                 <EditReboundArray key={i} values={vs} update={(newNumbers: number[]) => updateReboundElementArrayIndex(i, newNumbers)} />
-                <BiTrash size={20} onClick={deleteLastIndex} />
-              </span>
-            ) : (
-              <EditReboundArray key={i} values={vs} update={(newNumbers: number[]) => updateReboundElementArrayIndex(i, newNumbers)} />
-            )
-          )}
+              )
+            )}
           <LuListPlus size={20} onClick={addArray} />
           <span style={{ display: 'flex', flexDirection: 'row', gap: 8 }}>
             <Button onClick={() => setOpen(false)}>
