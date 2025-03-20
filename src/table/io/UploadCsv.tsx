@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { message, Upload } from 'antd';
 import Papa from 'papaparse';
-import { CsvData, initNewProject, loadProject } from '../../lib/csv';
+import { CsvData, loadProject } from '../../lib/csv';
 import { useTableStore } from '../../state/tableStore';
 import { useNavigate } from 'react-router-dom';
 import { Slab2ReuseRoutes } from '../../enums/routes';

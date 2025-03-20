@@ -1,7 +1,7 @@
 import { Button, Drawer, Form, Input } from 'antd';
 import { SlabType } from '../types/slabType';
 import { useRef, useState } from 'react';
-import { DefaultRenderValues, RenderLocal, suffixMap, typeRenderer } from '../table/attributeDefinition';
+import { DefaultRenderValues, RenderLocal, suffixMap, getType } from '../table/attributeDefinition';
 import { useTableStore } from '../state/tableStore';
 import { SlabKeyType } from '../enums/attributeNames';
 import { BiPlus } from 'react-icons/bi';
@@ -39,7 +39,7 @@ export const AddElement: React.FC = () => {
         }
       >
         {open && element ? (
-          <Form<Partial<SlabType>> ref={formRef} initialValues={element} title={typeRenderer(element)} layout='vertical' autoComplete='off'>
+          <Form<Partial<SlabType>> ref={formRef} initialValues={element} title={getType(element)} layout='vertical' autoComplete='off'>
             {Object.values(SlabKeyType)
               .filter((k) => k !== SlabKeyType.Id)
               .map((v) => (

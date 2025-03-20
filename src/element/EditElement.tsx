@@ -1,7 +1,7 @@
 import { Button, Drawer, Form, Input } from 'antd';
 import { SlabType } from '../types/slabType';
 import { useRef, useState } from 'react';
-import { DefaultRenderValues, RenderLocal, suffixMap, typeRenderer } from '../table/attributeDefinition';
+import { DefaultRenderValues, RenderLocal, suffixMap, getType } from '../table/attributeDefinition';
 import { useTableStore } from '../state/tableStore';
 import { SlabKeyType } from '../enums/attributeNames';
 
@@ -35,7 +35,7 @@ export const EditElement: React.FC<{ element: Partial<SlabType> }> = ({ element 
         }
       >
         {open && element ? (
-          <Form<Partial<SlabType>> ref={formRef} initialValues={element} title={typeRenderer(element)} layout='vertical' autoComplete='off'>
+          <Form<Partial<SlabType>> ref={formRef} initialValues={element} title={getType(element)} layout='vertical' autoComplete='off'>
             {DefaultRenderValues[activeGlobalUserCategory].map((v) =>
               Object.values(SlabKeyType).includes(v as SlabKeyType) ? (
                 <Form.Item label={RenderLocal[v as SlabKeyType]} name={v}>

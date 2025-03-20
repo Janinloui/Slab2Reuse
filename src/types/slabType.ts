@@ -16,9 +16,10 @@ export type SlabType = {
   [SlabKeyType.RebarAmountTop]: number;
   [SlabKeyType.RebarDiameterBottom]: number;
   [SlabKeyType.RebarAmountBottom]: number;
+  [SlabKeyType.ReboundTestData]: number[][];
 };
 
-export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string'> = {
+export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string' | 'numberArray' | 'nestedNumberArray'> = {
   [SlabKeyType.Id]: 'string',
   [SlabKeyType.PlanReference]: 'string',
   [SlabKeyType.Location_x]: 'number',
@@ -34,6 +35,7 @@ export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string'> = {
   [SlabKeyType.RebarAmountTop]: 'number',
   [SlabKeyType.RebarDiameterBottom]: 'number',
   [SlabKeyType.RebarAmountBottom]: 'number',
+  [SlabKeyType.ReboundTestData]: 'nestedNumberArray',
 };
 
 export const StabTypeGeometryAttributes = [
@@ -44,3 +46,8 @@ export const StabTypeGeometryAttributes = [
   SlabKeyType.Location_y,
   SlabKeyType.Location_z,
 ];
+
+export const DefaultDataMap: Partial<Record<SlabKeyType, any>> = {
+  [SlabKeyType.Location_z]: 0,
+  [SlabKeyType.ReboundTestData]: [],
+};
