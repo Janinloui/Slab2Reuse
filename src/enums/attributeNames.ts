@@ -14,4 +14,6 @@ export enum SlabKeyType {
   RebarAmountTop = 'rebarAmountTop',
   RebarDiameterBottom = 'rebarDiameterBottom',
   RebarAmountBottom = 'rebarAmountBottom',
+  Condition = 'condition',
 }
+//standardized attribute names for the slabType

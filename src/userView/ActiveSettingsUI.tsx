@@ -52,3 +52,5 @@ export const ActiveSettings: React.FC = () => {
     </>
   );
 };
+
+//allowes users to cstomize the table view in the UI

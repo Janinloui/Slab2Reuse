@@ -26,3 +26,5 @@ export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
 };
 
 export default Slab;
+
+//rsponsible for rendering 3D slabs

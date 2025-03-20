@@ -31,3 +31,5 @@ export const useTableStore = create<TableStore>((set, get) => ({
     set((s) => ({ elements: [...s.elements, element] }));
   },
 }));
+
+//handles the process of adding, updating and deleting elements in the table

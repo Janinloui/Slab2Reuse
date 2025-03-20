@@ -37,3 +37,6 @@ root.render(
     </Router>
   </React.StrictMode>
 );
+
+
+//Initializes the app with the landing page

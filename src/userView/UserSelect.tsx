@@ -15,3 +15,5 @@ export const UserSelect: React.FC = () => {
     </Select>
   );
 };
+
+//dopdown menu for selecting the user category

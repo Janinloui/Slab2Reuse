@@ -38,3 +38,5 @@ export const ThreeScene: React.FC = () => {
     </Canvas>
   );
 };
+
+//responsible for rendering a 3D scene 

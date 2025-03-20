@@ -16,6 +16,7 @@ export type SlabType = {
   [SlabKeyType.RebarAmountTop]: number;
   [SlabKeyType.RebarDiameterBottom]: number;
   [SlabKeyType.RebarAmountBottom]: number;
+  [SlabKeyType.Condition]: 'Good'| 'Repairable' | 'Broken';
 };
 
 export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string'> = {
@@ -34,6 +35,7 @@ export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string'> = {
   [SlabKeyType.RebarAmountTop]: 'number',
   [SlabKeyType.RebarDiameterBottom]: 'number',
   [SlabKeyType.RebarAmountBottom]: 'number',
+  [SlabKeyType.Condition]: 'string',
 };
 
 export const StabTypeGeometryAttributes = [
@@ -44,3 +46,7 @@ export const StabTypeGeometryAttributes = [
   SlabKeyType.Location_y,
   SlabKeyType.Location_z,
 ];
+
+
+//This file defines the datastructure for slab elements 
+//and the mapping of the attributes to the table columns

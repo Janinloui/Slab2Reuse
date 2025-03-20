@@ -5,7 +5,7 @@ import { SettingsAndFilterPanel } from '../userView/SettingsAndFilterPanel';
 import { useEffect, useState } from 'react';
 import { getPartsWithUniqueType, reduceAndUseCount } from './attributeDefinition';
 import { AddElement } from '../element/AddElement';
-
+//displaying the slab table with the columns based on the user category and attributes
 export const SlabTable: React.FC = () => {
   const elements = useTableStore((s) => s.elements);
   const userCategory = useTableStore((s) => s.userCategory);

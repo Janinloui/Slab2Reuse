@@ -5,7 +5,10 @@ import { useTableStore } from '../state/tableStore';
 import { EditElement } from '../element/EditElement';
 import { SlabKeyType } from '../enums/attributeNames';
 import { MissingData } from './MissingData';
+import { Tag } from 'antd';
 
+// mapping of slab attributes and derived attributes to table column configuration
+//Dynamic rendering of columns based on the slab attributes (SlabKeyType) using Object.Values
 export const columnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>> } = {
   ...Object.fromEntries(
     Object.values(SlabKeyType).map((dataIndex) => [
@@ -36,6 +39,59 @@ export const columnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>>
     title: RenderLocal['rebarRenderer'],
     key: 'rebarRenderer',
     render: (_, element) => rebarRenderer(element) ?? <MissingData />,
+  },
+  condition: {
+    title: RenderLocal[SlabKeyType.Condition],
+    key: 'condition',
+    render: (_, element) => {
+      const condition = element[SlabKeyType.Condition];
+      if (condition === 'Good') {
+        return (
+          <Tag style={{ 
+            backgroundColor: '#3CB371', 
+            color: 'black', 
+            width: '100px', // Fixed width
+            height: '30px', // Fixed height
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center' 
+          }}>
+            Good
+          </Tag>
+        );
+      }
+      if (condition === 'Repairable') {
+        return (
+          <Tag style={{ 
+            backgroundColor: '#FFEB3B', 
+            color: 'black', 
+            width: '100px', 
+            height: '30px', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center' 
+          }}>
+            Repairable
+          </Tag>
+        );
+      }
+      if (condition === 'Broken') {
+        return (
+          <Tag style={{ 
+            backgroundColor: '#FF6666', 
+            color: 'black', 
+            width: '100px', 
+            height: '30px', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center' 
+          }}>
+            Broken
+          </Tag>
+        );
+      }
+      return <MissingData />;
+    },
   },
   type: {
     title: RenderLocal['type'],
@@ -80,3 +136,4 @@ export const columnTypeMap: { [attribute: string]: ColumnType<Partial<SlabType>>
     render: (_, element) => <EditElement element={element} />,
   },
 };
+

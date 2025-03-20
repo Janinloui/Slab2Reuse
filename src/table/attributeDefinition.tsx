@@ -5,6 +5,7 @@ import { SlabType } from '../types/slabType';
 
 const EditKey = 'edit';
 
+//maps atrributes to their respective suffixes (Units)
 export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, string>> = {
   location_x: 'm',
   location_y: 'm',
@@ -25,6 +26,8 @@ export const AllDefinedRenders: (SlabKeyType | DerivativeAttributeNames | 'edit'
   ...Object.values(SlabKeyType),
   EditKey,
 ];
+
+//maps attributes to userfriendly names for display in the UI
 export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit', string> = {
   [SlabKeyType.Id]: 'Id',
   [SlabKeyType.PlanReference]: 'Plan Reference',
@@ -43,18 +46,21 @@ export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit'
   [SlabKeyType.RebarAmountTop]: 'Rebar Amount Top',
   [SlabKeyType.RebarDiameterBottom]: 'Rebar Diameter Bottom',
   [SlabKeyType.RebarAmountBottom]: 'Rebar Diameter Bottom',
+  [SlabKeyType.Condition]: 'Visual Condition',
   [DerivativeAttributeNames.Location]: 'Location',
   [DerivativeAttributeNames.RebarRenderer]: 'Rebar',
   [DerivativeAttributeNames.Count]: 'Count',
   ['edit']: 'Edit Element',
 };
 
+//renders the location of the element in a human readable format (A string) (x,y,z)
 export const locationRenderer = (element: Partial<SlabType>) =>
   element[SlabKeyType.Location_x] !== undefined && element[SlabKeyType.Location_y] !== undefined
     ? element[SlabKeyType.Location_z] !== undefined
       ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${element[SlabKeyType.Location_z]?.toFixed(2)})`
       : `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)})`
     : undefined;
+//renders the rebar of the element in a human readable format (A string) (amount ødiameter)
 export const rebarRenderer = (element: Partial<SlabType>) =>
   element[SlabKeyType.RebarAmountBottom] &&
   element[SlabKeyType.RebarDiameterBottom] &&
@@ -72,6 +78,7 @@ export const rebarRenderer = (element: Partial<SlabType>) =>
     </>
   ) : undefined;
 
+//specifies the default attributes to be displayed for each user category
 export const DefaultRenderValues: Record<UserCategory, string[]> = {
   [UserCategory.Ubermensch]: AllDefinedRenders.filter((s) => AllDefinedRenders.includes(s)),
   [UserCategory.Slab2Reuse]: [
@@ -101,6 +108,7 @@ export const DefaultRenderValues: Record<UserCategory, string[]> = {
     SlabKeyType.Dimensions_h,
     SlabKeyType.Strength,
     SlabKeyType.Liveload,
+    SlabKeyType.Condition,
     'edit',
   ],
   [UserCategory.Client]: [DerivativeAttributeNames.Type, SlabKeyType.TypeOfElement, DerivativeAttributeNames.Count],
@@ -126,6 +134,7 @@ export const typeRenderer = (element: Partial<SlabType>) =>
       ].toFixed()})`
     : undefined;
 
+//utiliy function filters slabs to return only unique types
 export const getPartsWithUniqueType = (slabs: Partial<SlabType>[]): Partial<SlabType>[] => {
   const slabMap: { [type: string]: Partial<SlabType> } = {};
   slabs.map((slab) => {
@@ -135,8 +144,10 @@ export const getPartsWithUniqueType = (slabs: Partial<SlabType>[]): Partial<Slab
 
   return Object.values(slabMap);
 };
-
+//calculates the weight of the element
 export const getWeight = (element: Partial<SlabType>) =>
   element[SlabKeyType.Dimensions_l] && element[SlabKeyType.Dimensions_w] && element[SlabKeyType.Dimensions_h]
     ? element.dimensions_l * element.dimensions_w * element.dimensions_h * 0.6 * 0.0000025
     : undefined;
+
+    //this file handles the rendering of the table and the attributes that are displayed in the table
