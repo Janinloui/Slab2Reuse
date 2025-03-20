@@ -1,28 +1,39 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Mesh } from 'three';
 import { SlabType } from '../../types/slabType';
 import { hasGeometryData } from '../../lib/3d';
 import { SlabKeyType } from '../../enums/attributeNames';
 import { getColorForCondition } from '../../lib/colors';
+import { useTableStore } from '../../state/tableStore';
 
 export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
   const isValid = hasGeometryData(slab);
 
+  const selectedIds = useTableStore((s) => s.selectedElementIds);
+
   const ref = useRef<Mesh>(null!);
   const [hovered, hover] = useState(false);
-  const [clicked, click] = useState(false);
+  const [selected, setSelected] = useState(useTableStore.getState().selectedElementIds.includes(slab.id!));
+
+  useEffect(() => {
+    setSelected(selectedIds.includes(slab.id!));
+  }, [selectedIds]);
+
   return isValid ? (
     <mesh
       key={slab.id}
       rotation={[0, slab.rotZAxis_yaw ? (slab.rotZAxis_yaw * Math.PI) / 180 : 0, 0]}
       position={[slab[SlabKeyType.Location_x]!, -slab[SlabKeyType.Location_z]!, slab[SlabKeyType.Location_y]!]}
       ref={ref}
-      onClick={() => click(!clicked)}
+      onClick={() => {
+        if (!selected) useTableStore.getState().setSelectedElementIds(slab.id!);
+        else useTableStore.getState().clearSelection();
+      }}
       onPointerOver={() => hover(true)}
       onPointerOut={() => hover(false)}
     >
       <boxGeometry args={[slab.dimensions_l, slab.dimensions_h, slab.dimensions_w]} />
-      <meshStandardMaterial color={clicked ? 'red' : hovered ? 'hotpink' : slab.condition ? getColorForCondition(slab.condition) : 'orange'} />
+      <meshStandardMaterial color={selected ? '#9a9af9' : hovered ? 'hotpink' : slab.condition ? getColorForCondition(slab.condition) : 'orange'} />
     </mesh>
   ) : null;
 };
