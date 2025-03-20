@@ -5,20 +5,19 @@ import { RenderLocal, suffixMap, getType } from '../table/attributeDefinition';
 import { useTableStore } from '../state/tableStore';
 import { SlabKeyType } from '../enums/attributeNames';
 import { BiPlus } from 'react-icons/bi';
+import { InputRendererForData } from './InputRendererForData';
 
 export const AddElement: React.FC = () => {
   const [element] = useState<Partial<SlabType>>({});
   const [open, setOpen] = useState(false);
   const formRef = useRef<any>(null);
 
-  function addElement() {
+  const addElement = () => {
     if (!formRef.current) return;
     const values = formRef.current.getFieldsValue();
-    // casting the values that are in the suffix map to numbers
-    Object.keys(suffixMap).forEach((k) => (values[k] = Number(values[k])));
-    useTableStore.getState().addElement(values as Partial<SlabType>);
+    useTableStore.getState().addElement(values as SlabType);
     setOpen(false);
-  }
+  };
 
   return (
     <>
@@ -40,10 +39,10 @@ export const AddElement: React.FC = () => {
         {open && element ? (
           <Form<Partial<SlabType>> ref={formRef} initialValues={element} title={getType(element)} layout='vertical' autoComplete='off'>
             {Object.values(SlabKeyType)
-              .filter((k) => k !== SlabKeyType.Id)
+              .filter((v) => RenderLocal[v] !== undefined && v !== SlabKeyType.Id)
               .map((v) => (
                 <Form.Item label={RenderLocal[v as SlabKeyType]} name={v}>
-                  <Input />
+                  {InputRendererForData(v as SlabKeyType)}
                 </Form.Item>
               ))}
           </Form>
