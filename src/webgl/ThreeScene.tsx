@@ -38,9 +38,11 @@ export const ThreeScene: React.FC = () => {
 
   return (
     <Canvas>
-      <ambientLight intensity={Math.PI / 2} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-      <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+      <directionalLight position={[0, 10, 0]} intensity={1} />
+      <directionalLight position={[10, 0, 0]} intensity={0.5} />
+      <directionalLight position={[-10, 0, 0]} intensity={0.5} />
+      <directionalLight position={[10, 10, 10]} intensity={Math.PI} />
+      <directionalLight position={[-10, -10, -10]} intensity={1} />
       <Suspense fallback={null}>
         <Bounds fit clip observe margin={1.2}>
           <SelectToZoom>
