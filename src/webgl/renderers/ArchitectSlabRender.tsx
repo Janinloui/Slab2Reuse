@@ -3,6 +3,7 @@ import { useTableStore } from '../../state/tableStore'; // Import the state mana
 import { SlabType } from '../../types/slabType'; // Import the SlabType type
 import { Text } from '@react-three/drei'; // Import the Text component for 3D labels
 import Slab from './Slab';
+import { getType } from '../../table/attributeDefinition';
 
 const slabSpacingVertical = 300;
 const slabSpacingHorizontal = 5000;
@@ -10,18 +11,10 @@ const slabSpacingHorizontal = 5000;
 export const ArchitectSlabRenderer: React.FC = () => {
   const elements = useTableStore((s) => s.elements);
 
-  // Filter out slabs with missing critical attributes
-  const validElements = elements.filter(
-    (slab) =>
-      slab.typeOfElement && // Ensure typeOfElement is defined
-      slab.dimensions_l && // Ensure dimensions_l is defined
-      slab.dimensions_w && // Ensure dimensions_w is defined
-      slab.dimensions_h // Ensure dimensions_h is defined
-  );
-
   // Group slabs by derivative attribute "Type"
-  const groupedSlabs = validElements.reduce((acc, slab) => {
-    const type = `${slab.typeOfElement}_${slab.dimensions_l}_${slab.dimensions_w}_${slab.dimensions_h}`;
+  const groupedSlabs = elements.reduce((acc, slab) => {
+    const type = getType(slab);
+    if (!type) return acc;
     if (!acc[type]) acc[type] = [];
     acc[type].push(slab);
     return acc;
@@ -31,9 +24,6 @@ export const ArchitectSlabRenderer: React.FC = () => {
     <group>
       {Object.entries(groupedSlabs).map(([type, slabs], index) => {
         // Extract the typeOfElement and dimensions from the type string
-        const [typeOfElement, dimensions_l, dimensions_w, dimensions_h] = type.split('_');
-        const formattedLabel = `${typeOfElement} (${dimensions_l}, ${dimensions_w}, ${dimensions_h})`; // Format the label
-
         return (
           <group key={type} position={[index * slabSpacingHorizontal, 0, 0]}>
             {/* Add a label above each stack */}
@@ -44,7 +34,7 @@ export const ArchitectSlabRenderer: React.FC = () => {
               anchorX='center'
               anchorY='middle'
             >
-              {formattedLabel} {/* Display the formatted label */}
+              {type} {/* Display the formatted label */}
             </Text>
             {slabs.map((slab, i) => (
               <Slab key={i} slab={slab} positionOverride={[0, i * slabSpacingVertical, 0]} rotationOverride={[0, 0, 0]} />
