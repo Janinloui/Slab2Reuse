@@ -6,7 +6,11 @@ import { SlabKeyType } from '../../enums/attributeNames';
 import { getColorForCondition } from '../../lib/colors';
 import { useTableStore } from '../../state/tableStore';
 
-export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
+export const Slab: React.FC<{ slab: Partial<SlabType>; positionOverride?: [number, number, number]; rotationOverride?: [number, number, number] }> = ({
+  slab,
+  positionOverride,
+  rotationOverride,
+}) => {
   const isValid = hasGeometryData(slab);
 
   const selectedIds = useTableStore((s) => s.selectedElementIds);
@@ -22,8 +26,8 @@ export const Slab: React.FC<{ slab: Partial<SlabType> }> = ({ slab }) => {
   return isValid ? (
     <mesh
       key={slab.id}
-      rotation={[0, slab.rotZAxis_yaw ? (slab.rotZAxis_yaw * Math.PI) / 180 : 0, 0]}
-      position={[slab[SlabKeyType.Location_x]!, -getZForSlab(slab), slab[SlabKeyType.Location_y]!]}
+      rotation={rotationOverride ?? [0, slab.rotZAxis_yaw ? (slab.rotZAxis_yaw * Math.PI) / 180 : 0, 0]}
+      position={positionOverride ?? [slab[SlabKeyType.Location_x]!, -getZForSlab(slab), slab[SlabKeyType.Location_y]!]}
       ref={ref}
       onClick={() => {
         if (!selected) useTableStore.getState().setSelectedElementIds(slab.id!);
