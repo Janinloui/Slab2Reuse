@@ -20,6 +20,20 @@ export const exampleData: Partial<SlabType>[] = [
     rebarAmountBottom: 8,
     condition: VisualCondition.Good,
     reboundTestData: [],
+    visualInspectionImages: [
+      [
+        'https://www.bft-international.com/imgs/1/3/5/3/7/4/0/kn_2736_fig._4_echo_engineering_ducon_s_liner_hollow_core_slabs-3501dff1a1b78e01.jpeg',
+        'no comment',
+      ],
+      [
+        'https://www.bft-international.com/imgs/1/3/5/3/7/4/0/kn_2736_fig._4_echo_engineering_ducon_s_liner_hollow_core_slabs-3501dff1a1b78e01.jpeg',
+        'will comment',
+      ],
+      [
+        'https://www.bft-international.com/imgs/1/3/5/3/7/4/0/kn_2736_fig._4_echo_engineering_ducon_s_liner_hollow_core_slabs-3501dff1a1b78e01.jpeg',
+        'should comment',
+      ],
+    ],
     rotZAxis_yaw: 0,
   },
   {
@@ -40,6 +54,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarAmountBottom: 8,
     condition: VisualCondition.Repairable,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -60,6 +75,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarAmountBottom: 8,
     condition: VisualCondition.Broken,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -79,6 +95,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -98,6 +115,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -117,6 +135,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -136,6 +155,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -155,6 +175,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -174,6 +195,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -193,6 +215,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -212,6 +235,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -231,6 +255,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -250,6 +275,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -269,6 +295,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -288,6 +315,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -307,6 +335,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -326,6 +355,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -345,6 +375,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -364,6 +395,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -383,6 +415,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -402,6 +435,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -421,6 +455,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -440,6 +475,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -459,6 +495,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -478,6 +515,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -497,6 +535,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -516,6 +555,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 180,
   },
   {
@@ -535,6 +575,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -554,6 +595,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -573,6 +615,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -592,6 +635,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -611,6 +655,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -630,6 +675,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -649,6 +695,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -668,6 +715,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -687,6 +735,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 4,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -706,6 +755,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -725,6 +775,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -744,6 +795,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -763,6 +815,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -782,6 +835,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -801,6 +855,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -820,6 +875,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -839,6 +895,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -858,6 +915,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -877,6 +935,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -896,6 +955,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -915,6 +975,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -934,6 +995,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -953,6 +1015,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -972,6 +1035,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -991,6 +1055,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1010,6 +1075,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -1029,6 +1095,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -1048,6 +1115,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -1067,6 +1135,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 6,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 90,
   },
   {
@@ -1086,6 +1155,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1105,6 +1175,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1124,6 +1195,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1143,6 +1215,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1162,6 +1235,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1181,6 +1255,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1200,6 +1275,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1219,6 +1295,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1238,6 +1315,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1257,6 +1335,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1276,6 +1355,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1295,6 +1375,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1314,6 +1395,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1333,6 +1415,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1352,6 +1435,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1371,6 +1455,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1390,6 +1475,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1409,6 +1495,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1428,6 +1515,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1447,6 +1535,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1466,6 +1555,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1485,6 +1575,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1504,6 +1595,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1523,6 +1615,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1542,6 +1635,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1561,6 +1655,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1580,6 +1675,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1599,6 +1695,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1618,6 +1715,7 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
@@ -1637,12 +1735,14 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
   {
     id: '',
     floor: 0,
     reboundTestData: [],
+    visualInspectionImages: [],
     rotZAxis_yaw: 0,
   },
 ];

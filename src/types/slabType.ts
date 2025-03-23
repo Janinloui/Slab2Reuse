@@ -23,12 +23,13 @@ export type SlabType = {
   [SlabKeyType.Condition]: VisualCondition;
   [SlabKeyType.ReboundTestData]: number[][];
   [SlabKeyType.Yaw]: number;
+  [SlabKeyType.VisualInspectionImages]: [string, string][];
 };
 
 /**
  * Map that describes what the type values of each of the SlabKeys are
  */
-export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string' | 'enum' | 'numberArray' | 'nestedNumberArray'> = {
+export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string' | 'enum' | 'numberArray' | 'nestedNumberArray' | 'stringPairArray'> = {
   [SlabKeyType.Id]: 'string',
   [SlabKeyType.PlanReference]: 'string',
   [SlabKeyType.Location_x]: 'number',
@@ -47,6 +48,7 @@ export const SlabTypeValueMap: Record<SlabKeyType, 'number' | 'string' | 'enum' 
   [SlabKeyType.Condition]: 'enum',
   [SlabKeyType.ReboundTestData]: 'nestedNumberArray',
   [SlabKeyType.Yaw]: 'number',
+  [SlabKeyType.VisualInspectionImages]: 'stringPairArray',
 };
 
 export const StabTypeGeometryAttributes = [

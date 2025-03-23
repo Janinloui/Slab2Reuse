@@ -1,0 +1,13 @@
+.ant-carousel .slick-dots li button {
+  background-color: black;
+}
+
+.ant-carousel .slick-arrow {
+  color: black;
+  /* background-color: black; */
+}
+
+.ant-carousel .slick-dots li::after {
+  background-color: black;
+  color: black;
+}

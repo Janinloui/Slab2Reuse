@@ -18,6 +18,7 @@ import { MissingData } from './MissingData';
 import { DerivativeAttributeNames } from '../enums/derivativeAttributeNames';
 import { EditReboundTestData } from '../element/EditReboundTestData';
 import { VisualConditionTag } from './VisualConditionTag';
+import { VisualInspectionImages } from '../element/VisualInspectionImages';
 
 // mapping of slab attributes and derived attributes to table column configuration
 //Dynamic rendering of columns based on the slab attributes (SlabKeyType) using Object.Values
@@ -104,6 +105,11 @@ const derivativeColumnTypeMap: Record<DerivativeAttributeNames, ColumnType<Parti
     title: RenderLocal[DerivativeAttributeNames.ReboundTestEdit],
     key: DerivativeAttributeNames.ReboundTestEdit,
     render: (_, element) => <EditReboundTestData element={element} />,
+  },
+  [DerivativeAttributeNames.VisualInspectionImagesDisplay]: {
+    title: RenderLocal[DerivativeAttributeNames.VisualInspectionImagesDisplay],
+    key: DerivativeAttributeNames.VisualInspectionImagesDisplay,
+    render: (_, element) => <VisualInspectionImages element={element} />,
   },
 };
 
