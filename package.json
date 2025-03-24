@@ -16,7 +16,7 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
-    "@react-three/drei": "^10.0.4",
+    "@react-three/drei": "^10.0.5",
     "@react-three/fiber": "^9.1.0",
     "antd": "^5.24.2",
     "papaparse": "^5.5.2",

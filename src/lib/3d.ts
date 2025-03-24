@@ -18,7 +18,10 @@ export const getCenterOfV3 = (vertices: Vector3[]): Vector3 =>
 export const getViewForSlab = (slab: Partial<SlabType>) =>
   hasGeometryData(slab)
     ? {
-        target: [slab.location_x!, -getZForSlab(slab), slab.location_y!] as [number, number, number],
-        position: [slab.location_x!, -getZForSlab(slab) + 5000, slab.location_y!] as [number, number, number],
+        // Correct mapping of slab data to Three.js coordinates
+        target: [slab.location_x!, getZForSlab(slab), slab.location_y!] as [number, number, number],
+        position: [slab.location_x!, getZForSlab(slab) + 5000, slab.location_y!] as [number, number, number],
       }
     : undefined;
+
+    
