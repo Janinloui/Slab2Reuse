@@ -83,8 +83,10 @@ export const SlabTable: React.FC = () => {
         }}
         onRow={(record) => {
           return {
-            onClick: (evt) => onRowClick(evt, record as SlabType),
-            onContextMenu: (evt) => onRowClick(evt, record as SlabType),
+            onClick: (evt) => {
+              console.log(evt);
+              onRowClick(evt, record as SlabType);
+            },
           };
         }}
         sticky={{ offsetHeader: 50 }}
