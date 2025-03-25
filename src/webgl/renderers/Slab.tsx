@@ -26,6 +26,7 @@ export const Slab: React.FC<{ slab: Partial<SlabType>; positionOverride?: [numbe
   return isValid ? (
     <mesh
       key={slab.id}
+      name={slab.id}
       rotation={rotationOverride ?? [0, slab.rotZAxis_yaw ? (slab.rotZAxis_yaw * Math.PI) / 180 : 0, 0]}
       position={positionOverride ?? [slab[SlabKeyType.Location_x]!, -getZForSlab(slab), slab[SlabKeyType.Location_y]!]}
       ref={ref}
