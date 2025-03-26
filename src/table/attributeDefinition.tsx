@@ -56,6 +56,8 @@ export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit'
   [DerivativeAttributeNames.ReboundTestMean]: 'Rebound Mean',
   [DerivativeAttributeNames.ReboundTestStdv]: 'Rebound Stdv',
   [DerivativeAttributeNames.ReboundTestEdit]: 'Rebound Edit',
+  [SlabKeyType.VisualInspectionImages]: undefined,
+  [DerivativeAttributeNames.VisualInspectionImagesDisplay]: 'Visual Inspection',
 };
 
 export const AllDefinedRenders: (SlabKeyType | DerivativeAttributeNames | 'edit')[] = [

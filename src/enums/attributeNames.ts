@@ -19,4 +19,5 @@ export enum SlabKeyType {
   Condition = 'condition',
   ReboundTestData = 'reboundTestData',
   Yaw = 'rotZAxis_yaw',
+  VisualInspectionImages = 'visualInspectionImages',
 }

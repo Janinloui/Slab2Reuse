@@ -7,4 +7,5 @@ export enum DerivativeAttributeNames {
   ReboundTestMean = 'reboundTestAverage',
   ReboundTestStdv = 'reboundTestStdv',
   ReboundTestEdit = 'reboundTestEdit',
+  VisualInspectionImagesDisplay = 'visualInspectionImagesDisplay',
 }

@@ -5,6 +5,7 @@ import { Bounds, OrbitControls, useBounds } from '@react-three/drei';
 import React, { Suspense, useEffect } from 'react';
 import { getViewForSlab } from '../lib/3d';
 import { Axis } from './utils/Axis';
+import ArchitectSlabRenderer from './renderers/ArchitectSlabRender'; // Import the new component
 
 // This component wraps children in a group with a click handler
 // Clicking any object will refresh and fit bounds
@@ -34,20 +35,27 @@ const SelectToZoom: React.FC<{ children: any }> = ({ children }) => {
 
 export const ThreeScene: React.FC = () => {
   const data = useTableStore((s) => s.elements);
+  const userCategory = useTableStore((s) => s.userCategory); // Get the user category
 
   return (
     <Canvas>
-      <ambientLight intensity={Math.PI / 2} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-      <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+      <directionalLight position={[0, 10, 0]} intensity={1} />
+      <directionalLight position={[10, 0, 0]} intensity={0.5} />
+      <directionalLight position={[-10, 0, 0]} intensity={0.5} />
+      <directionalLight position={[10, 10, 10]} intensity={Math.PI} />
+      <directionalLight position={[-10, -10, -10]} intensity={1} />
       <Suspense fallback={null}>
-        <Bounds fit clip margin={1.2}>
-          <SelectToZoom>
-            {data.map((s, i) => (
-              <Slab key={`slab-${i}-${s.id}`} slab={s} />
-            ))}
-          </SelectToZoom>
-        </Bounds>
+        <group name='slabGroup'>
+          <Bounds fit clip observe margin={1.2}>
+            <SelectToZoom>
+              {userCategory === 'Architect' ? (
+                <ArchitectSlabRenderer /> // Render stacks for Architect view
+              ) : (
+                data.map((s, i) => <Slab key={`slab-${i}-${s.id}`} slab={s} />) // Default slab rendering
+              )}
+            </SelectToZoom>
+          </Bounds>
+        </group>
       </Suspense>
       <OrbitControls makeDefault />
       <Axis />
