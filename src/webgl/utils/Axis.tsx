@@ -1,9 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
 import { AxesHelper, BoxHelper } from 'three';
-import { getZForSlab } from '../../lib/3d';
 import { useTableStore } from '../../state/tableStore';
 import { Text } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
+
+// proportional to longest extent
+const AXIS_LENGTH_SCALE = 0.1;
+const AXIS_ORIGIN_OFFSET_SCALE = 0.05;
 
 export const Axis: React.FC = () => {
   const elements = useTableStore((s) => s.elements);
@@ -15,21 +18,24 @@ export const Axis: React.FC = () => {
   const [axesPosition, setAxesPosition] = useState<[number, number, number]>([0, 0, 0]);
   useEffect(() => {
     if (elements.length > 0) {
-      const boundingBoxHelper = new BoxHelper(scene);
+      const boundingBoxHelper = new BoxHelper(scene.getObjectByName('slabGroup')!); // using building three helper method
 
-      const v3min = boundingBoxHelper.geometry.boundingBox?.min!;
-      const v3max = boundingBoxHelper.geometry.boundingBox?.max!;
+      const minX = boundingBoxHelper.geometry.attributes.position.getX(2);
+      const minY = boundingBoxHelper.geometry.attributes.position.getY(2);
+      const minZ = boundingBoxHelper.geometry.attributes.position.getZ(2);
 
-      if (!v3min || !v3max) return;
+      const maxX = boundingBoxHelper.geometry.attributes.position.getX(4);
+      const maxY = boundingBoxHelper.geometry.attributes.position.getY(4);
+      const maxZ = boundingBoxHelper.geometry.attributes.position.getZ(4);
 
       // Calculate the maximum extent of the scene
-      const maxExtent = Math.max(Math.abs(v3min.x - v3max.x), Math.abs(v3min.y - v3max.y), Math.abs(v3min.z - v3max.z));
+      const maxExtent = Math.max(Math.abs(minX - maxX), Math.abs(minY - maxY), Math.abs(minZ - maxZ));
 
       // Set the axes size to be proportional to the maximum extent
-      setAxesSize(maxExtent * 0.1); // Scale factor for better visibility
+      setAxesSize(maxExtent * AXIS_LENGTH_SCALE); // Scale factor for better visibility
 
       // Offset the axes slightly outside the bounding box
-      setAxesPosition([v3min.x - maxExtent * 0.05, v3min.y, v3min.z - maxExtent * 0.05]); // Offset in X and Z in three.js coordinates
+      setAxesPosition([minX - maxExtent * AXIS_ORIGIN_OFFSET_SCALE, minY - maxExtent * AXIS_ORIGIN_OFFSET_SCALE, maxZ - maxExtent * AXIS_ORIGIN_OFFSET_SCALE]); // Offset in X and Z in three.js coordinates
     }
   }, [elements, user]);
 
