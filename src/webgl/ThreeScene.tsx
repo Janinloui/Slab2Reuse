@@ -2,8 +2,9 @@ import { Canvas } from '@react-three/fiber';
 import { useTableStore } from '../state/tableStore';
 import Slab from './renderers/Slab';
 import { Bounds, OrbitControls, useBounds } from '@react-three/drei';
-import { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { getViewForSlab } from '../lib/3d';
+import { Axis } from './utils/Axis';
 import ArchitectSlabRenderer from './renderers/ArchitectSlabRender'; // Import the new component
 
 // This component wraps children in a group with a click handler
@@ -44,19 +45,20 @@ export const ThreeScene: React.FC = () => {
       <directionalLight position={[10, 10, 10]} intensity={Math.PI} />
       <directionalLight position={[-10, -10, -10]} intensity={1} />
       <Suspense fallback={null}>
-        <Bounds fit clip observe margin={1.2}>
-          <SelectToZoom>
-            {userCategory === 'Architect' ? (
-              <ArchitectSlabRenderer /> // Render stacks for Architect view
-            ) : (
-              data.map((s, i) => <Slab key={`slab-${i}-${s.id}`} slab={s} />) // Default slab rendering
-            )}
-          </SelectToZoom>
-        </Bounds>
+        <group name='slabGroup'>
+          <Bounds fit clip observe margin={1.2}>
+            <SelectToZoom>
+              {userCategory === 'Architect' ? (
+                <ArchitectSlabRenderer /> // Render stacks for Architect view
+              ) : (
+                data.map((s, i) => <Slab key={`slab-${i}-${s.id}`} slab={s} />) // Default slab rendering
+              )}
+            </SelectToZoom>
+          </Bounds>
+        </group>
       </Suspense>
       <OrbitControls makeDefault />
+      <Axis />
     </Canvas>
   );
 };
-
-//responsible for rendering a 3D scene
