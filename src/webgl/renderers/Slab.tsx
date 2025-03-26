@@ -33,7 +33,10 @@ export const Slab: React.FC<{ slab: Partial<SlabType>; positionOverride?: [numbe
         if (!selected) useTableStore.getState().setSelectedElementIds(slab.id!);
         else useTableStore.getState().clearSelection();
       }}
-      onPointerOver={() => hover(true)}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        hover(true);
+      }}
       onPointerOut={() => hover(false)}
     >
       <boxGeometry args={[slab[SlabKeyType.Dimensions_l]!, slab[SlabKeyType.Dimensions_h]!, slab[SlabKeyType.Dimensions_w]!]} />
