@@ -1,4 +1,5 @@
 import { SlabKeyType } from '../enums/attributeNames';
+import { KeyedErrors } from '../enums/keyedErrors';
 import { DefaultDataMap, SlabType, SlabTypeValueMap } from '../types/slabType';
 
 export type CsvData = Record<string, string>[];
@@ -86,8 +87,29 @@ const getSlabTypesFromCsv = (csvData: CsvData, requiredKeys: SlabKeyType[] = [Sl
   const csvAttributes = new Set(csvData.map((entry) => Object.keys(entry)).flat());
   const mappingTable = getFuzzilyMatchedAttributeTable([...csvAttributes]);
 
-  if (!canMapAttributes(mappingTable, requiredKeys)) throw new Error("can't map enough attributes");
-  return getMappedData(csvData, mappingTable);
+  if (!canMapAttributes(mappingTable, requiredKeys)) {
+    const missingAttributes = new Set(requiredKeys).difference(new Set(Object.values(mappingTable)));
+
+    const keyedError =
+      missingAttributes.size === 1 && [...missingAttributes][0] === SlabKeyType.Id
+        ? KeyedErrors.CSV_IMPORT_MISSING_ID
+        : KeyedErrors.CSV_IMPORT_NOT_ENOUGH_ATTRIBUTES;
+
+    const error = new Error(keyedError);
+    Object.assign(error, {
+      keyedError,
+      tag: keyedError === KeyedErrors.CSV_IMPORT_NOT_ENOUGH_ATTRIBUTES ? [...missingAttributes].map((a) => `'${a}'`).join(', ') : undefined,
+    });
+    throw error;
+  }
+
+  try {
+    return getMappedData(csvData, mappingTable);
+  } catch (e) {
+    const error = new Error(KeyedErrors.CSV_IMPORT_SOMETHING_WENT_WRONG_DURING_PARSING);
+    Object.assign(error, { keyedError: KeyedErrors.CSV_IMPORT_SOMETHING_WENT_WRONG_DURING_PARSING });
+    throw error;
+  }
 };
 
 /**
