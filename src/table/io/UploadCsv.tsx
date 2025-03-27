@@ -1,10 +1,11 @@
-import React, { ReactNode } from 'react';
-import { message, Upload } from 'antd';
+import React, { ReactNode, useState } from 'react';
+import { Upload } from 'antd';
 import Papa from 'papaparse';
 import { CsvData, loadProject } from '../../lib/csv';
 import { useTableStore } from '../../state/tableStore';
 import { useNavigate } from 'react-router-dom';
 import { Slab2ReuseRoutes } from '../../enums/routes';
+import { TaggedError } from '../../types/taggedError';
 
 const papaConfig: Papa.ParseConfig<unknown, undefined> & {
   download?: false | undefined;
@@ -18,6 +19,7 @@ type UploadCSVProps = {
 };
 
 export const UploadCSV: React.FC<UploadCSVProps> = ({ children }) => {
+  const [text, setText] = useState<string | undefined>();
   const navigate = useNavigate();
 
   return (
@@ -32,11 +34,12 @@ export const UploadCSV: React.FC<UploadCSVProps> = ({ children }) => {
           try {
             const elements = loadProject(result.data as CsvData);
             useTableStore.setState((s) => ({ elements }));
+            navigate(Slab2ReuseRoutes.Viewer);
+            setText(undefined);
           } catch (e) {
-            message.error('importing the csv failed, check the console for more information');
+            setText(`${(e as TaggedError).keyedError ?? 'something went wrong when loading the csv'}${(e as TaggedError).tag ? (e as TaggedError).tag : ''}`);
             console.error(e);
           }
-          navigate(Slab2ReuseRoutes.Viewer);
         };
         reader.readAsText(file);
 
@@ -45,6 +48,7 @@ export const UploadCSV: React.FC<UploadCSVProps> = ({ children }) => {
       }}
     >
       {children}
+      {text ? <span style={{ color: 'red' }}>{text}</span> : null}
     </Upload>
   );
 };
