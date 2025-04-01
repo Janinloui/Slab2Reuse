@@ -1,5 +1,5 @@
 import { VisualCondition } from '../enums/visualCondition';
-import { SlabType } from '../types/slabType';
+import { SlabType } from '../types/componentType';
 
 export const exampleData: Partial<SlabType>[] = [
   {

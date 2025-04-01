@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, message, Upload } from 'antd';
 import Papa from 'papaparse';
-import { SlabType } from '../../types/slabType';
-import { SlabKeyType } from '../../enums/attributeNames';
+import { SlabType } from '../../types/componentType';
+import { SlabKeyType } from '../../enums/componentKeyType';
 
 const papaConfig: Papa.ParseConfig<unknown, undefined> & {
   download?: false | undefined;

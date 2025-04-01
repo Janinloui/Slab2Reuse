@@ -1,9 +1,9 @@
 import { Input, InputNumber, Select } from 'antd';
-import { SlabKeyType } from '../enums/attributeNames';
+import { SlabKeyType } from '../enums/componentKeyType';
 import { VisualCondition } from '../enums/visualCondition';
 import { suffixMap } from '../table/attributeDefinition';
 import { VisualConditionTag } from '../table/VisualConditionTag';
-import { SlabTypeValueMap } from '../types/slabType';
+import { SlabTypeValueMap } from '../types/componentType';
 
 export const InputRendererForData = (attributeName: SlabKeyType) => {
   switch (SlabTypeValueMap[attributeName]) {

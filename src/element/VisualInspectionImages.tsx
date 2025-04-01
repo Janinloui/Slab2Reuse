@@ -1,5 +1,5 @@
 import { Button, Carousel, Input, Modal } from 'antd';
-import { SlabType } from '../types/slabType';
+import { SlabType } from '../types/componentType';
 import { FaImages } from 'react-icons/fa6';
 import { useEffect, useState } from 'react';
 import './caroussel-style.css';

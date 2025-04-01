@@ -1,9 +1,9 @@
 import { Button, Drawer, Form, Input } from 'antd';
-import { SlabType } from '../types/slabType';
+import { SlabType } from '../types/componentType';
 import { useRef, useState } from 'react';
 import { RenderLocal, suffixMap, getType } from '../table/attributeDefinition';
 import { useTableStore } from '../state/tableStore';
-import { SlabKeyType } from '../enums/attributeNames';
+import { SlabKeyType } from '../enums/componentKeyType';
 import { BiPlus } from 'react-icons/bi';
 import { InputRendererForData } from './InputRendererForData';
 

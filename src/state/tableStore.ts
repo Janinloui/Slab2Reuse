@@ -1,8 +1,8 @@
 import { create } from 'zustand';
-import { SlabType } from '../types/slabType';
+import { SlabType } from '../types/componentType';
 import { UserCategory } from '../enums/user';
 import { DefaultRenderValues, RenderLocal } from '../table/attributeDefinition';
-import { SlabKeyType } from '../enums/attributeNames';
+import { SlabKeyType } from '../enums/componentKeyType';
 
 type TableStore = {
   elements: Partial<SlabType>[];

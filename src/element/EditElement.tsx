@@ -1,9 +1,9 @@
 import { Button, Drawer, Form } from 'antd';
-import { SlabType } from '../types/slabType';
+import { SlabType } from '../types/componentType';
 import { useRef, useState } from 'react';
 import { DefaultRenderValues, RenderLocal, getType } from '../table/attributeDefinition';
 import { useTableStore } from '../state/tableStore';
-import { SlabKeyType } from '../enums/attributeNames';
+import { SlabKeyType } from '../enums/componentKeyType';
 import { InputRendererForData } from './InputRendererForData';
 
 export const EditElement: React.FC<{ element: Partial<SlabType> }> = ({ element }) => {

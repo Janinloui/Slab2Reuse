@@ -1,8 +1,8 @@
-import { SlabKeyType } from '../enums/attributeNames';
+import { SlabKeyType } from '../enums/componentKeyType';
 import { DerivativeAttributeNames } from '../enums/derivativeAttributeNames';
 import { UserCategory } from '../enums/user';
 import { getZForSlab } from '../lib/3d';
-import { SlabType } from '../types/slabType';
+import { SlabType } from '../types/componentType';
 
 const EditKey = 'edit';
 

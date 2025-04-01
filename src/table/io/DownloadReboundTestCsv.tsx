@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import Papa from 'papaparse';
-import { SlabType } from '../../types/slabType';
-import { SlabKeyType } from '../../enums/attributeNames';
+import { SlabType } from '../../types/componentType';
+import { SlabKeyType } from '../../enums/componentKeyType';
 import { getType } from '../attributeDefinition';
 
 export const DownloadReboundTestCSV: React.FC<{ element: SlabType }> = ({ element }) => {

@@ -1,6 +1,6 @@
 import React from 'react'; // Import React
 import { useTableStore } from '../../state/tableStore'; // Import the state management hook
-import { SlabType } from '../../types/slabType'; // Import the SlabType type
+import { SlabType } from '../../types/componentType'; // Import the SlabType type
 import { Text } from '@react-three/drei'; // Import the Text component for 3D labels
 import Slab from './Slab';
 import { getType } from '../../table/attributeDefinition';

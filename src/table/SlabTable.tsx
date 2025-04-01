@@ -5,7 +5,7 @@ import { SettingsAndFilterPanel } from '../userView/SettingsAndFilterPanel';
 import { useEffect, useRef, useState } from 'react';
 import { getPartsWithUniqueType, reduceAndUseCount } from './attributeDefinition';
 import { AddElement } from '../element/AddElement';
-import { SlabType } from '../types/slabType';
+import { SlabType } from '../types/componentType';
 import './table-style.css';
 
 // Add function to find page number of selected part

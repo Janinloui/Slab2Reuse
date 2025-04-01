@@ -1,5 +1,5 @@
 import { Vector3 } from 'three';
-import { SlabType, StabTypeGeometryAttributes } from '../types/slabType';
+import { SlabType, SlabTypeGeometryAttributes } from '../types/componentType';
 
 export const FLOOR_TO_FLOOR = 3000;
 
@@ -10,7 +10,7 @@ export const getZForSlab = (slab: Partial<SlabType>) => (slab.floor ?? 0) * FLOO
  * @param slab: Partial<SlabType>
  * @returns boolean
  */
-export const hasGeometryData = (slab: Partial<SlabType>): boolean => StabTypeGeometryAttributes.every((a) => slab[a] !== undefined);
+export const hasGeometryData = (slab: Partial<SlabType>): boolean => SlabTypeGeometryAttributes.every((a) => slab[a] !== undefined);
 
 export const getCenterOfV3 = (vertices: Vector3[]): Vector3 =>
   vertices.reduce((a: Vector3, b: Vector3) => a.add(b), new Vector3()).multiplyScalar(1 / vertices.length);

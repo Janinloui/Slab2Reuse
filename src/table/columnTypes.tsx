@@ -1,5 +1,5 @@
 import { ColumnType } from 'antd/es/table';
-import { SlabType } from '../types/slabType';
+import { SlabType } from '../types/componentType';
 import {
   locationRenderer,
   RenderLocal,
@@ -13,7 +13,7 @@ import {
 } from './attributeDefinition';
 import { useTableStore } from '../state/tableStore';
 import { EditElement } from '../element/EditElement';
-import { SlabKeyType } from '../enums/attributeNames';
+import { SlabKeyType } from '../enums/componentKeyType';
 import { MissingData } from './MissingData';
 import { DerivativeAttributeNames } from '../enums/derivativeAttributeNames';
 import { EditReboundTestData } from '../element/EditReboundTestData';

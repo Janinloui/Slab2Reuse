@@ -1,5 +1,5 @@
 import { Button, InputNumber, Popover } from 'antd';
-import { SlabType } from '../types/slabType';
+import { SlabType } from '../types/componentType';
 import { getType } from '../table/attributeDefinition';
 import { useTableStore } from '../state/tableStore';
 import { useEffect, useState } from 'react';

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Mesh } from 'three';
-import { SlabType } from '../../types/slabType';
+import { SlabType } from '../../types/componentType';
 import { getZForSlab, hasGeometryData } from '../../lib/3d';
-import { SlabKeyType } from '../../enums/attributeNames';
+import { SlabKeyType } from '../../enums/componentKeyType';
 import { getColorForCondition } from '../../lib/colors';
 import { useTableStore } from '../../state/tableStore';
 

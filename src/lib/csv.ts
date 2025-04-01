@@ -1,6 +1,6 @@
-import { SlabKeyType } from '../enums/attributeNames';
+import { SlabKeyType } from '../enums/componentKeyType';
 import { KeyedErrors } from '../enums/keyedErrors';
-import { DefaultDataMap, SlabType, SlabTypeValueMap } from '../types/slabType';
+import { DefaultDataMap, SlabType, SlabTypeValueMap } from '../types/componentType';
 
 export type CsvData = Record<string, string>[];
 /**
