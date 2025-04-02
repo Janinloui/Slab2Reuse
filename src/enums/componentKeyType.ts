@@ -14,20 +14,5 @@ export enum ComponentKeyType {
   Floor = 'floor',
   Location_x = 'location_x',
   Location_y = 'location_y',
+  LocationType = 'LocationType',
 }
-
-
-//ReboundTestData = 'reboundTestData',
-//VisualInspectionImages = 'visualInspectionImages',
-//TypeOfElement = 'typeOfElement',
-//RebarDiameterTop = 'rebarDiameterTop',
-//RebarAmountTop = 'rebarAmountTop',
-//RebarDiameterBottom = 'rebarDiameterBottom',
-//RebarAmountBottom = 'rebarAmountBottom',
-//Dimensions_l = 'dimensions_l',
- // Dimensions_w = 'dimensions_w',
- // Dimensions_h = 'dimensions_h',
- //Location_x = 'location_x',
- // Location_y = 'location_y',
- // Floor = 'floor',
- // Strength = 'strength',

@@ -5,7 +5,6 @@ import { ComponentKeyType } from '../enums/componentKeyType';
 import { ValueType } from './valueType';
 import { LocationType } from './locationType';
 
-
 export type ComponentType = {
   [ComponentKeyType.Id]: string;
   [ComponentKeyType.Img]: string;
@@ -20,8 +19,8 @@ export type ComponentType = {
   [ComponentKeyType.Floor]: number;
   [ComponentKeyType.Location_x]: number;
   [ComponentKeyType.Location_y]: number;
-  locationType: LocationType,
-  };
+  [ComponentKeyType.LocationType]: LocationType;
+};
 
 /**
  * Map that describes what the type values of each of the SlabKeys are
@@ -40,13 +39,5 @@ export const ComponentTypeValueMap: Record<ComponentKeyType, ValueType> = {
   [ComponentKeyType.Floor]: 'number',
   [ComponentKeyType.Location_x]: 'number',
   [ComponentKeyType.Location_y]: 'number',
-};  
-
-export const AdditionalTypeValueMap: Record<string, ValueType> = {
-  locationType: 'LocationType', // Handle locationType separately
-};
-
-export const DefaultDataMap: Partial<Record<ComponentKeyType, any>> = {
-  [ComponentKeyType.Floor]: 0,
-  [ComponentKeyType.Yaw]: 0,
+  [ComponentKeyType.LocationType]: 'LocationType',
 };

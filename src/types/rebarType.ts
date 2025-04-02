@@ -1,47 +1,47 @@
-import { RebarConfiguration } from '../enums/rebarConfiguration';
+import { RebarCategory as RebarCategory } from '../enums/rebarCategory';
+import { RebarKeyType } from '../enums/rebarKeyType';
 import { ValueType } from './valueType';
 
+export type RebarEntry = {
+  rebarDiameter: number;
+  rebarAmount: number;
+};
+
 export type HomogeneusRebarType = {
-    id: string,
-    RebarConfiguration: RebarConfiguration.Homogeneus,
-    rebarConfigurationId: string,
-    rebarDiameter: number,
-    rebarAmount: number,   
-}
+  [RebarKeyType.Id]: string;
+  [RebarKeyType.RebarCategory]: RebarCategory.Homogeneus;
+  [RebarKeyType.RebarConfigurationId]: string;
+  [RebarKeyType.RebarEntries]: [RebarEntry];
+};
 
 export type TwoTypesRebarType = {
-    id: string,
-    RebarConfiguration: RebarConfiguration.TwoTypes,
-    rebarConfigurationId: string,
-    rebarDimaeter1: number,
-    rebarAmount1: number,
-    rebarDimaeter2: number,
-    rebarAmount2: number,
-}
+  [RebarKeyType.Id]: string;
+  [RebarKeyType.RebarCategory]: RebarCategory.TwoTypes;
+  [RebarKeyType.RebarConfigurationId]: string;
+  [RebarKeyType.RebarEntries]: [RebarEntry, RebarEntry];
+};
 
 export type ThreeTypesRebarType = {
-    id: string,
-    RebarConfiguration: RebarConfiguration.ThreeTypes,
-    rebarConfigurationId: string,
-    rbarDiameter1: number,
-    rebarAmount1: number,
-    rebarDiameter2: number,
-    rebarAmount2: number,
-    rebarDiameter3: number,
-    rebarAmount3: number,
-}
+  [RebarKeyType.Id]: string;
+  [RebarKeyType.RebarCategory]: RebarCategory.ThreeTypes;
+  [RebarKeyType.RebarConfigurationId]: string;
+  [RebarKeyType.RebarEntries]: [RebarEntry, RebarEntry, RebarEntry];
+};
 
 export type FourTypesRebarType = {
-    id: string,
-    RebarConfiguration: RebarConfiguration.FourTypes,
-    rebarConfigurationId: string,
-    rebarDiameter1: number,
-    rebarAmount1: number,
-    rebarDiameter2: number,
-    rebarAmount2: number,
-    rebarDiameter3: number,
-    rebarAmount3: number,
-    rebarDiameter4: number,
-    rebarAmount4: number,
-}
+  [RebarKeyType.Id]: string;
+  [RebarKeyType.RebarCategory]: RebarCategory.FourTypes;
+  [RebarKeyType.RebarConfigurationId]: string;
+  [RebarKeyType.RebarEntries]: [RebarEntry, RebarEntry, RebarEntry, RebarEntry];
+};
 
+export type RebarType = HomogeneusRebarType | TwoTypesRebarType | ThreeTypesRebarType | FourTypesRebarType;
+
+export const RebarValueMap: Record<RebarKeyType, ValueType> = {
+  [RebarKeyType.Id]: 'string',
+  [RebarKeyType.RebarCategory]: 'RebarCategory',
+  [RebarKeyType.RebarConfigurationId]: 'string',
+  [RebarKeyType.RebarDiameter]: 'number',
+  [RebarKeyType.RebarAmount]: 'number',
+  [RebarKeyType.RebarEntries]: 'RebarEntryArray',
+};

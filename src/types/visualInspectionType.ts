@@ -1,10 +1,20 @@
-import { UserType } from "./userType";
-import { LocationType } from "./locationType";
+import { UserType } from './userType';
+import { LocationType } from './locationType';
+import { VisualInspectionKeyType } from '../enums/visualInspectionKeyType';
+import { ValueType } from './valueType';
 
 export type VisualInspectionType = {
-    img: string;
-    damageType: string;
-    date: string;
-    user: UserType;
-    location: LocationType;
-}
+  [VisualInspectionKeyType.Img]: string;
+  [VisualInspectionKeyType.DamageType]: string;
+  [VisualInspectionKeyType.Date]: string;
+  [VisualInspectionKeyType.User]: UserType;
+  [VisualInspectionKeyType.Location]: LocationType;
+};
+
+export const VisualInspectionValueMap: Record<VisualInspectionKeyType, ValueType> = {
+  [VisualInspectionKeyType.Img]: 'string',
+  [VisualInspectionKeyType.DamageType]: 'string',
+  [VisualInspectionKeyType.Date]: 'string',
+  [VisualInspectionKeyType.User]: 'UserType',
+  [VisualInspectionKeyType.Location]: 'LocationType',
+};

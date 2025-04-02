@@ -1,25 +1,45 @@
 import { MaterialCategory } from '../enums/materialCategory';
+import { MaterialKeyType } from '../enums/materialKeyType';
+import { ValueType } from './valueType';
 
 export type ConcreteType = {
-  crossSectionId: string,
-  buildingId: string,
-  materialCategory: MaterialCategory.Concrete,
-  compressiveStrength: number,
-  tensileStrength: number,
-  elasticModulus: number,
-  density: number,
-  exposureClass: string,
-}
+  [MaterialKeyType.Id]: string;
+  [MaterialKeyType.CrossSectionId]: string;
+  [MaterialKeyType.BuildingId]: string;
+  [MaterialKeyType.MaterialCategory]: MaterialCategory.Concrete;
+  [MaterialKeyType.CompressiveStrength]: number;
+  [MaterialKeyType.TensileStrength]: number;
+  [MaterialKeyType.ElasticModulus]: number;
+  [MaterialKeyType.Density]: number;
+  [MaterialKeyType.ExposureClass]: string;
+};
 
 export type TimberType = {
-  crossSectionId: string,
-  buildingId: string,
-  materialCategory: MaterialCategory.Timber,
-  fc0k: number,
-  ft0k: number,
-  fc90k: number,
-  ft90k: number,
-  elasticModulus: number,
-  density: number,
-  exposureClass: string,
-}
+  [MaterialKeyType.Id]: string;
+  [MaterialKeyType.CrossSectionId]: string;
+  [MaterialKeyType.BuildingId]: string;
+  [MaterialKeyType.MaterialCategory]: MaterialCategory.Timber;
+  [MaterialKeyType.Fc0k]: number;
+  [MaterialKeyType.Ft0k]: number;
+  [MaterialKeyType.Fc90k]: number;
+  [MaterialKeyType.Ft90k]: number;
+  [MaterialKeyType.ElasticModulus]: number;
+  [MaterialKeyType.Density]: number;
+  [MaterialKeyType.ExposureClass]: string;
+};
+
+export const MaterialValueMap: Record<MaterialKeyType, ValueType> = {
+  [MaterialKeyType.Id]: 'string',
+  [MaterialKeyType.CrossSectionId]: 'string',
+  [MaterialKeyType.BuildingId]: 'string',
+  [MaterialKeyType.MaterialCategory]: 'MaterialCategory',
+  [MaterialKeyType.CompressiveStrength]: 'number',
+  [MaterialKeyType.TensileStrength]: 'number',
+  [MaterialKeyType.ElasticModulus]: 'number',
+  [MaterialKeyType.Density]: 'number',
+  [MaterialKeyType.ExposureClass]: 'string',
+  [MaterialKeyType.Fc0k]: 'number',
+  [MaterialKeyType.Ft0k]: 'number',
+  [MaterialKeyType.Fc90k]: 'number',
+  [MaterialKeyType.Ft90k]: 'number',
+};

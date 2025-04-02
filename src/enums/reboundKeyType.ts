@@ -1,6 +1,7 @@
 export enum ReboundKeyType {
-    Id = 'id',
-    ReboundNumber = 'number',
-    ReboundTestDate = 'sring',
-  }
-  
+  Id = 'reboundId',
+  ReboundValue = 'reboundValue',
+  ReboundDate = 'reboundDate',
+  Location = 'reboundLocation',
+  User = 'reboundUser',
+}

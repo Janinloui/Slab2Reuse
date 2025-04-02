@@ -1,4 +1,5 @@
-import { UserKeyType, UserCategory } from '../enums/userKeyType';
+import { UserCategory } from '../enums/userCategory';
+import { UserKeyType } from '../enums/userKeyType';
 
 export type UserType = {
   [UserKeyType.Id]: string;
@@ -6,7 +7,7 @@ export type UserType = {
   [UserKeyType.Address]: string;
   [UserKeyType.Company]: string;
   [UserKeyType.Mail]: string;
-  userCategory?: UserCategory 
+  [UserKeyType.UserCategory]?: UserCategory;
 };
 
 import { ValueType } from './valueType';
@@ -17,8 +18,5 @@ export const UserTypeValueMap: Record<keyof UserType, ValueType> = {
   [UserKeyType.Address]: 'string',
   [UserKeyType.Company]: 'string',
   [UserKeyType.Mail]: 'string',
-  userCategory: 'UserCategory', // Optional field
+  [UserKeyType.UserCategory]: 'UserCategory', // Optional field
 };
-
-
-

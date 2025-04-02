@@ -1,6 +1,6 @@
 import { ValueType } from './valueType';
 import { LocationType } from './locationType';
-import { UserType } from './userType';  
+import { UserType } from './userType';
 import { BuildingKeyType } from '../enums/buildingKeyType';
 
 export type BuildingType = {
@@ -25,4 +25,3 @@ export const BuildingTypeValueMap: Record<BuildingKeyType, ValueType> = {
   [BuildingKeyType.Complexity]: 'number',
   [BuildingKeyType.Img]: 'string',
 };
-

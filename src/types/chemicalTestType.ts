@@ -1,12 +1,24 @@
-import { UserType } from "./userType";
-import { LocationType } from "./locationType";
+import { UserType } from './userType';
+import { LocationType } from './locationType';
+import { ChemicalTestKeyType } from '../enums/chemicalTestKeyType';
+import { ValueType } from './valueType';
 
 export type ChemicalTestType = {
-    id: string;
-    carbonationDepth: number;
-    chlorideContent: number;
-    alkaliReactivity: number;
-    date: string;
-    user: UserType;
-    location: LocationType;
-}
+  [ChemicalTestKeyType.Id]: string;
+  [ChemicalTestKeyType.CarbonationDepth]: number;
+  [ChemicalTestKeyType.ChlorideContent]: number;
+  [ChemicalTestKeyType.AlkaliReactivity]: number;
+  [ChemicalTestKeyType.Date]: string;
+  [ChemicalTestKeyType.User]: UserType;
+  [ChemicalTestKeyType.Location]: LocationType;
+};
+
+export const ChemicalTestValueMap: Record<ChemicalTestKeyType, ValueType> = {
+  [ChemicalTestKeyType.Id]: 'string',
+  [ChemicalTestKeyType.CarbonationDepth]: 'number',
+  [ChemicalTestKeyType.ChlorideContent]: 'number',
+  [ChemicalTestKeyType.AlkaliReactivity]: 'number',
+  [ChemicalTestKeyType.Date]: 'string',
+  [ChemicalTestKeyType.User]: 'UserType',
+  [ChemicalTestKeyType.Location]: 'LocationType',
+};

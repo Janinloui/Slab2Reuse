@@ -1,15 +1,28 @@
 import { ComponentCategory } from '../enums/componentCategory';
+import { GeometryKeyType } from '../enums/geometryKeyType';
+import { ValueType } from './valueType';
 
 export type SlabType = {
-  crossSectionId: string,
-  componentCategory: ComponentCategory.Slab
-  buildingId: string,
-  length: number,
-}
+  [GeometryKeyType.Id]: string;
+  [GeometryKeyType.CrossSectionId]: string;
+  [GeometryKeyType.ComponentCategory]: ComponentCategory.Slab;
+  [GeometryKeyType.BuildingId]: string;
+  [GeometryKeyType.Length]: number;
+};
 
 export type ColumnType = {
-  crossSectionId: string,
-  componentCategory: ComponentCategory.Column
-  buildingId: string,
-  height: number,
-}
+  [GeometryKeyType.Id]: string;
+  [GeometryKeyType.CrossSectionId]: string;
+  [GeometryKeyType.ComponentCategory]: ComponentCategory.Slab;
+  [GeometryKeyType.BuildingId]: string;
+  [GeometryKeyType.Height]: number;
+};
+
+export const GeometryValueMap: Record<GeometryKeyType, ValueType> = {
+  [GeometryKeyType.Id]: 'string',
+  [GeometryKeyType.CrossSectionId]: 'string',
+  [GeometryKeyType.ComponentCategory]: 'ComponentCategory',
+  [GeometryKeyType.BuildingId]: 'string',
+  [GeometryKeyType.Length]: 'number',
+  [GeometryKeyType.Height]: 'number',
+};

@@ -1,14 +1,15 @@
+import { LocationKeyType } from '../enums/locationKeyType';
 import { ValueType } from './valueType';
 
 // wgs 84
 export type LocationType = {
-  longitude: number;
-  latitude: number;
-  height: number;
+  [LocationKeyType.Longitude]: number;
+  [LocationKeyType.Latitude]: number;
+  [LocationKeyType.Height]: number;
 };
 
-export const LocationTypeValueMap: Record<keyof LocationType, ValueType> = {
-  longitude: 'number',
-  latitude: 'number',
-  height: 'number',
+export const LocationTypeValueMap: Record<LocationKeyType, ValueType> = {
+  [LocationKeyType.Longitude]: 'number',
+  [LocationKeyType.Latitude]: 'number',
+  [LocationKeyType.Height]: 'number',
 };

@@ -1,1 +1,17 @@
-export type ValueType = 'number' | 'string' | 'LocationType' | 'UserType' | 'enum' | 'numberArray' | 'nestedNumberArray' | 'stringPairArray' | 'optional'|'UserCategory'|'RebarConfiguration'|'CrossSectionCategory';
+export type ValueType =
+  | 'number'
+  | 'string'
+  | 'LocationType'
+  | 'UserType'
+  | 'enum'
+  | 'numberArray'
+  | 'nestedNumberArray'
+  | 'stringPairArray'
+  | 'optional'
+  | 'UserCategory'
+  | 'MaterialCategory'
+  | 'CrossSectionCategory'
+  | 'ComponentCategory'
+  | 'RebarCategory'
+  | 'RebarConfiguration'
+  | 'RebarEntryArray';

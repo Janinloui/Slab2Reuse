@@ -1,26 +1,26 @@
 import { CrossSectionCategory } from '../enums/crossSectionCategory';
-import { RebarConfiguration } from '../enums/rebarConfiguration';
 import { ValueType } from './valueType';
 import { CrossSectionKeyType } from '../enums/crossSectionKeyType';
+import { RebarType } from './rebarType';
 
 export type CrossSectionType = {
-    [CrossSectionKeyType.id]: string,
-    [CrossSectionKeyType.width]: number,
-    [CrossSectionKeyType.height]: number,
-    [CrossSectionKeyType.moment]: number,
-    [CrossSectionKeyType.shear]: number,
-    [CrossSectionKeyType.normal]: number,
-    rebarConfiguration: RebarConfiguration,
-    crossSectionCategory: CrossSectionCategory,
-}
+  [CrossSectionKeyType.Id]: string;
+  [CrossSectionKeyType.Width]: number;
+  [CrossSectionKeyType.Height]: number;
+  [CrossSectionKeyType.Moment]: number;
+  [CrossSectionKeyType.Shear]: number;
+  [CrossSectionKeyType.Normal]: number;
+  [CrossSectionKeyType.RebarConfiguration]: RebarType;
+  [CrossSectionKeyType.CrossSectionCategory]: CrossSectionCategory;
+};
 
 export const CrossSectionTypeValueMap: Record<keyof CrossSectionType, ValueType> = {
-    [CrossSectionKeyType.id]: 'string',
-    [CrossSectionKeyType.width]: 'number',
-    [CrossSectionKeyType.height]: 'number',
-    [CrossSectionKeyType.moment]: 'number',
-    [CrossSectionKeyType.shear]: 'number',
-    [CrossSectionKeyType.normal]: 'number',
-    rebarConfiguration: 'RebarConfiguration',
-    crossSectionCategory: 'CrossSectionCategory',
+  [CrossSectionKeyType.Id]: 'string',
+  [CrossSectionKeyType.Width]: 'number',
+  [CrossSectionKeyType.Height]: 'number',
+  [CrossSectionKeyType.Moment]: 'number',
+  [CrossSectionKeyType.Shear]: 'number',
+  [CrossSectionKeyType.Normal]: 'number',
+  [CrossSectionKeyType.RebarConfiguration]: 'RebarConfiguration',
+  [CrossSectionKeyType.CrossSectionCategory]: 'CrossSectionCategory',
 };
