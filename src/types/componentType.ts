@@ -42,6 +42,9 @@ export const ComponentTypeValueMap: Record<ComponentKeyType, ValueType> = {
   [ComponentKeyType.Location_y]: 'number',
 };  
 
+export const AdditionalTypeValueMap: Record<string, ValueType> = {
+  locationType: 'LocationType', // Handle locationType separately
+};
 
 export const DefaultDataMap: Partial<Record<ComponentKeyType, any>> = {
   [ComponentKeyType.Floor]: 0,
