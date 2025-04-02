@@ -1,0 +1,17 @@
+{
+    "buildings": [],
+    "components": [],
+    "locations": [],
+    "users": [],
+    "geometries": [],
+    "crossSections": [],
+    "materials": [],
+    "rebars": [],
+    "prestressStrands": [],
+    "reboundTests": [],
+    "visualConditions": [],
+    "chemicalTests": [],
+    "desructionTests": [],
+    "coreTests": [],
+    "GPRTests": []
+    }
