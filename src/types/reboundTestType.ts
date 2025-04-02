@@ -1,21 +1,13 @@
 import { LocationType } from "./locationType";
 import { UserType } from "./userType";
-
-export enum ReboundKeyType {
-    Id = 'id',
-    LocationType = 'locationType',
-    ReboundNumber = 'number',
-    UserType = 'userType',
-    ReboundTestDate = 'sring',
-  }
-  
+import { ReboundKeyType } from "../enums/reboundKeyType";
 
 export type ReboundTestType = {
-  id: string,
-  locationType: LocationType,
-  reboundNumber: number[], //store multiple values
+  [ReboundKeyType.Id]: string,
+  [ReboundKeyType.ReboundNumber]: number[], //store multiple values
+  [ReboundKeyType.ReboundTestDate]: string,
   userType: UserType,
-  reboundTestDate: string,
+  locationType: LocationType,
 };
 
 
