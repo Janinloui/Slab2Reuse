@@ -1,38 +1,28 @@
 import { ValueType } from './valueType';
 import { LocationType } from './locationType';
 import { UserType } from './userType';  
-
-enum BuildingTypeKeys {
-  Id = 'buildingId',
-  Location = 'buildingLocation',
-  Address = 'buildingAddress',
-  User = 'buildingOwner',
-  FormerUse = 'buildingFormerUse',
-  GFA = 'buildingGFA',
-  Complexity = 'buildingComplexity',
-  Img = 'buildingImg'
-}
+import { BuildingKeyType } from '../enums/buildingKeyType';
 
 export type BuildingType = {
-  [BuildingTypeKeys.Id]: string;
-  [BuildingTypeKeys.Location]: LocationType;
-  [BuildingTypeKeys.Address]: string;
-  [BuildingTypeKeys.User]: UserType;
-  [BuildingTypeKeys.FormerUse]: string;
-  [BuildingTypeKeys.GFA]: number;
-  [BuildingTypeKeys.Complexity]: number;
-  [BuildingTypeKeys.Img]: string;
+  [BuildingKeyType.Id]: string;
+  [BuildingKeyType.Location]: LocationType;
+  [BuildingKeyType.Address]: string;
+  [BuildingKeyType.User]: UserType;
+  [BuildingKeyType.FormerUse]: string;
+  [BuildingKeyType.GFA]: number;
+  [BuildingKeyType.Complexity]: number;
+  [BuildingKeyType.Img]: string;
   locationType: LocationType;
 };
 
-export const BuildingTypeValueMap: Record<BuildingTypeKeys, ValueType> = {
-  [BuildingTypeKeys.Id]: 'string',
-  [BuildingTypeKeys.Location]: 'LocationType',
-  [BuildingTypeKeys.Address]: 'string',
-  [BuildingTypeKeys.User]: 'UserType',
-  [BuildingTypeKeys.FormerUse]: 'string',
-  [BuildingTypeKeys.GFA]: 'number',
-  [BuildingTypeKeys.Complexity]: 'number',
-  [BuildingTypeKeys.Img]: 'string',
+export const BuildingTypeValueMap: Record<BuildingKeyType, ValueType> = {
+  [BuildingKeyType.Id]: 'string',
+  [BuildingKeyType.Location]: 'LocationType',
+  [BuildingKeyType.Address]: 'string',
+  [BuildingKeyType.User]: 'UserType',
+  [BuildingKeyType.FormerUse]: 'string',
+  [BuildingKeyType.GFA]: 'number',
+  [BuildingKeyType.Complexity]: 'number',
+  [BuildingKeyType.Img]: 'string',
 };
 
