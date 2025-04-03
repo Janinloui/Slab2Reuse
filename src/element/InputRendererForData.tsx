@@ -11,7 +11,7 @@ export const InputRendererForData = (attributeName: SlabKeyType) => {
       return <Input />;
     case 'number':
       return <InputNumber addonAfter={suffixMap[attributeName]} />;
-    case 'enum':
+    case 'VisualCondition':
       switch (attributeName) {
         case SlabKeyType.Condition:
           return (

@@ -26,9 +26,7 @@ export type ComponentType = {
   [ComponentKeyType.Yaw]: number;
   [ComponentKeyType.GeometryTypeId]: string;
   [ComponentKeyType.Floor]: number;
-  [ComponentKeyType.Location_x]: number;
-  [ComponentKeyType.Location_y]: number;
-  [ComponentKeyType.LocationType]: LocationType;
+  [ComponentKeyType.Location]: LocationType;
   [ComponentKeyType.VisualInspection]: VisualInspectionType[];
   [ComponentKeyType.DestructionTest]?: DestructiveTestType;
   [ComponentKeyType.CoreTest]?: CoreTestType;
@@ -40,11 +38,11 @@ export type ComponentType = {
 /**
  * Map that describes what the type values of each of the SlabKeys are
  */
-export const ComponentTypeValueMap: Record<ComponentKeyType, ValueType> = {
+export const ComponentValueMap: Record<ComponentKeyType, ValueType> = {
   [ComponentKeyType.Id]: 'string',
   [ComponentKeyType.BuildingId]: 'string',
   [ComponentKeyType.Img]: 'string',
-  [ComponentKeyType.Condition]: 'enum',
+  [ComponentKeyType.Condition]: 'VisualCondition',
   [ComponentKeyType.NoHarmfulSubstance]: 'string',
   [ComponentKeyType.AvailableFrom]: 'string',
   [ComponentKeyType.Buyer]: 'string',
@@ -53,9 +51,7 @@ export const ComponentTypeValueMap: Record<ComponentKeyType, ValueType> = {
   [ComponentKeyType.LoadingCondition]: 'string',
   [ComponentKeyType.Yaw]: 'number',
   [ComponentKeyType.Floor]: 'number',
-  [ComponentKeyType.Location_x]: 'number',
-  [ComponentKeyType.Location_y]: 'number',
-  [ComponentKeyType.LocationType]: 'LocationType',
+  [ComponentKeyType.Location]: 'LocationType',
   [ComponentKeyType.VisualInspection]: 'VisualInspectionTypeArray',
   [ComponentKeyType.ManufacturerId]: 'string',
   [ComponentKeyType.GeometryTypeId]: 'string',

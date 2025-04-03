@@ -11,10 +11,9 @@ export type BuildingType = {
   [BuildingKeyType.GFA]: number;
   [BuildingKeyType.Complexity]: number;
   [BuildingKeyType.Img]: string;
-  locationType: LocationType;
 };
 
-export const BuildingTypeValueMap: Record<BuildingKeyType, ValueType> = {
+export const BuildingValueMap: Record<BuildingKeyType, ValueType> = {
   [BuildingKeyType.Id]: 'string',
   [BuildingKeyType.Location]: 'LocationType',
   [BuildingKeyType.Address]: 'string',

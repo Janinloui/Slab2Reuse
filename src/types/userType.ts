@@ -7,16 +7,16 @@ export type UserType = {
   [UserKeyType.Address]: string;
   [UserKeyType.Company]: string;
   [UserKeyType.Mail]: string;
-  [UserKeyType.UserCategory]?: UserCategory;
+  [UserKeyType.UserCategory]: UserCategory;
 };
 
 import { ValueType } from './valueType';
 
-export const UserTypeValueMap: Record<keyof UserType, ValueType> = {
+export const UserValueMap: Record<keyof UserType, ValueType> = {
   [UserKeyType.Id]: 'string',
   [UserKeyType.Name]: 'string',
   [UserKeyType.Address]: 'string',
   [UserKeyType.Company]: 'string',
   [UserKeyType.Mail]: 'string',
-  [UserKeyType.UserCategory]: 'UserCategory', // Optional field
+  [UserKeyType.UserCategory]: 'UserCategory'
 };

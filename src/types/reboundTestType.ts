@@ -1,19 +1,19 @@
 import { LocationType } from './locationType';
-import { ReboundKeyType } from '../enums/reboundKeyType';
+import { ReboundTestKeyType } from '../enums/reboundTestKeyType';
 import { ValueType } from './valueType';
 
 export type ReboundTestType = {
-  [ReboundKeyType.Id]: string;
-  [ReboundKeyType.ReboundValue]: number[]; //store multiple values
-  [ReboundKeyType.ReboundDate]: string;
-  [ReboundKeyType.UserId]: string;
-  [ReboundKeyType.Location]: LocationType;
+  [ReboundTestKeyType.Id]: string;
+  [ReboundTestKeyType.ReboundValue]: number[]; //store multiple values
+  [ReboundTestKeyType.ReboundDate]: string;
+  [ReboundTestKeyType.UserId]: string;
+  [ReboundTestKeyType.Location]: LocationType;
 };
 
-export const ReboundTestValueMap: Record<ReboundKeyType, ValueType> = {
-  [ReboundKeyType.Id]: 'string',
-  [ReboundKeyType.ReboundValue]: 'numberArray', //store multiple values
-  [ReboundKeyType.ReboundDate]: 'string',
-  [ReboundKeyType.UserId]: 'string',
-  [ReboundKeyType.Location]: 'LocationType'
+export const ReboundTestValueMap: Record<ReboundTestKeyType, ValueType> = {
+  [ReboundTestKeyType.Id]: 'string',
+  [ReboundTestKeyType.ReboundValue]: 'numberArray', //store multiple values
+  [ReboundTestKeyType.ReboundDate]: 'string',
+  [ReboundTestKeyType.UserId]: 'string',
+  [ReboundTestKeyType.Location]: 'LocationType'
 };

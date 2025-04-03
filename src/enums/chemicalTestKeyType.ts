@@ -1,9 +1,9 @@
-export enum ChemicalTestKeyType {
-  Id = 'ChemicalTestId',
-  CarbonationDepth = 'ChemicalTestCarbonationDepth',
-  ChlorideContent = 'ChemicalTestChlorideContent',
-  AlkaliReactivity = 'ChemicalTestAlkaliReactivity',
-  Date = 'ChemicalTestDate',
-  UserId = 'ChemicalTestUserId',
-  Location = 'ChemicalTestLocation'
+export enum chemicalTestKeyType {
+  Id = 'chemicalTestId',
+  CarbonationDepth = 'chemicalTestCarbonationDepth',
+  ChlorideContent = 'chemicalTestChlorideContent',
+  AlkaliReactivity = 'chemicalTestAlkaliReactivity',
+  Date = 'chemicalTestDate',
+  UserId = 'chemicalTestUserId',
+  Location = 'chemicalTestLocation'
 }

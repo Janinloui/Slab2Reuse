@@ -13,7 +13,7 @@ export type PreStressStrandType = {
   [PreStressStrandKeyType.ManufacturerId]: string;
 };
 
-export const PreStressValueMap: Record<PreStressStrandKeyType, ValueType> = {
+export const PreStressStrandValueMap: Record<PreStressStrandKeyType, ValueType> = {
   [PreStressStrandKeyType.Id]: 'string',
   [PreStressStrandKeyType.PreStressForce]: 'number',
   [PreStressStrandKeyType.PreStressSteelClass]: 'string',
@@ -21,5 +21,5 @@ export const PreStressValueMap: Record<PreStressStrandKeyType, ValueType> = {
   [PreStressStrandKeyType.PreStressAmount]: 'number',
   [PreStressStrandKeyType.Date]: 'string',
   [PreStressStrandKeyType.Location]: 'LocationType',
-  [PreStressStrandKeyType.ManufacturerId]: 'string',
+  [PreStressStrandKeyType.ManufacturerId]: 'string'
 };

@@ -49,7 +49,7 @@ const parsingEntry = (attributeName: string, value: string, mappingTable: Mappin
   if (!mappingTable[attributeName]) return undefined;
   switch (SlabTypeValueMap[mappingTable[attributeName]]) {
     case 'string':
-    case 'enum':
+    case 'VisualCondition':
       return value;
     case 'number':
       return Number(value);
@@ -74,7 +74,8 @@ const mapEntry = (entry: Record<string, string>, mappingTable: MappingTable): Pa
       .map(([key, value]) => [mappingTable[key], parsingEntry(key, value, mappingTable)])
       .filter((s) => s !== undefined)
   );
-const getMappedData = (csvData: CsvData, mappingTable: MappingTable): Partial<SlabType>[] => csvData.map((entry) => mapEntry(entry, mappingTable));
+const getMappedData = (csvData: CsvData, mappingTable: MappingTable): Partial<SlabType>[] =>
+  csvData.map((entry) => mapEntry(entry, mappingTable));
 
 /**
  * Method that tries to parse the CSVData to a Partial<SlabType> Array
@@ -83,7 +84,10 @@ const getMappedData = (csvData: CsvData, mappingTable: MappingTable): Partial<Sl
  * @param requiredKeys - SlabKeyType[]
  * @returns Partial<SlabType>[]
  */
-const getSlabTypesFromCsv = (csvData: CsvData, requiredKeys: SlabKeyType[] = [SlabKeyType.Id, SlabKeyType.PlanReference]): Partial<SlabType>[] => {
+const getSlabTypesFromCsv = (
+  csvData: CsvData,
+  requiredKeys: SlabKeyType[] = [SlabKeyType.Id, SlabKeyType.PlanReference]
+): Partial<SlabType>[] => {
   const csvAttributes = new Set(csvData.map((entry) => Object.keys(entry)).flat());
   const mappingTable = getFuzzilyMatchedAttributeTable([...csvAttributes]);
 
@@ -98,7 +102,10 @@ const getSlabTypesFromCsv = (csvData: CsvData, requiredKeys: SlabKeyType[] = [Sl
     const error = new Error(keyedError);
     Object.assign(error, {
       keyedError,
-      tag: keyedError === KeyedErrors.CSV_IMPORT_NOT_ENOUGH_ATTRIBUTES ? [...missingAttributes].map((a) => `'${a}'`).join(', ') : undefined,
+      tag:
+        keyedError === KeyedErrors.CSV_IMPORT_NOT_ENOUGH_ATTRIBUTES
+          ? [...missingAttributes].map((a) => `'${a}'`).join(', ')
+          : undefined
     });
     throw error;
   }
@@ -117,8 +124,10 @@ const getSlabTypesFromCsv = (csvData: CsvData, requiredKeys: SlabKeyType[] = [Sl
  * @param data - Partial<SlabType>[]
  * @returns Partial<SlabType>[] with an id set
  */
-const addNewIds = (data: Partial<SlabType>[]): Partial<SlabType>[] => data.map((entry, i) => ({ ...entry, [SlabKeyType.Id]: i.toString() }));
-const hasAttribute = (data: Partial<SlabType>[], attribute: SlabKeyType): boolean => data.every((e) => e[attribute] !== undefined);
+const addNewIds = (data: Partial<SlabType>[]): Partial<SlabType>[] =>
+  data.map((entry, i) => ({ ...entry, [SlabKeyType.Id]: i.toString() }));
+const hasAttribute = (data: Partial<SlabType>[], attribute: SlabKeyType): boolean =>
+  data.every((e) => e[attribute] !== undefined);
 
 /**
  * Data that can be added with boilerplate if the rest isn't available
@@ -127,9 +136,14 @@ const hasAttribute = (data: Partial<SlabType>[], attribute: SlabKeyType): boolea
  */
 const addDefaultData = (data: Partial<SlabType>[]): Partial<SlabType>[] =>
   data.map((slab) => {
-    const missingKeysForWhichDefaultIsDefined = new Set(Object.keys(DefaultDataMap)).difference(new Set(Object.keys(slab))) as Set<SlabKeyType>;
+    const missingKeysForWhichDefaultIsDefined = new Set(Object.keys(DefaultDataMap)).difference(
+      new Set(Object.keys(slab))
+    ) as Set<SlabKeyType>;
     if (missingKeysForWhichDefaultIsDefined.size)
-      return { ...slab, ...Object.fromEntries([...missingKeysForWhichDefaultIsDefined].map((k) => [k, DefaultDataMap[k]])) };
+      return {
+        ...slab,
+        ...Object.fromEntries([...missingKeysForWhichDefaultIsDefined].map((k) => [k, DefaultDataMap[k]]))
+      };
     return slab;
   });
 
@@ -162,7 +176,7 @@ export const loadProject = (csvData: CsvData): Partial<SlabType>[] => {
 const getCSVValueForData = (attribute: SlabKeyType, value: any): string => {
   switch (SlabTypeValueMap[attribute]) {
     case 'string':
-    case 'enum':
+    case 'VisualCondition':
       return value as string;
     case 'number':
       return (Math.round(value * 1e3) * 1e-3).toFixed(3);

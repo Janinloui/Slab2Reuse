@@ -17,7 +17,7 @@ export type CrossSectionType = {
   [CrossSectionKeyType.PreStressStrandType]: PreStressStrandType;
 };
 
-export const CrossSectionTypeValueMap: Record<keyof CrossSectionType, ValueType> = {
+export const CrossSectionValueMap: Record<keyof CrossSectionType, ValueType> = {
   [CrossSectionKeyType.Id]: 'string',
   [CrossSectionKeyType.Width]: 'number',
   [CrossSectionKeyType.Height]: 'number',

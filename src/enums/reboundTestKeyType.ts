@@ -1,4 +1,4 @@
-export enum ReboundKeyType {
+export enum ReboundTestKeyType {
   Id = 'reboundId',
   ReboundValue = 'reboundValue',
   ReboundDate = 'reboundDate',
