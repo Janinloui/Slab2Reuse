@@ -21,4 +21,11 @@ export type ValueType =
   | 'CoreTestType'
   | 'ChemicalTestType'
   | 'GPRTestType'
-  | 'ReboundTestType';
+  | 'ReboundTestType'
+  | 'BuildingTypeArray'
+  | 'UserTypeArray'
+  | 'ComponentTypeArray'
+  | 'GeometryTypeArray'
+  | 'CrossSectionTypeArray'
+  | 'MaterialTypeArray'
+  | 'RebarTypeArray';

@@ -16,6 +16,8 @@ export type ColumnType = {
   [GeometryKeyType.Height]: number;
 };
 
+export type GeometryType = SlabType | ColumnType;
+
 export const GeometryValueMap: Record<GeometryKeyType, ValueType> = {
   [GeometryKeyType.Id]: 'string',
   [GeometryKeyType.CrossSectionId]: 'string',

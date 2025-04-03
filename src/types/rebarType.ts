@@ -10,28 +10,24 @@ export type RebarEntry = {
 export type HomogeneusRebarType = {
   [RebarKeyType.Id]: string;
   [RebarKeyType.RebarCategory]: RebarCategory.Homogeneus;
-  [RebarKeyType.RebarConfigurationId]: string;
   [RebarKeyType.RebarEntries]: [RebarEntry];
 };
 
 export type TwoTypesRebarType = {
   [RebarKeyType.Id]: string;
   [RebarKeyType.RebarCategory]: RebarCategory.TwoTypes;
-  [RebarKeyType.RebarConfigurationId]: string;
   [RebarKeyType.RebarEntries]: [RebarEntry, RebarEntry];
 };
 
 export type ThreeTypesRebarType = {
   [RebarKeyType.Id]: string;
   [RebarKeyType.RebarCategory]: RebarCategory.ThreeTypes;
-  [RebarKeyType.RebarConfigurationId]: string;
   [RebarKeyType.RebarEntries]: [RebarEntry, RebarEntry, RebarEntry];
 };
 
 export type FourTypesRebarType = {
   [RebarKeyType.Id]: string;
   [RebarKeyType.RebarCategory]: RebarCategory.FourTypes;
-  [RebarKeyType.RebarConfigurationId]: string;
   [RebarKeyType.RebarEntries]: [RebarEntry, RebarEntry, RebarEntry, RebarEntry];
 };
 

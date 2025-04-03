@@ -28,6 +28,8 @@ export type TimberType = {
   [MaterialKeyType.ExposureClass]: string;
 };
 
+export type MaterialType = ConcreteType | TimberType;
+
 export const MaterialValueMap: Record<MaterialKeyType, ValueType> = {
   [MaterialKeyType.Id]: 'string',
   [MaterialKeyType.CrossSectionId]: 'string',
