@@ -6,5 +6,5 @@ export enum BuildingKeyType {
     FormerUse = 'buildingFormerUse',
     GFA = 'buildingGFA',
     Complexity = 'buildingComplexity',
-    Img = 'buildingImg'
+    Img = 'buildingImg',
   }
