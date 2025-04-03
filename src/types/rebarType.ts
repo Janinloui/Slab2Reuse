@@ -3,8 +3,8 @@ import { RebarKeyType } from '../enums/rebarKeyType';
 import { ValueType } from './valueType';
 
 export type RebarEntry = {
-  rebarDiameter: number;
-  rebarAmount: number;
+  [RebarKeyType.RebarDiameter]: number;
+  [RebarKeyType.RebarAmount]: number;
 };
 
 export type HomogeneusRebarType = {

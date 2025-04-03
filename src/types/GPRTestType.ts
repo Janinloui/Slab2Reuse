@@ -1,4 +1,3 @@
-import { UserType } from './userType';
 import { LocationType } from './locationType';
 import { GPRTestKeyType } from '../enums/gprTestKeyType';
 import { ValueType } from './valueType';
@@ -9,7 +8,7 @@ export type GPRTestType = {
   [GPRTestKeyType.CoverDepth]: number;
   [GPRTestKeyType.RebarAmount]: number;
   [GPRTestKeyType.Date]: string;
-  [GPRTestKeyType.User]: UserType;
+  [GPRTestKeyType.UserId]: string;
   [GPRTestKeyType.Location]: LocationType;
 };
 
@@ -19,6 +18,6 @@ export const GPRTestValueMap: Record<GPRTestKeyType, ValueType> = {
   [GPRTestKeyType.CoverDepth]: 'number',
   [GPRTestKeyType.RebarAmount]: 'number',
   [GPRTestKeyType.Date]: 'string',
-  [GPRTestKeyType.User]: 'UserType',
-  [GPRTestKeyType.Location]: 'LocationType',
+  [GPRTestKeyType.UserId]: 'string',
+  [GPRTestKeyType.Location]: 'LocationType'
 };

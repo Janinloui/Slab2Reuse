@@ -4,6 +4,6 @@ export enum ChemicalTestKeyType {
   ChlorideContent = 'ChemicalTestChlorideContent',
   AlkaliReactivity = 'ChemicalTestAlkaliReactivity',
   Date = 'ChemicalTestDate',
-  User = 'ChemicalTestUser',
-  Location = 'ChemicalTestLocation',
+  UserId = 'ChemicalTestUserId',
+  Location = 'ChemicalTestLocation'
 }

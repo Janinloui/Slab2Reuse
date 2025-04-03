@@ -13,5 +13,12 @@ export type ValueType =
   | 'CrossSectionCategory'
   | 'ComponentCategory'
   | 'RebarCategory'
-  | 'RebarConfiguration'
-  | 'RebarEntryArray';
+  | 'RebarType'
+  | 'RebarEntryArray'
+  | 'PreStressStrandType'
+  | 'VisualInspectionTypeArray'
+  | 'DestructiveTestType'
+  | 'CoreTestType'
+  | 'ChemicalTestType'
+  | 'GPRTestType'
+  | 'ReboundTestType';

@@ -4,6 +4,6 @@ export enum GPRTestKeyType {
   CoverDepth = 'gprTestCoverDepth',
   RebarAmount = 'gprTestRebarAmount',
   Date = 'gprTestDate',
-  User = 'gprTestUser',
-  Location = 'gprTestLocation',
+  UserId = 'gprTestUserId',
+  Location = 'gprTestLocation'
 }

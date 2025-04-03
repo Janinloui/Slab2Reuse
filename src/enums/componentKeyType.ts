@@ -15,4 +15,13 @@ export enum ComponentKeyType {
   Location_x = 'location_x',
   Location_y = 'location_y',
   LocationType = 'LocationType',
+  VisualInspection = 'VisualInspection',
+  ManufacturerId = 'ManufacturerId',
+  GeometryTypeId = 'GeometryTypeId',
+  DestructionTest = 'DestructionTest',
+  CoreTest = 'CoreTest',
+  ChemicalTest = 'ChemicalTest',
+  GPRTest = 'GPRTest',
+  ReboundTest = 'ReboundTest',
+  BuildingId = 'BuildingId'
 }

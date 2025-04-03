@@ -3,5 +3,5 @@ export enum ReboundKeyType {
   ReboundValue = 'reboundValue',
   ReboundDate = 'reboundDate',
   Location = 'reboundLocation',
-  User = 'reboundUser',
+  UserId = 'reboundUserId'
 }

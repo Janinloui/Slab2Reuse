@@ -3,6 +3,6 @@ export enum CoreTestKeyType {
   CoreDiameter = 'coreTestCoreDiameter',
   CoreCompressiveStrength = 'coreTestCoreCompressiveStrength',
   Date = 'coreTestDate',
-  User = 'coreTestUser',
-  Location = 'coreTestLocation',
+  UserId = 'coreTestUserId',
+  Location = 'coreTestLocation'
 }

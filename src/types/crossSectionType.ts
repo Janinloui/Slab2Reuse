@@ -2,16 +2,19 @@ import { CrossSectionCategory } from '../enums/crossSectionCategory';
 import { ValueType } from './valueType';
 import { CrossSectionKeyType } from '../enums/crossSectionKeyType';
 import { RebarType } from './rebarType';
+import { PreStressStrandType } from './preStressStrandType';
 
 export type CrossSectionType = {
   [CrossSectionKeyType.Id]: string;
+  [CrossSectionKeyType.CrossSectionCategory]: CrossSectionCategory;
   [CrossSectionKeyType.Width]: number;
   [CrossSectionKeyType.Height]: number;
   [CrossSectionKeyType.Moment]: number;
   [CrossSectionKeyType.Shear]: number;
   [CrossSectionKeyType.Normal]: number;
-  [CrossSectionKeyType.RebarConfiguration]: RebarType;
-  [CrossSectionKeyType.CrossSectionCategory]: CrossSectionCategory;
+  [CrossSectionKeyType.RebarType]: RebarType;
+  [CrossSectionKeyType.ConcreteMaterialTypeId]: string;
+  [CrossSectionKeyType.PreStressStrandType]: PreStressStrandType;
 };
 
 export const CrossSectionTypeValueMap: Record<keyof CrossSectionType, ValueType> = {
@@ -21,6 +24,8 @@ export const CrossSectionTypeValueMap: Record<keyof CrossSectionType, ValueType>
   [CrossSectionKeyType.Moment]: 'number',
   [CrossSectionKeyType.Shear]: 'number',
   [CrossSectionKeyType.Normal]: 'number',
-  [CrossSectionKeyType.RebarConfiguration]: 'RebarConfiguration',
+  [CrossSectionKeyType.RebarType]: 'RebarType',
   [CrossSectionKeyType.CrossSectionCategory]: 'CrossSectionCategory',
+  [CrossSectionKeyType.ConcreteMaterialTypeId]: 'string',
+  [CrossSectionKeyType.PreStressStrandType]: 'PreStressStrandType'
 };
