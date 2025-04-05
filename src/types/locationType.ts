@@ -8,7 +8,7 @@ export type LocationType = {
   [LocationKeyType.Height]: number;
 };
 
-export const LocationTypeValueMap: Record<LocationKeyType, ValueType> = {
+export const LocationValueMap: Record<LocationKeyType, ValueType> = {
   [LocationKeyType.Longitude]: 'number',
   [LocationKeyType.Latitude]: 'number',
   [LocationKeyType.Height]: 'number',

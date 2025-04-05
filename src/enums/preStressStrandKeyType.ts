@@ -1,5 +1,4 @@
 export enum PreStressStrandKeyType {
-  Id = 'preStressStrandId',
   PreStressForce = 'preStressStrandForce',
   PreStressSteelClass = 'preStressStrandSteelClass',
   PreStressSteelDiameter = 'preStressStrandSteelDiameter',

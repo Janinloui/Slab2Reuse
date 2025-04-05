@@ -3,7 +3,6 @@ import { GPRTestKeyType } from '../enums/gprTestKeyType';
 import { ValueType } from './valueType';
 
 export type GPRTestType = {
-  [GPRTestKeyType.Id]: string;
   [GPRTestKeyType.RebarDiameter]: number;
   [GPRTestKeyType.CoverDepth]: number;
   [GPRTestKeyType.RebarAmount]: number;
@@ -13,7 +12,6 @@ export type GPRTestType = {
 };
 
 export const GPRTestValueMap: Record<GPRTestKeyType, ValueType> = {
-  [GPRTestKeyType.Id]: 'string',
   [GPRTestKeyType.RebarDiameter]: 'number',
   [GPRTestKeyType.CoverDepth]: 'number',
   [GPRTestKeyType.RebarAmount]: 'number',

@@ -8,7 +8,7 @@ import { VisualInspectionType } from './visualInspectionType';
 import { DestructiveTestType } from './destructiveTestType';
 import { CoreTestType } from './coreTestType';
 import { ChemicalTestType } from './chemicalTestType';
-import { GPRTestType } from './GPRTestType';
+import { GPRTestType } from './gprTestType';
 import { ReboundTestType } from './reboundTestType';
 
 export type ComponentType = {

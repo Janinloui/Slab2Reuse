@@ -3,7 +3,6 @@ import { LocationType } from './locationType';
 import { ValueType } from './valueType';
 
 export type CoreTestType = {
-  [CoreTestKeyType.Id]: string;
   [CoreTestKeyType.CoreDiameter]: number;
   [CoreTestKeyType.CoreCompressiveStrength]: number;
   [CoreTestKeyType.Date]: string;
@@ -12,7 +11,6 @@ export type CoreTestType = {
 };
 
 export const CoreTestValueMap: Record<CoreTestKeyType, ValueType> = {
-  [CoreTestKeyType.Id]: 'string',
   [CoreTestKeyType.CoreDiameter]: 'number',
   [CoreTestKeyType.CoreCompressiveStrength]: 'number',
   [CoreTestKeyType.Date]: 'string',

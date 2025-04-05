@@ -3,7 +3,6 @@ import { ChemicalTestKeyType } from '../enums/chemicalTestKeyType';
 import { ValueType } from './valueType';
 
 export type ChemicalTestType = {
-  [ChemicalTestKeyType.Id]: string;
   [ChemicalTestKeyType.CarbonationDepth]: number;
   [ChemicalTestKeyType.ChlorideContent]: number;
   [ChemicalTestKeyType.AlkaliReactivity]: number;
@@ -13,7 +12,6 @@ export type ChemicalTestType = {
 };
 
 export const ChemicalTestValueMap: Record<ChemicalTestKeyType, ValueType> = {
-  [ChemicalTestKeyType.Id]: 'string',
   [ChemicalTestKeyType.CarbonationDepth]: 'number',
   [ChemicalTestKeyType.ChlorideContent]: 'number',
   [ChemicalTestKeyType.AlkaliReactivity]: 'number',

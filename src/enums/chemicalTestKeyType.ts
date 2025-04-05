@@ -1,5 +1,4 @@
-export enum chemicalTestKeyType {
-  Id = 'chemicalTestId',
+export enum ChemicalTestKeyType {
   CarbonationDepth = 'chemicalTestCarbonationDepth',
   ChlorideContent = 'chemicalTestChlorideContent',
   AlkaliReactivity = 'chemicalTestAlkaliReactivity',

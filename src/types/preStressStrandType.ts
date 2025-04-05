@@ -3,7 +3,6 @@ import { LocationType } from './locationType';
 import { ValueType } from './valueType';
 
 export type PreStressStrandType = {
-  [PreStressStrandKeyType.Id]: string;
   [PreStressStrandKeyType.PreStressForce]: number;
   [PreStressStrandKeyType.PreStressSteelClass]: string;
   [PreStressStrandKeyType.PreStressSteelDiameter]: number;
@@ -14,7 +13,6 @@ export type PreStressStrandType = {
 };
 
 export const PreStressStrandValueMap: Record<PreStressStrandKeyType, ValueType> = {
-  [PreStressStrandKeyType.Id]: 'string',
   [PreStressStrandKeyType.PreStressForce]: 'number',
   [PreStressStrandKeyType.PreStressSteelClass]: 'string',
   [PreStressStrandKeyType.PreStressSteelDiameter]: 'number',

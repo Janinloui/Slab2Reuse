@@ -1,5 +1,4 @@
 export enum GPRTestKeyType {
-  Id = 'gprTestId',
   RebarDiameter = 'gprTestRebarDiameter',
   CoverDepth = 'gprTestCoverDepth',
   RebarAmount = 'gprTestRebarAmount',
