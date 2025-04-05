@@ -1,4 +1,4 @@
-import { getBoilerPlateDataForValyeType } from '../../data/getBoilerPlateData';
+import { getBoilerPlateDataForValyeType } from '../lib/getBoilerPlateData';
 import { GenericUIRenderer } from '../generic/GenericUIRenderer';
 import { DatabaseValueMap } from '../types/databseType';
 import { ValueType } from '../types/valueType';
