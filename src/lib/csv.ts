@@ -55,7 +55,7 @@ const parsingEntry = (attributeName: string, value: string, mappingTable: Mappin
       return Number(value);
     case 'numberArray':
       return JSON.parse(atob(value)) as unknown as number[];
-    case 'nestedNumberArray':
+    case 'numberArrayArray':
       return JSON.parse(atob(value)) as unknown as number[][];
     case 'stringPairArray':
       return JSON.parse(atob(value)) as unknown as [string, string][];
@@ -181,7 +181,7 @@ const getCSVValueForData = (attribute: SlabKeyType, value: any): string => {
     case 'number':
       return (Math.round(value * 1e3) * 1e-3).toFixed(3);
     case 'numberArray':
-    case 'nestedNumberArray':
+    case 'numberArrayArray':
     case 'stringPairArray':
       return btoa(JSON.stringify(value));
   }
