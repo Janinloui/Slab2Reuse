@@ -7,6 +7,7 @@ import { UserCategory } from '../enums/user';
 import { ValueType } from '../types/valueType';
 import { AllKeyMap } from '../types/allKeyMap';
 import { ReactNode } from 'react';
+import { VisualCondition } from '../enums/visualCondition';
 
 //number
 const NumberRenderer = (v: number) => <InputNumber value={v} />;
@@ -67,6 +68,15 @@ const RebarCategoryRenderer = (v: RebarCategory) => (
   </Select>
 );
 
+//RebarCategory
+const VisualConditionRenderer = (v: VisualCondition) => (
+  <Select value={v}>
+    {Object.values(VisualCondition).map((c) => (
+      <Select.Option value={c}>{c}</Select.Option>
+    ))}
+  </Select>
+);
+
 const SimpleValue: React.FC<{ k: string; v: ReactNode }> = ({ k, v }) => (
   <span style={{ display: 'flex', flex: 'row', gap: 4, alignItems: 'center' }}>
     {k}
@@ -85,14 +95,8 @@ const ArrayRenderer: React.FC<{ items: any[]; valueType: ValueType }> = ({ items
 );
 
 const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any }> = ({ k, valueType, value }) => {
-  try {
-    if (valueType.endsWith('Array')) return <ArrayRenderer items={value} valueType={removeArrayFromEnd(valueType) as ValueType} />;
-  } catch (e) {
-    console.log(valueType);
-    console.log(value);
-    console.log(e);
-    return valueType;
-  }
+  if (valueType.endsWith('Array'))
+    return <ArrayRenderer items={value} valueType={removeArrayFromEnd(valueType) as ValueType} />;
   switch (valueType) {
     case 'number':
       return <SimpleValue k={k} v={NumberRenderer(value as any)} />;
@@ -108,6 +112,8 @@ const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any }> =
       return <SimpleValue k={k} v={ComponentCategoryRenderer(value as any)} />;
     case 'RebarCategory':
       return <SimpleValue k={k} v={RebarCategoryRenderer(value as any)} />;
+    case 'VisualCondition':
+      return <SimpleValue k={k} v={VisualConditionRenderer(value as any)} />;
     case 'stringPair':
       return <SimpleValue k={k} v={StringPairRenderer(value as any)} />;
     default:
@@ -125,7 +131,7 @@ export const GenericUIRenderer: React.FC<{ item: Record<string, any> }> = ({ ite
     {Object.entries(item).map(([k, value]) => {
       const valueType = AllKeyMap[k];
       if (typeof valueType !== 'string') return `some problem: '${typeof valueType}' for key: '${k}'`;
-      return <EntryRenderer k={k} value={value} valueType={value} />;
+      return <EntryRenderer k={k} value={value} valueType={valueType} />;
     })}
   </div>
 );
