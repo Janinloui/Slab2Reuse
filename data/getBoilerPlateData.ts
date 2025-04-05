@@ -15,7 +15,6 @@ import { MaterialKeyType } from '../src/enums/materialKeyType';
 import { PreStressStrandKeyType } from '../src/enums/preStressStrandKeyType';
 import { RebarCategory } from '../src/enums/rebarCategory';
 import { RebarKeyType } from '../src/enums/rebarKeyType';
-import { UserCategory } from '../src/enums/userCategory';
 import { UserKeyType } from '../src/enums/userKeyType';
 import { BuildingType, BuildingValueMap } from '../src/types/buildingType';
 import { ChemicalTestType, ChemicalTestValueMap } from '../src/types/chemicalTestType';
@@ -23,8 +22,8 @@ import { CoreTestType, CoreTestValueMap } from '../src/types/coreTestType';
 import { CrossSectionType, CrossSectionValueMap } from '../src/types/crossSectionType';
 import { DestructiveTestType, DestructiveTestValueMap } from '../src/types/destructiveTestType';
 import { GeometryType, GeometryValueMap } from '../src/types/geometryType';
-import { GPRTestType, GPRTestValueMap } from '../src/types/GPRTestType';
-import { LocationType, LocationTypeValueMap } from '../src/types/locationType';
+import { GPRTestType, GPRTestValueMap } from '../src/types/gprTestType';
+import { LocationType, LocationValueMap } from '../src/types/locationType';
 import { MaterialType, MaterialValueMap } from '../src/types/materialType';
 import { PreStressStrandType, PreStressStrandValueMap } from '../src/types/preStressStrandType';
 import { RebarEntry, RebarType, RebarValueMap } from '../src/types/rebarType';
@@ -35,6 +34,7 @@ import { ReboundTestKeyType } from '../src/enums/reboundTestKeyType';
 import { ComponentValueMap } from '../src/types/componentType';
 import { VisualInspectionType, VisualInspectionValueMap } from '../src/types/visualInspectionType';
 import { VisualInspectionKeyType } from '../src/enums/visualInspectionKeyType';
+import { UserCategory } from '../src/enums/userCategory';
 
 const getRandomNumberArray = (length: number, min: number, max: number) =>
   Array.from({ length }, () => Math.floor(Math.random() * (max - min)) + min);
@@ -66,17 +66,17 @@ const normalCaseValueMapCast = <T, U extends string>(valueMap: Record<U, ValueTy
     Object.entries(valueMap).map(([k, valueType]) => [k, getBoilerPlateDataForValyeType(valueType as ValueType)])
   ) as T;
 
-export const getBoilerPlateDataForValyeType = (t: ValueType): any => {
+export const getBoilerPlateDataForValyeType = (t: ValueType, k?: string): any => {
   switch (t) {
     case 'number':
       return 0;
     case 'string':
       return getStringForKey(k);
     case 'LocationType':
-      return normalCaseValueMapCast<LocationType, LocationKeyType>(LocationTypeValueMap);
+      return normalCaseValueMapCast<LocationType, LocationKeyType>(LocationValueMap);
     case 'numberArray':
       return getRandomNumberArray(5, 0, 100);
-    case 'nestedNumberArray':
+    case 'numberArrayArray':
       return getRandomNestedNumeberArray(5, 0, 100);
     case 'stringPairArray':
       return ['string', 'string'];
