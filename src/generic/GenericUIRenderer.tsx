@@ -74,11 +74,9 @@ const SimpleValue: React.FC<{ k: string; v: ReactNode }> = ({ k, v }) => (
   </span>
 );
 
-const removeArrayFromEnd = (s: string) => {
-  s.replaceAll();
-};
+const removeArrayFromEnd = (s: string) => s.substring(0, s.lastIndexOf('Array'));
 
-const ArrayRenderer: React.FC = (items: any[], valueType: ValueType) => (
+const ArrayRenderer: React.FC<{ items: any[]; valueType: ValueType }> = ({ items, valueType }) => (
   <div>
     {items.map((item, i) => (
       <EntryRenderer k={i.toString()} valueType={valueType} value={item} />
@@ -87,7 +85,14 @@ const ArrayRenderer: React.FC = (items: any[], valueType: ValueType) => (
 );
 
 const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any }> = ({ k, valueType, value }) => {
-  if (valueType.endsWith('Array')) return ArrayRenderer(value, valueType.replace());
+  try {
+    if (valueType.endsWith('Array')) return <ArrayRenderer items={value} valueType={removeArrayFromEnd(valueType) as ValueType} />;
+  } catch (e) {
+    console.log(valueType);
+    console.log(value);
+    console.log(e);
+    return valueType;
+  }
   switch (valueType) {
     case 'number':
       return <SimpleValue k={k} v={NumberRenderer(value as any)} />;
@@ -105,14 +110,22 @@ const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any }> =
       return <SimpleValue k={k} v={RebarCategoryRenderer(value as any)} />;
     case 'stringPair':
       return <SimpleValue k={k} v={StringPairRenderer(value as any)} />;
+    default:
+      return (
+        <div>
+          <span>{k}</span>
+          <GenericUIRenderer item={value} />
+        </div>
+      );
   }
 };
 
-export const GenericUIRenderer: React.FC<{ item: Record<string, any>; keyOverwrite: ValueType }> = ({ item, keyOverwrite }) => (
-  <>
+export const GenericUIRenderer: React.FC<{ item: Record<string, any> }> = ({ item }) => (
+  <div>
     {Object.entries(item).map(([k, value]) => {
       const valueType = AllKeyMap[k];
-      if (valueType === undefined) return 'some problem';
+      if (typeof valueType !== 'string') return `some problem: '${typeof valueType}' for key: '${k}'`;
+      return <EntryRenderer k={k} value={value} valueType={value} />;
     })}
-  </>
+  </div>
 );
