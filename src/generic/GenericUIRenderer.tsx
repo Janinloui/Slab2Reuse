@@ -78,16 +78,13 @@ const VisualConditionRenderer = (v: VisualCondition) => (
 );
 
 const SimpleValue: React.FC<{ k: string; v: ReactNode }> = ({ k, v }) => (
-  <span style={{ display: 'flex', flex: 'row', gap: 4, alignItems: 'center' }}>
-    {k}
-    {v}
-  </span>
+  <span style={{ display: 'flex', flex: 'row', gap: 4, alignItems: 'center' }}>{v}</span>
 );
 
 const removeArrayFromEnd = (s: string) => s.substring(0, s.lastIndexOf('Array'));
 
 const ArrayRenderer: React.FC<{ items: any[]; valueType: ValueType }> = ({ items, valueType }) => (
-  <div>
+  <div style={{ marginLeft: 4 }}>
     {items.map((item, i) => (
       <EntryRenderer k={i.toString()} valueType={valueType} value={item} />
     ))}
@@ -117,21 +114,34 @@ const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any }> =
     case 'stringPair':
       return <SimpleValue k={k} v={StringPairRenderer(value as any)} />;
     default:
-      return (
-        <div>
-          <span>{k}</span>
-          <GenericUIRenderer item={value} />
-        </div>
-      );
+      return <GenericUIRenderer item={value} />;
   }
 };
 
-export const GenericUIRenderer: React.FC<{ item: Record<string, any> }> = ({ item }) => (
-  <div>
+export const GenericUIRenderer: React.FC<{ item: Record<string, any>; isFirst?: boolean }> = ({
+  item,
+  isFirst = false
+}) => (
+  <div
+    style={{
+      borderLeft: isFirst ? undefined : '1px solid black',
+      paddingLeft: 4,
+      marginLeft: 4,
+      display: 'grid',
+      gridTemplateColumns: '1fr 4fr',
+      gap: 12,
+      alignItems: 'center'
+    }}
+  >
     {Object.entries(item).map(([k, value]) => {
       const valueType = AllKeyMap[k];
       if (typeof valueType !== 'string') return `some problem: '${typeof valueType}' for key: '${k}'`;
-      return <EntryRenderer k={k} value={value} valueType={valueType} />;
+      return (
+        <>
+          <span>{k}</span>
+          <EntryRenderer k={k} value={value} valueType={valueType} />
+        </>
+      );
     })}
   </div>
 );
