@@ -11,6 +11,7 @@ import { LocationValueMap } from './locationType';
 import { MaterialValueMap } from './materialType';
 import { PreStressStrandValueMap } from './preStressStrandType';
 import { RebarValueMap } from './rebarType';
+import { ReboundTestValueMap } from './reboundTestType';
 import { UserValueMap } from './userType';
 import { ValueType } from './valueType';
 import { VisualInspectionValueMap } from './visualInspectionType';
@@ -29,6 +30,7 @@ export const AllKeyMap: Record<string, ValueType> = Object.fromEntries([
   ...Object.entries(MaterialValueMap),
   ...Object.entries(PreStressStrandValueMap),
   ...Object.entries(RebarValueMap),
+  ...Object.entries(ReboundTestValueMap),
   ...Object.entries(UserValueMap),
-  ...Object.entries(VisualInspectionValueMap),
+  ...Object.entries(VisualInspectionValueMap)
 ]);
