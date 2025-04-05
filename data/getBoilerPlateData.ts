@@ -38,6 +38,25 @@ import { VisualInspectionKeyType } from '../src/enums/visualInspectionKeyType';
 
 const getRandomNumberArray = (length: number, min: number, max: number) =>
   Array.from({ length }, () => Math.floor(Math.random() * (max - min)) + min);
+const getStringForKey = (k?: string) => {
+  switch (k) {
+    case MaterialKeyType.Id:
+      return `Ma-${btoa(Math.random().toString(36))}`;
+    case BuildingKeyType.Id:
+      return `Bu-${btoa(Math.random().toString(36))}`;
+    case ComponentKeyType.Id:
+      return `Ct-${btoa(Math.random().toString(36))}`;
+    case CrossSectionKeyType.Id:
+      return `Cx-${btoa(Math.random().toString(36))}`;
+    case UserKeyType.Id:
+      return `Us-${btoa(Math.random().toString(36))}`;
+    case GeometryKeyType.Id:
+      return `Ge-${btoa(Math.random().toString(36))}`;
+    case 'id':
+    default:
+      return btoa(Math.random().toString(36));
+  }
+};
 
 const getRandomNestedNumeberArray = (length: number, min: number, max: number) =>
   Array.from({ length }, () => getRandomNumberArray(length, min, max));
@@ -52,7 +71,7 @@ export const getBoilerPlateDataForValyeType = (t: ValueType): any => {
     case 'number':
       return 0;
     case 'string':
-      return btoa(Math.random().toString(36));
+      return getStringForKey(k);
     case 'LocationType':
       return normalCaseValueMapCast<LocationType, LocationKeyType>(LocationTypeValueMap);
     case 'numberArray':
