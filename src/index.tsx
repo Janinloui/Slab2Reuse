@@ -9,7 +9,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route element={<BoilerPlateData />} path={Slab2ReuseRoutes.NewDataModelBoilerPlate} />
+        <Route element={<BoilerPlateData />} path={Slab2ReuseRoutes.BoilerPlate} />
         {/* <Route element={<Landing />} path='/' />
         <Route element={wrapper(<ExampleData />)} path={Slab2ReuseRoutes.ExampleData} />
         <Route element={wrapper(<Viewer />)} path={Slab2ReuseRoutes.Viewer} />
