@@ -2,9 +2,11 @@ import { getBoilerPlateDataForValyeType } from '../lib/getBoilerPlateData';
 import { GenericUIRenderer } from '../generic/GenericUIRenderer';
 import { DatabaseValueMap } from '../types/databseType';
 import { ValueType } from '../types/valueType';
+import { exampleData } from './exampleData';
+import { getMappedData } from '../lib/parsingOldData';
 
 export const BoilerPlateData: React.FC = () => {
-  const data = Object.fromEntries(Object.entries(DatabaseValueMap).map(([k, valueType]) => [k, getBoilerPlateDataForValyeType(valueType as ValueType)]));
+  const data = getMappedData(exampleData); //Object.fromEntries(Object.entries(DatabaseValueMap).map(([k, valueType]) => [k, getBoilerPlateDataForValyeType(valueType as ValueType)]));
 
   return (
     <div>
