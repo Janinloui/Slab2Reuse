@@ -12,7 +12,7 @@ export type CrossSectionType = {
   [CrossSectionKeyType.Moment]: number;
   [CrossSectionKeyType.Shear]: number;
   [CrossSectionKeyType.Normal]: number;
-  [CrossSectionKeyType.RebarType]: RebarType;
+  [CrossSectionKeyType.RebarTypeId]: string;
   [CrossSectionKeyType.ConcreteMaterialTypeId]: string;
   [CrossSectionKeyType.PreStressStrandType]: PreStressStrandType;
 };
@@ -24,7 +24,7 @@ export const CrossSectionValueMap: Record<keyof CrossSectionType, ValueType> = {
   [CrossSectionKeyType.Moment]: 'number',
   [CrossSectionKeyType.Shear]: 'number',
   [CrossSectionKeyType.Normal]: 'number',
-  [CrossSectionKeyType.RebarType]: 'RebarType',
+  [CrossSectionKeyType.RebarTypeId]: 'string',
   [CrossSectionKeyType.CrossSectionCategory]: 'CrossSectionCategory',
   [CrossSectionKeyType.ConcreteMaterialTypeId]: 'string',
   [CrossSectionKeyType.PreStressStrandType]: 'PreStressStrandType'
