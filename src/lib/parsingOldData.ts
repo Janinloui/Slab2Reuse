@@ -196,6 +196,7 @@ export const getMappedData = (oldData: SlabType[]): DatabaseType => {
       [ComponentKeyType.Yaw]: data[SlabKeyType.Yaw],
       [ComponentKeyType.GeometryTypeId]: geometriesMap[geometryTypeString][GeometryKeyType.Id],
       [ComponentKeyType.Floor]: data[SlabKeyType.Floor],
+      [ComponentKeyType.Liveload]: data[SlabKeyType.Liveload],
       [ComponentKeyType.Location]: getWGSCoordinates(theBuilding, {
         x: data[SlabKeyType.Location_x] * 1e-3,
         y: data[SlabKeyType.Location_y] * 1e-3,
