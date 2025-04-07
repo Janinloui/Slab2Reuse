@@ -28,6 +28,7 @@ export type ComponentType = {
   [ComponentKeyType.Floor]: number;
   [ComponentKeyType.Location]: LocationType;
   [ComponentKeyType.VisualInspection]: VisualInspectionType[];
+  [ComponentKeyType.Liveload]: number;
   [ComponentKeyType.DestructionTest]?: DestructiveTestType;
   [ComponentKeyType.CoreTest]?: CoreTestType;
   [ComponentKeyType.ChemicalTest]?: ChemicalTestType;
@@ -59,5 +60,6 @@ export const ComponentValueMap: Record<ComponentKeyType, ValueType> = {
   [ComponentKeyType.CoreTest]: 'CoreTestType',
   [ComponentKeyType.ChemicalTest]: 'ChemicalTestType',
   [ComponentKeyType.GPRTest]: 'GPRTestType',
-  [ComponentKeyType.ReboundTest]: 'ReboundTestType'
+  [ComponentKeyType.ReboundTest]: 'ReboundTestType',
+  [ComponentKeyType.Liveload]: 'number'
 };
