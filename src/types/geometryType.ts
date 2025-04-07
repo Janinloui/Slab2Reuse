@@ -7,6 +7,7 @@ export type SlabType = {
   [GeometryKeyType.CrossSectionId]: string;
   [GeometryKeyType.ComponentCategory]: ComponentCategory.Slab;
   [GeometryKeyType.Length]: number;
+  [GeometryKeyType.OriginalGeometryId]?: string;
 };
 
 export type ColumnType = {
@@ -14,6 +15,7 @@ export type ColumnType = {
   [GeometryKeyType.CrossSectionId]: string;
   [GeometryKeyType.ComponentCategory]: ComponentCategory.Column;
   [GeometryKeyType.Height]: number;
+  [GeometryKeyType.OriginalGeometryId]?: string;
 };
 
 export type GeometryType = SlabType | ColumnType;
@@ -23,5 +25,6 @@ export const GeometryValueMap: Record<GeometryKeyType, ValueType> = {
   [GeometryKeyType.CrossSectionId]: 'string',
   [GeometryKeyType.ComponentCategory]: 'ComponentCategory',
   [GeometryKeyType.Length]: 'number',
-  [GeometryKeyType.Height]: 'number'
+  [GeometryKeyType.Height]: 'number',
+  [GeometryKeyType.OriginalGeometryId]: 'string'
 };
