@@ -5,7 +5,7 @@ export enum Slab2ReuseRoutes {
   TableOnly = '/table-only',
   ThreeOnly = '/three-only',
   BoilerPlate = '/boiler-plate',
-  LabView = '/lab-view/$:viewer',
-  OnSiteView = '/on-site-view/$:viewer',
-  ArchiveView = '/archive-view/$:viewer',
+  LabView = '/lab-view/:viewer',
+  OnSiteView = '/on-site-view/:viewer',
+  ArchiveView = '/archive-view/:viewer'
 }
