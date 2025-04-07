@@ -5,4 +5,5 @@ export enum RebarKeyType {
   RebarDiameter = 'rebarDiameter',
   RebarAmount = 'rebarAmount',
   RebarEntries = 'rebarEntries',
+  RebarMaterialId = 'rebarMaterialId'
 }

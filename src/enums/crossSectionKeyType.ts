@@ -7,6 +7,6 @@ export enum CrossSectionKeyType {
   Normal = 'crossSectionNormal',
   CrossSectionCategory = 'crossSectionCategory',
   RebarType = 'rebarConfiguration',
-  ConcreteMaterialTypeId = 'ConcreteMaterialTypeId',
-  PreStressStrandType = 'PreStressStrandType'
+  ConcreteMaterialTypeId = 'concreteMaterialTypeId',
+  PreStressStrandType = 'preStressStrandType'
 }

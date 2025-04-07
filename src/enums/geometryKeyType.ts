@@ -3,5 +3,6 @@ export enum GeometryKeyType {
   CrossSectionId = 'geometryTypeCrossSectionId',
   ComponentCategory = 'geometryTypeComponentCategory',
   Length = 'geometryTypeLength',
-  Height = 'geometryTypeHeight'
+  Height = 'geometryTypeHeight',
+  OriginalGeometryId = 'geometryOriginalGeometryId'
 }
