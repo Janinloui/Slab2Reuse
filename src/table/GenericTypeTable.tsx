@@ -5,7 +5,6 @@ import { BuildingType } from '../types/buildingType';
 import { BuildingKeyType } from '../enums/buildingKeyType';
 import { EntryRenderer } from '../generic/GenericUIRenderer';
 import { AllKeyMap } from '../types/allKeyMap';
-import { ComponentType } from 'react';
 import { ComponentKeyType } from '../enums/componentKeyType';
 import { CrossSectionKeyType } from '../enums/crossSectionKeyType';
 import { GeometryKeyType } from '../enums/geometryKeyType';
@@ -20,7 +19,8 @@ import { UserType } from '../types/userType';
 import { useParams } from 'react-router-dom';
 import { useCollectionStore } from '../state/collectionStore';
 import { CollectionName } from '../enums/collectionName';
-import { DatabaseValueMap } from '../types/databseType';
+import { DatabaseValueArrayMap } from '../types/databseType';
+import { ComponentType } from '../types/componentType';
 
 const getColumnTypeForKey = <U extends Record<string, any>>(k: keyof U): ColumnType<Partial<U>> => ({
   title: k as string,
@@ -39,7 +39,7 @@ const genericColumnGenerator = (type: DatabaseObjectValue) => {
     case 'UserType':
       return getColumTypeFoEnums<UserType>(Object.values(UserKeyType));
     case 'ComponentType':
-      return getColumTypeFoEnums<ComponentType>(Object.values(ComponentKeyType) as any); // these components have a variable amount of entries
+      return getColumTypeFoEnums<ComponentType>(Object.values(ComponentKeyType));
     case 'GeometryType':
       return getColumTypeFoEnums<GeometryType>(Object.values(GeometryKeyType) as any); // these components have a variable amount of entries
     case 'CrossSectionType':
@@ -63,7 +63,7 @@ export const GenericTableEntry: React.FC = () => {
 
   return collectionName && isCollectionName(collectionName) ? (
     <GenericTable
-      type={DatabaseValueMap[collectionName as CollectionName].replace('Array', '') as DatabaseObjectValue}
+      type={DatabaseValueArrayMap[collectionName as CollectionName].replace('Array', '') as DatabaseObjectValue}
       objects={collections[collectionName as CollectionName] as DatabaseObjectType[]}
     />
   ) : (

@@ -1,5 +1,5 @@
-import { ComponentType } from 'react';
 import { BuildingType } from './buildingType';
+import { ComponentType } from './componentType';
 import { CrossSectionType } from './crossSectionType';
 import { GeometryType } from './geometryType';
 import { MaterialType } from './materialType';
