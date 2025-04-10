@@ -3,7 +3,7 @@ import { ChemicalTestValueMap } from './chemicalTestType';
 import { ComponentValueMap } from './componentType';
 import { CoreTestValueMap } from './coreTestType';
 import { CrossSectionValueMap } from './crossSectionType';
-import { DatabaseValueArrayMap } from './databseType';
+import { DatabaseValueArrayMap } from './databaseType';
 import { DestructiveTestValueMap } from './destructiveTestType';
 import { GeometryValueMap } from './geometryType';
 import { GPRTestValueMap } from './gprTestType';
