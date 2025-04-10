@@ -1,6 +1,6 @@
 import { VisualCondition } from '../enums/visualCondition';
 import { BuildingType } from '../types/buildingType';
-import { DatabaseType } from '../types/databseType';
+import { DatabaseType } from '../types/databaseType';
 import { UserType } from '../types/userType';
 import { ValueType } from '../types/valueType';
 import { GeometryType } from '../types/geometryType';
@@ -116,13 +116,17 @@ export const getMappedData = (oldData: SlabType[]): DatabaseType => {
   const rebarMap: Record<string, RebarType> = {};
 
   oldData.forEach((data) => {
-    const geometryTypeString = `${data[SlabKeyType.Dimensions_w]}x${data[SlabKeyType.Dimensions_l]}x${data[SlabKeyType.Dimensions_h]}`;
+    const geometryTypeString = `${data[SlabKeyType.Dimensions_w]}x${data[SlabKeyType.Dimensions_l]}x${
+      data[SlabKeyType.Dimensions_h]
+    }`;
 
     if (!geometriesMap[geometryTypeString]) {
       const crossSectionTypeString = `${data[SlabKeyType.Dimensions_w]}x${data[SlabKeyType.Dimensions_h]}`;
 
       if (!crossSectionMap[crossSectionTypeString]) {
-        const rebarTypeString = `${data[SlabKeyType.RebarAmountBottom]}x${data[SlabKeyType.RebarAmountTop]}x${data[SlabKeyType.RebarDiameterBottom]}x${data[SlabKeyType.RebarDiameterTop]}`;
+        const rebarTypeString = `${data[SlabKeyType.RebarAmountBottom]}x${data[SlabKeyType.RebarAmountTop]}x${
+          data[SlabKeyType.RebarDiameterBottom]
+        }x${data[SlabKeyType.RebarDiameterTop]}`;
 
         if (!rebarMap[rebarTypeString]) {
           const rebar: RebarType = {

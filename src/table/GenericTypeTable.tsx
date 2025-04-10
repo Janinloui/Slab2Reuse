@@ -19,7 +19,7 @@ import { UserType } from '../types/userType';
 import { useParams } from 'react-router-dom';
 import { useCollectionStore } from '../state/collectionStore';
 import { CollectionName } from '../enums/collectionName';
-import { DatabaseValueArrayMap } from '../types/databseType';
+import { DatabaseValueArrayMap } from '../types/databaseType';
 import { ComponentType } from '../types/componentType';
 
 const getColumnTypeForKey = <U extends Record<string, any>>(k: keyof U): ColumnType<Partial<U>> => ({

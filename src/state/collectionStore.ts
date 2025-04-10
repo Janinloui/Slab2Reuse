@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { DatabaseType } from '../types/databseType';
+import { DatabaseType } from '../types/databaseType';
 import { exampleData } from './exampleData';
 import { getMappedData } from '../lib/parsingOldData';
 
