@@ -1,6 +1,7 @@
 export enum Slab2ReuseRoutes {
   Landing = '/',
   ExampleData = '/table-only/example-data',
+  RawTableView = '/raw-table-view/:collectionName',
   Viewer = '/viewer',
   TableOnly = '/table-only',
   ThreeOnly = '/three-only',

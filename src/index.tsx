@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { Slab2ReuseRoutes } from './enums/routes';
 import { BoilerPlateData } from './element/BoilerPlateData';
+import { GenericTableEntry } from './table/GenericTypeTable';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -10,6 +11,7 @@ root.render(
     <Router>
       <Routes>
         <Route element={<BoilerPlateData />} path={Slab2ReuseRoutes.BoilerPlate} />
+        <Route element={<GenericTableEntry />} path={Slab2ReuseRoutes.RawTableView} />
         {/* <Route element={<Landing />} path='/' />
         <Route element={wrapper(<ExampleData />)} path={Slab2ReuseRoutes.ExampleData} />
         <Route element={wrapper(<Viewer />)} path={Slab2ReuseRoutes.Viewer} />
