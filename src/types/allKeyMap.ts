@@ -3,7 +3,7 @@ import { ChemicalTestValueMap } from './chemicalTestType';
 import { ComponentValueMap } from './componentType';
 import { CoreTestValueMap } from './coreTestType';
 import { CrossSectionValueMap } from './crossSectionType';
-import { DatabaseValueMap } from './databseType';
+import { DatabaseValueArrayMap } from './databseType';
 import { DestructiveTestValueMap } from './destructiveTestType';
 import { GeometryValueMap } from './geometryType';
 import { GPRTestValueMap } from './gprTestType';
@@ -22,7 +22,7 @@ export const AllKeyMap: Record<string, ValueType> = Object.fromEntries([
   ...Object.entries(ComponentValueMap),
   ...Object.entries(CoreTestValueMap),
   ...Object.entries(CrossSectionValueMap),
-  ...Object.entries(DatabaseValueMap),
+  ...Object.entries(DatabaseValueArrayMap),
   ...Object.entries(DestructiveTestValueMap),
   ...Object.entries(GeometryValueMap),
   ...Object.entries(GPRTestValueMap),

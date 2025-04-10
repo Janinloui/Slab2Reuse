@@ -18,7 +18,7 @@ export type DatabaseType = {
   [CollectionName.Rebars]: RebarType[];
 };
 
-export const DatabaseValueMap: Record<CollectionName, ValueType> = {
+export const DatabaseValueArrayMap: Record<CollectionName, ValueType> = {
   [CollectionName.Buildings]: 'BuildingTypeArray',
   [CollectionName.Users]: 'UserTypeArray',
   [CollectionName.Components]: 'ComponentTypeArray',
