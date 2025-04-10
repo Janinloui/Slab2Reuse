@@ -69,55 +69,9 @@ const StringPairRenderer = (v: [string, string], onChange?: (e: any) => void) =>
   </div>
 );
 
-//UserCategory
-const UserCategoryRenderer = (v: UserCategory) => (
-  <Select value={v}>
-    {Object.values(UserCategory).map((c) => (
-      <Select.Option value={c}>{c}</Select.Option>
-    ))}
-  </Select>
-);
-
-//MaterialCategory
-const MaterialCategoryRenderer = (v: MaterialCategory) => (
-  <Select value={v}>
-    {Object.values(MaterialCategory).map((c) => (
-      <Select.Option value={c}>{c}</Select.Option>
-    ))}
-  </Select>
-);
-
-//CrossSectionCategory
-const CrossSectionCategoryRenderer = (v: CrossSectionCategory) => (
-  <Select value={v}>
-    {Object.values(CrossSectionCategory).map((c) => (
-      <Select.Option value={c}>{c}</Select.Option>
-    ))}
-  </Select>
-);
-
-//ComponentCategory
-const ComponentCategoryRenderer = (v: ComponentCategory) => (
-  <Select value={v}>
-    {Object.values(ComponentCategory).map((c) => (
-      <Select.Option value={c}>{c}</Select.Option>
-    ))}
-  </Select>
-);
-
-//RebarCategory
-const RebarCategoryRenderer = (v: RebarCategory) => (
-  <Select value={v}>
-    {Object.values(RebarCategory).map((c) => (
-      <Select.Option value={c}>{c}</Select.Option>
-    ))}
-  </Select>
-);
-
-//RebarCategory
-const VisualConditionRenderer = (v: VisualCondition) => (
-  <Select value={v}>
-    {Object.values(VisualCondition).map((c) => (
+const CategorySelect: React.FC<{ vs: string[]; v: string; onChange?: (e: any) => void }> = ({ vs, v, onChange }) => (
+  <Select disabled={!onChange} variant={onChange ? undefined : 'borderless'} value={v}>
+    {vs.map((c) => (
       <Select.Option value={c}>{c}</Select.Option>
     ))}
   </Select>
@@ -180,34 +134,40 @@ const IdRerenceRenderer: React.FC<{ idType: IdKeysType; id: string }> = ({ idTyp
 export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any; onChange?: (e: any) => void }> = ({
   k,
   valueType,
-  value,
+  value: v,
   onChange
 }) => {
   if (valueType.endsWith('Array'))
-    return <ArrayRenderer items={value} valueType={removeArrayFromEnd(valueType) as ValueType} />;
+    return <ArrayRenderer items={v} valueType={removeArrayFromEnd(valueType) as ValueType} />;
 
   switch (valueType) {
     case 'number':
-      return <SimpleValue k={k} v={NumberRenderer(value as any)} />;
+      return <SimpleValue k={k} v={NumberRenderer(v as any)} />;
     case 'string':
-      if (IdKeys.includes(k as IdKeysType)) return <IdRerenceRenderer idType={k as IdKeysType} id={value} />;
-      return <SimpleValue k={k} v={StringRenderer(value as any)} />;
+      if (IdKeys.includes(k as IdKeysType)) return <IdRerenceRenderer idType={k as IdKeysType} id={v} />;
+      return <SimpleValue k={k} v={StringRenderer(v as any)} />;
     case 'UserCategory':
-      return <SimpleValue k={k} v={UserCategoryRenderer(value as any)} />;
+      return <SimpleValue k={k} v={<CategorySelect v={v} onChange={onChange} vs={Object.values(UserCategory)} />} />;
     case 'MaterialCategory':
-      return <SimpleValue k={k} v={MaterialCategoryRenderer(value as any)} />;
+      return (
+        <SimpleValue k={k} v={<CategorySelect v={v} onChange={onChange} vs={Object.values(MaterialCategory)} />} />
+      );
     case 'CrossSectionCategory':
-      return <SimpleValue k={k} v={CrossSectionCategoryRenderer(value as any)} />;
+      return (
+        <SimpleValue k={k} v={<CategorySelect v={v} onChange={onChange} vs={Object.values(CrossSectionCategory)} />} />
+      );
     case 'ComponentCategory':
-      return <SimpleValue k={k} v={ComponentCategoryRenderer(value as any)} />;
+      return (
+        <SimpleValue k={k} v={<CategorySelect v={v} onChange={onChange} vs={Object.values(ComponentCategory)} />} />
+      );
     case 'RebarCategory':
-      return <SimpleValue k={k} v={RebarCategoryRenderer(value as any)} />;
+      return <SimpleValue k={k} v={<CategorySelect v={v} onChange={onChange} vs={Object.values(RebarCategory)} />} />;
     case 'VisualCondition':
-      return <SimpleValue k={k} v={VisualConditionRenderer(value as any)} />;
+      return <SimpleValue k={k} v={<CategorySelect v={v} onChange={onChange} vs={Object.values(VisualCondition)} />} />;
     case 'stringPair':
-      return <SimpleValue k={k} v={StringPairRenderer(value as any)} />;
+      return <SimpleValue k={k} v={StringPairRenderer(v as any)} />;
     default:
-      return <ObjectRender name={k} value={value} />;
+      return <ObjectRender name={k} value={v} />;
   }
 };
 
