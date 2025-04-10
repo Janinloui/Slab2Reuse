@@ -91,7 +91,7 @@ const ArrayRenderer: React.FC<{ items: any[]; valueType: ValueType }> = ({ items
   </div>
 );
 
-const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any }> = ({ k, valueType, value }) => {
+export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any }> = ({ k, valueType, value }) => {
   if (valueType.endsWith('Array'))
     return <ArrayRenderer items={value} valueType={removeArrayFromEnd(valueType) as ValueType} />;
   switch (valueType) {
