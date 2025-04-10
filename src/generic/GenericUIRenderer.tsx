@@ -27,14 +27,42 @@ import { UserType } from '../types/userType';
 import { UserKeyType } from '../enums/userKeyType';
 import { MissingData } from '../table/MissingData';
 
+const EditableNumberRenderer = (v: number, onChange: (e: any) => void) => {
+  const [localValue, setLocalValue] = useState<number | null>(v);
+
+  return (
+    <InputNumber
+      value={v}
+      onBlur={() => onChange(localValue ?? undefined)}
+      onKeyDown={(e) => e.code === 'Enter' && onChange(localValue ?? undefined)}
+      onChange={setLocalValue}
+    />
+  );
+};
+
 //number
-const NumberRenderer = (v: number) => <InputNumber value={v} />;
+const NumberRenderer = (v: number, onChange?: (e: any) => void) =>
+  onChange ? EditableNumberRenderer(v, onChange) : <InputNumber disabled variant='borderless' value={v} />;
+
+const EditableStringRenderer = (v: string, onChange: (e: any) => void) => {
+  const [localValue, setLocalValue] = useState<string | null>(v);
+
+  return (
+    <InputNumber
+      value={v}
+      onBlur={() => onChange(localValue ?? undefined)}
+      onKeyDown={(e) => e.code === 'Enter' && onChange(localValue ?? undefined)}
+      onChange={setLocalValue}
+    />
+  );
+};
 
 //string
-const StringRenderer = (v: string) => <Input value={v} />;
+const StringRenderer = (v: string, onChange?: (e: any) => void) =>
+  onChange ? EditableStringRenderer(v, onChange) : <Input disabled variant='borderless' value={v} />;
 
 //stringPair
-const StringPairRenderer = (v: [string, string]) => (
+const StringPairRenderer = (v: [string, string], onChange?: (e: any) => void) => (
   <div>
     <Input value={v[0]} />
     <Input value={v[1]} />
@@ -149,7 +177,12 @@ const IdRerenceRenderer: React.FC<{ idType: IdKeysType; id: string }> = ({ idTyp
   return entry ? <ObjectRender name={id} value={entry} /> : <MissingData />;
 };
 
-export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any }> = ({ k, valueType, value }) => {
+export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any; onChange?: (e: any) => void }> = ({
+  k,
+  valueType,
+  value,
+  onChange
+}) => {
   if (valueType.endsWith('Array'))
     return <ArrayRenderer items={value} valueType={removeArrayFromEnd(valueType) as ValueType} />;
 
