@@ -41,13 +41,13 @@ const genericColumnGenerator = (type: DatabaseObjectValue) => {
     case 'ComponentType':
       return getColumTypeFoEnums<ComponentType>(Object.values(ComponentKeyType));
     case 'GeometryType':
-      return getColumTypeFoEnums<GeometryType>(Object.values(GeometryKeyType) as any); // these components have a variable amount of entries
+      return getColumTypeFoEnums<GeometryType>(Object.values(GeometryKeyType) as any); // these components have a variable amount of entries, because of that the type isn't 1-1
     case 'CrossSectionType':
       return getColumTypeFoEnums<CrossSectionType>(Object.values(CrossSectionKeyType));
     case 'MaterialType':
-      return getColumTypeFoEnums<MaterialType>(Object.values(MaterialKeyType) as any); // these components have a variable amount of entries
+      return getColumTypeFoEnums<MaterialType>(Object.values(MaterialKeyType) as any); // these components have a variable amount of entries, because of that the type isn't 1-1
     case 'RebarType':
-      return getColumTypeFoEnums<RebarType>(Object.values(RebarKeyType) as any); // these components have a variable amount of entries
+      return getColumTypeFoEnums<RebarType>(Object.values(RebarKeyType) as any); // these components have a variable amount of entries, because of that the type isn't 1-1
   }
 };
 
