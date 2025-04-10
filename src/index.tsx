@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { Slab2ReuseRoutes } from './enums/routes';
-import { BoilerPlateData } from './state/boilerPlateData';
+import { BoilerPlateData } from './element/BoilerPlateData';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
