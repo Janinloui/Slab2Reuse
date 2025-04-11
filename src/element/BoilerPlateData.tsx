@@ -7,7 +7,7 @@ export const BoilerPlateData: React.FC = () => {
   return (
     <div>
       {JSON.stringify(data, null, 2)}
-      <GenericUIRenderer item={data} isFirst />
+      <GenericUIRenderer item={data} label='Database' />
     </div>
   );
 };
