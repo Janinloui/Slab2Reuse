@@ -16,7 +16,7 @@ import { UserValueMap } from './userType';
 import { ValueType } from './valueType';
 import { VisualInspectionValueMap } from './visualInspectionType';
 
-export const AllKeyMap: Record<string, ValueType> = Object.fromEntries([
+const allTypeEntries = [
   ...Object.entries(BuildingValueMap),
   ...Object.entries(ChemicalTestValueMap),
   ...Object.entries(ComponentValueMap),
@@ -33,4 +33,17 @@ export const AllKeyMap: Record<string, ValueType> = Object.fromEntries([
   ...Object.entries(ReboundTestValueMap),
   ...Object.entries(UserValueMap),
   ...Object.entries(VisualInspectionValueMap)
-]);
+];
+
+export const AllKeyMap: Record<string, ValueType> = Object.fromEntries(allTypeEntries);
+
+export const getKeyCountMap = () => {
+  const object: Record<string, number> = {};
+
+  for (const [key] of allTypeEntries) {
+    if (key in object) object[key] += 1;
+    else object[key] = 1;
+  }
+
+  return Object.entries(object).filter(([k, count]) => count > 1);
+};
