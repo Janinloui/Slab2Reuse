@@ -54,7 +54,10 @@ const genericColumnGenerator = (type: DatabaseObjectValue) => {
 const isCollectionName = (name: string): boolean => Object.values(CollectionName).includes(name as CollectionName);
 
 const GenericTable: React.FC<{ type: DatabaseObjectValue; objects: DatabaseObjectType[] }> = ({ type, objects }) => (
-  <Table dataSource={objects} columns={Object.values(genericColumnGenerator(type)) as any}></Table>
+  <Table
+    dataSource={objects.map((o, key) => ({ ...o, key }))}
+    columns={Object.values(genericColumnGenerator(type)) as any}
+  ></Table>
 );
 
 export const GenericTableEntry: React.FC = () => {
