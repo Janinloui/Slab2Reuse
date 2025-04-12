@@ -72,7 +72,9 @@ const StringPairRenderer = (v: [string, string], onChange?: (e: any) => void) =>
 const CategorySelect: React.FC<{ vs: string[]; v: string; onChange?: (e: any) => void }> = ({ vs, v, onChange }) => (
   <Select disabled={!onChange} variant={onChange ? undefined : 'borderless'} value={v}>
     {vs.map((c) => (
-      <Select.Option value={c}>{c}</Select.Option>
+      <Select.Option key={c} value={c}>
+        {c}
+      </Select.Option>
     ))}
   </Select>
 );
@@ -86,7 +88,7 @@ const removeArrayFromEnd = (s: string) => s.substring(0, s.lastIndexOf('Array'))
 const ArrayRenderer: React.FC<{ items: any[]; valueType: ValueType }> = ({ items, valueType }) => (
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
     {items.map((item, i) => (
-      <EntryRenderer k={i.toString()} valueType={valueType} value={item} />
+      <EntryRenderer key={i} k={i.toString()} valueType={valueType} value={item} />
     ))}
   </div>
 );
