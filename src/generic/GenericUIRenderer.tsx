@@ -1,4 +1,4 @@
-import { Button, Input, InputNumber, Popover, Select } from 'antd';
+import { Button, Descriptions, Input, InputNumber, Popover, Select } from 'antd';
 import { ComponentCategory } from '../enums/componentCategory';
 import { CrossSectionCategory } from '../enums/crossSectionCategory';
 import { MaterialCategory } from '../enums/materialCategory';
@@ -72,7 +72,9 @@ const StringPairRenderer = (v: [string, string], onChange?: (e: any) => void) =>
 const CategorySelect: React.FC<{ vs: string[]; v: string; onChange?: (e: any) => void }> = ({ vs, v, onChange }) => (
   <Select disabled={!onChange} variant={onChange ? undefined : 'borderless'} value={v}>
     {vs.map((c) => (
-      <Select.Option value={c}>{c}</Select.Option>
+      <Select.Option key={c} value={c}>
+        {c}
+      </Select.Option>
     ))}
   </Select>
 );
@@ -84,28 +86,27 @@ const SimpleValue: React.FC<{ k: string; v: ReactNode }> = ({ k, v }) => (
 const removeArrayFromEnd = (s: string) => s.substring(0, s.lastIndexOf('Array'));
 
 const ArrayRenderer: React.FC<{ items: any[]; valueType: ValueType }> = ({ items, valueType }) => (
-  <div style={{ marginLeft: 4 }}>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
     {items.map((item, i) => (
-      <EntryRenderer k={i.toString()} valueType={valueType} value={item} />
+      <EntryRenderer key={i} k={i.toString()} valueType={valueType} value={item} />
     ))}
   </div>
 );
 
-const ObjectRender: React.FC<{ name: string; value: any }> = ({ name: k, value }) => {
+const ObjectRender: React.FC<{ label: string; value: any }> = ({ label: k, value }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <Popover
       open={open}
       content={
-        <>
-          <GenericUIRenderer item={value} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <GenericUIRenderer item={value} label={k} />
           <Button type='primary' onClick={() => setOpen(false)}>
             close
           </Button>
-        </>
+        </div>
       }
-      title={k}
     >
       <Button onClick={() => setOpen(true)}>{k}</Button>
     </Popover>
@@ -128,7 +129,7 @@ const IdRerenceRenderer: React.FC<{ idType: IdKeysType; id: string }> = ({ idTyp
     findMethodMap[IdKeysCollectionMap[idType]](e as any, id)
   );
 
-  return entry ? <ObjectRender name={id} value={entry} /> : <MissingData />;
+  return entry ? <ObjectRender label={id} value={entry} /> : <MissingData />;
 };
 
 export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: any; onChange?: (e: any) => void }> = ({
@@ -167,34 +168,30 @@ export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: a
     case 'stringPair':
       return <SimpleValue k={k} v={StringPairRenderer(v as any)} />;
     default:
-      return <ObjectRender name={k} value={v} />;
+      return <ObjectRender label={k} value={v} />;
   }
 };
 
-export const GenericUIRenderer: React.FC<{ item: Record<string, any>; isFirst?: boolean }> = ({
-  item,
-  isFirst = false
-}) => (
-  <div
-    style={{
-      borderLeft: isFirst ? undefined : '1px solid black',
-      paddingLeft: 4,
-      marginLeft: 4,
-      display: 'grid',
-      gridTemplateColumns: '1fr 4fr',
-      gap: 12,
-      alignItems: 'center'
-    }}
-  >
-    {Object.entries(item).map(([k, value]) => {
-      const valueType = AllKeyMap[k];
-      if (typeof valueType !== 'string') return `some problem: '${typeof valueType}' for key: '${k}'`;
-      return (
-        <>
-          <span>{k}</span>
-          <EntryRenderer k={k} value={value} valueType={valueType} />
-        </>
-      );
-    })}
-  </div>
+const RawGenericUIRenderer: React.FC<{ item: Record<string, any> }> = ({ item }) =>
+  Object.entries(item).map(([k, value]) => {
+    const valueType = AllKeyMap[k];
+    return (
+      <Descriptions.Item label={k}>
+        <EntryRenderer k={k} value={value} valueType={valueType} />
+      </Descriptions.Item>
+    );
+  });
+
+export const GenericUIRenderer: React.FC<{ item: Record<string, any>; label: string }> = ({ item, label }) => (
+  <Descriptions
+    size='small'
+    bordered
+    column={1}
+    title={label}
+    items={Object.entries(item).map(([key, value]) => ({
+      key,
+      label: key,
+      children: <EntryRenderer k={key} value={value} valueType={AllKeyMap[key]} />
+    }))}
+  />
 );

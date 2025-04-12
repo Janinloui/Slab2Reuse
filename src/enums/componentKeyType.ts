@@ -21,6 +21,6 @@ export enum ComponentKeyType {
   ChemicalTest = 'chemicalTest',
   GPRTest = 'gprTest',
   ReboundTest = 'reboundTest',
-  BuildingId = 'buildingId',
+  BuildingId = 'componentBuildingId',
   Liveload = 'componentLiveload'
 }
