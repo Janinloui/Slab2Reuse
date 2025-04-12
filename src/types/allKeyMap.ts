@@ -1,3 +1,18 @@
+import { BuildingKeyType } from '../enums/buildingKeyType';
+import { ChemicalTestKeyType } from '../enums/chemicalTestKeyType';
+import { ComponentKeyType } from '../enums/componentKeyType';
+import { CoreTestKeyType } from '../enums/coreTestKeyType';
+import { CrossSectionKeyType } from '../enums/crossSectionKeyType';
+import { DestructiveTestKeyType } from '../enums/destructiveTestKeyType';
+import { GeometryKeyType } from '../enums/geometryKeyType';
+import { GPRTestKeyType } from '../enums/gprTestKeyType';
+import { LocationKeyType } from '../enums/locationKeyType';
+import { MaterialKeyType } from '../enums/materialKeyType';
+import { PreStressStrandKeyType } from '../enums/preStressStrandKeyType';
+import { RebarKeyType } from '../enums/rebarKeyType';
+import { ReboundTestKeyType } from '../enums/reboundTestKeyType';
+import { UserKeyType } from '../enums/userKeyType';
+import { VisualInspectionKeyType } from '../enums/visualInspectionKeyType';
 import { BuildingValueMap } from './buildingType';
 import { ChemicalTestValueMap } from './chemicalTestType';
 import { ComponentValueMap } from './componentType';
@@ -34,6 +49,23 @@ const allTypeEntries = [
   ...Object.entries(UserValueMap),
   ...Object.entries(VisualInspectionValueMap)
 ];
+
+export type AllNestedComponentKeyType =
+  | BuildingKeyType
+  | ChemicalTestKeyType
+  | ComponentKeyType
+  | CoreTestKeyType
+  | CrossSectionKeyType
+  | DestructiveTestKeyType
+  | GeometryKeyType
+  | GPRTestKeyType
+  | LocationKeyType
+  | MaterialKeyType
+  | PreStressStrandKeyType
+  | RebarKeyType
+  | ReboundTestKeyType
+  | UserKeyType
+  | VisualInspectionKeyType;
 
 export const AllKeyMap: Record<string, ValueType> = Object.fromEntries(allTypeEntries);
 
