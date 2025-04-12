@@ -1,5 +1,5 @@
 export enum GeometryKeyType {
-  Id = 'geometryId',
+  Id = 'id',
   CrossSectionId = 'geometryTypeCrossSectionId',
   ComponentCategory = 'geometryTypeComponentCategory',
   Length = 'geometryTypeLength',
