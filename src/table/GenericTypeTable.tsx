@@ -1,10 +1,7 @@
 import { Table } from 'antd';
 import { DatabaseObjectType, DatabaseObjectValue } from '../types/databaseObjectType';
-import { ColumnType } from 'antd/es/table';
 import { BuildingType } from '../types/buildingType';
 import { BuildingKeyType } from '../enums/buildingKeyType';
-import { EntryRenderer } from '../generic/GenericUIRenderer';
-import { AllKeyMap } from '../types/allKeyMap';
 import { ComponentKeyType } from '../enums/componentKeyType';
 import { CrossSectionKeyType } from '../enums/crossSectionKeyType';
 import { GeometryKeyType } from '../enums/geometryKeyType';
@@ -21,33 +18,29 @@ import { useCollectionStore } from '../state/collectionStore';
 import { CollectionName } from '../enums/collectionName';
 import { DatabaseValueArrayMap } from '../types/databaseType';
 import { ComponentType } from '../types/componentType';
+import { getColumTypeForEnums } from './lib/getColumTypeForEnums';
 
-const getColumnTypeForKey = <U extends Record<string, any>>(k: keyof U): ColumnType<Partial<U>> => ({
-  title: k as string,
-  dataIndex: k as string,
-  render: (_, r) =>
-    r[k] !== undefined ? <EntryRenderer k={k as string} valueType={AllKeyMap[k]} value={r[k]} /> : null
-});
-
-const getColumTypeFoEnums = <U extends Record<string, any>>(keys: (keyof U)[]) =>
-  Object.fromEntries(keys.map((k) => [k, getColumnTypeForKey<U>(k)])) as Record<keyof U, ColumnType<Partial<U>>>;
-
+/**
+ * Helper method to get a column defintion for the DatabaseObjectType
+ * @param type - DatabaseObjectValue U
+ * @returns Record<keyof U, ColumnType<Partial<U>>>
+ */
 const genericColumnGenerator = (type: DatabaseObjectValue) => {
   switch (type) {
     case 'BuildingType':
-      return getColumTypeFoEnums<BuildingType>(Object.values(BuildingKeyType));
+      return getColumTypeForEnums<BuildingType>(Object.values(BuildingKeyType));
     case 'UserType':
-      return getColumTypeFoEnums<UserType>(Object.values(UserKeyType));
+      return getColumTypeForEnums<UserType>(Object.values(UserKeyType));
     case 'ComponentType':
-      return getColumTypeFoEnums<ComponentType>(Object.values(ComponentKeyType));
+      return getColumTypeForEnums<ComponentType>(Object.values(ComponentKeyType));
     case 'GeometryType':
-      return getColumTypeFoEnums<GeometryType>(Object.values(GeometryKeyType) as any); // these components have a variable amount of entries, because of that the type isn't 1-1
+      return getColumTypeForEnums<GeometryType>(Object.values(GeometryKeyType) as any); // these components have a variable amount of entries, because of that the type isn't 1-1
     case 'CrossSectionType':
-      return getColumTypeFoEnums<CrossSectionType>(Object.values(CrossSectionKeyType));
+      return getColumTypeForEnums<CrossSectionType>(Object.values(CrossSectionKeyType));
     case 'MaterialType':
-      return getColumTypeFoEnums<MaterialType>(Object.values(MaterialKeyType) as any); // these components have a variable amount of entries, because of that the type isn't 1-1
+      return getColumTypeForEnums<MaterialType>(Object.values(MaterialKeyType) as any); // these components have a variable amount of entries, because of that the type isn't 1-1
     case 'RebarType':
-      return getColumTypeFoEnums<RebarType>(Object.values(RebarKeyType) as any); // these components have a variable amount of entries, because of that the type isn't 1-1
+      return getColumTypeForEnums<RebarType>(Object.values(RebarKeyType) as any); // these components have a variable amount of entries, because of that the type isn't 1-1
   }
 };
 
@@ -60,6 +53,9 @@ const GenericTable: React.FC<{ type: DatabaseObjectValue; objects: DatabaseObjec
   ></Table>
 );
 
+/**
+ * Component that renders a table for a given collection, set by the URL params.
+ */
 export const GenericTableEntry: React.FC = () => {
   const { collectionName } = useParams();
   const collections = useCollectionStore((state) => state.collections);
