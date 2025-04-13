@@ -5,8 +5,8 @@ import { MaterialCategory } from '../enums/materialCategory';
 import { RebarCategory } from '../enums/rebarCategory';
 import { UserCategory } from '../enums/user';
 import { ValueType } from '../types/valueType';
-import { ReactNode, useState } from 'react';
 import { AllKeyEntriesMap } from '../types/allKeyMap';
+import { ReactNode, useEffect, useState } from 'react';
 import { VisualCondition } from '../enums/visualCondition';
 import { IdKeys, IdKeysCollectionMap, IdKeysType } from '../types/idKeyMap';
 import { useCollectionStore } from '../state/collectionStore';
@@ -30,11 +30,15 @@ import { MissingData } from '../table/MissingData';
 const EditableNumberRenderer = (v: number, onChange: (e: any) => void) => {
   const [localValue, setLocalValue] = useState<number | null>(v);
 
+  useEffect(() => {
+    setLocalValue(v);
+  }, [v]);
+
   return (
     <InputNumber
-      value={v}
-      onBlur={() => onChange(localValue ?? undefined)}
-      onKeyDown={(e) => e.code === 'Enter' && onChange(localValue ?? undefined)}
+      value={localValue}
+      onBlur={() => v !== localValue && onChange(localValue ?? undefined)}
+      onKeyDown={(e) => e.code === 'Enter' && v !== localValue && onChange(localValue ?? undefined)}
       onChange={setLocalValue}
     />
   );
@@ -47,9 +51,13 @@ const NumberRenderer = (v: number, onChange?: (e: any) => void) =>
 const EditableStringRenderer = (v: string, onChange: (e: any) => void) => {
   const [localValue, setLocalValue] = useState<string | null>(v);
 
+  useEffect(() => {
+    setLocalValue(v);
+  }, [v]);
+
   return (
     <InputNumber
-      value={v}
+      value={localValue}
       onBlur={() => onChange(localValue ?? undefined)}
       onKeyDown={(e) => e.code === 'Enter' && onChange(localValue ?? undefined)}
       onChange={setLocalValue}
@@ -143,10 +151,10 @@ export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: a
 
   switch (valueType) {
     case 'number':
-      return <SimpleValue k={k} v={NumberRenderer(v as any)} />;
+      return <SimpleValue k={k} v={NumberRenderer(v as any, onChange)} />;
     case 'string':
       if (IdKeys.includes(k as IdKeysType)) return <IdRerenceRenderer idType={k as IdKeysType} id={v} />;
-      return <SimpleValue k={k} v={StringRenderer(v as any)} />;
+      return <SimpleValue k={k} v={StringRenderer(v as any, onChange)} />;
     case 'UserCategory':
       return <SimpleValue k={k} v={<CategorySelect v={v} onChange={onChange} vs={Object.values(UserCategory)} />} />;
     case 'MaterialCategory':
