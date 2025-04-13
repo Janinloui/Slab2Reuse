@@ -1,8 +1,6 @@
-import { SlabKeyType } from '../enums/componentKeyType';
 import { DerivativeAttributeNames } from '../enums/derivativeAttributeNames';
 import { UserCategory } from '../enums/user';
-import { getZForSlab } from '../lib/3d';
-import { SlabType } from '../types/componentType';
+import { SlabKeyType, SlabType } from '../lib/parsingOldData';
 
 const EditKey = 'edit';
 
@@ -18,7 +16,7 @@ export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, s
   [SlabKeyType.Liveload]: 'kN/m2',
   [SlabKeyType.RebarDiameterTop]: 'mm',
   [SlabKeyType.RebarDiameterBottom]: 'mm',
-  [SlabKeyType.Yaw]: '°',
+  [SlabKeyType.Yaw]: '°'
 };
 
 export const levelRenderer = (level: number | undefined): string | undefined => {
@@ -57,19 +55,19 @@ export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit'
   [DerivativeAttributeNames.ReboundTestStdv]: 'Rebound Stdv',
   [DerivativeAttributeNames.ReboundTestEdit]: 'Rebound Edit',
   [SlabKeyType.VisualInspectionImages]: undefined,
-  [DerivativeAttributeNames.VisualInspectionImagesDisplay]: 'Visual Inspection',
+  [DerivativeAttributeNames.VisualInspectionImagesDisplay]: 'Visual Inspection'
 };
 
 export const AllDefinedRenders: (SlabKeyType | DerivativeAttributeNames | 'edit')[] = [
   ...Object.values(DerivativeAttributeNames),
   ...Object.values(SlabKeyType).filter((s) => RenderLocal[s] !== undefined),
-  EditKey,
+  EditKey
 ];
 
 export const locationRenderer = (element: Partial<SlabType>) =>
   element[SlabKeyType.Location_x] !== undefined && element[SlabKeyType.Location_y] !== undefined
     ? element[SlabKeyType.Floor] !== undefined
-      ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${getZForSlab(element).toFixed(2)})`
+      ? `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)}, ${(0.0).toFixed(2)})`
       : `(${element[SlabKeyType.Location_x].toFixed(2)}, ${element[SlabKeyType.Location_y].toFixed(2)})`
     : undefined;
 //renders the rebar of the element in a human readable format (A string) (amount ødiameter)
@@ -103,7 +101,7 @@ export const DefaultRenderValues: Record<UserCategory, string[]> = {
     SlabKeyType.Dimensions_l,
     SlabKeyType.Dimensions_w,
     SlabKeyType.Dimensions_h,
-    'edit',
+    'edit'
   ],
   [UserCategory.Architect]: [
     DerivativeAttributeNames.Type,
@@ -111,7 +109,7 @@ export const DefaultRenderValues: Record<UserCategory, string[]> = {
     SlabKeyType.PlanReference,
     SlabKeyType.Dimensions_l,
     SlabKeyType.Dimensions_w,
-    SlabKeyType.Dimensions_h,
+    SlabKeyType.Dimensions_h
   ],
   [UserCategory.Engineer]: [
     DerivativeAttributeNames.Type,
@@ -123,7 +121,7 @@ export const DefaultRenderValues: Record<UserCategory, string[]> = {
     SlabKeyType.Strength,
     SlabKeyType.Liveload,
     SlabKeyType.Condition,
-    'edit',
+    'edit'
   ],
   [UserCategory.Client]: [DerivativeAttributeNames.Type, SlabKeyType.TypeOfElement, DerivativeAttributeNames.Count],
   [UserCategory.Contracter]: [
@@ -135,8 +133,8 @@ export const DefaultRenderValues: Record<UserCategory, string[]> = {
     SlabKeyType.Dimensions_l,
     SlabKeyType.Dimensions_w,
     SlabKeyType.Dimensions_h,
-    'edit',
-  ],
+    'edit'
+  ]
 };
 
 export const reduceAndUseCount = [UserCategory.Architect, UserCategory.Client];
@@ -166,7 +164,9 @@ export const getWeight = (element: Partial<SlabType>) =>
 
 export const getReboundTestMean = (element: Partial<SlabType>): number | undefined =>
   element.reboundTestData && element.reboundTestData.length
-    ? element.reboundTestData.map((v) => v.reduce((a, b) => a + b / (v.length ?? 1), 0)).reduce((a, b) => a + b / element.reboundTestData!.length, 0)
+    ? element.reboundTestData
+        .map((v) => v.reduce((a, b) => a + b / (v.length ?? 1), 0))
+        .reduce((a, b) => a + b / element.reboundTestData!.length, 0)
     : undefined;
 
 export const getReboundTestMaxStandardDeviation = (element: Partial<SlabType>): number | undefined =>
