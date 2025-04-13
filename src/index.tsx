@@ -7,6 +7,7 @@ import { GenericTableEntry } from './table/GenericTypeTable';
 import { ComponentTypeTable } from './table/ComponentTypeTable';
 import { ComponentDerivedAttributes } from './enums/componentDerivedAttributes';
 import { ComponentKeyType } from './enums/componentKeyType';
+import { ThreeScene } from './webgl/ThreeScene';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -33,17 +34,18 @@ root.render(
           }
           path={Slab2ReuseRoutes.TableOnly}
         />
-        {/* <Route element={<Landing />} path='/' />
-        <Route element={wrapper(<ExampleData />)} path={Slab2ReuseRoutes.ExampleData} />
-        <Route element={wrapper(<Viewer />)} path={Slab2ReuseRoutes.Viewer} />
         <Route
-          element={wrapper(
+          element={
             <div style={{ height: '100svh' }}>
               <ThreeScene />
             </div>
-          )}
+          }
           path={Slab2ReuseRoutes.ThreeOnly}
         />
+        {/* <Route element={<Landing />} path='/' />
+        <Route element={wrapper(<ExampleData />)} path={Slab2ReuseRoutes.ExampleData} />
+        <Route element={wrapper(<Viewer />)} path={Slab2ReuseRoutes.Viewer} />
+        
         <Route element={wrapper(<SlabTable />)} path={Slab2ReuseRoutes.TableOnly} /> */}
       </Routes>
     </Router>
