@@ -12,14 +12,11 @@ import { EntryRenderer } from '../../generic/GenericUIRenderer';
 import { GeometryType } from '../../types/geometryType';
 import { CrossSectionKeyType } from '../../enums/crossSectionKeyType';
 import { CrossSectionType } from '../../types/crossSectionType';
-import { DatabaseObjectType } from '../../types/databaseObjectType';
+import { getEntry } from './componentDataMethod';
 
 const WEIGHT_MULTIPLIER = 2.6;
 
 const simpleComponentColumns = getColumTypeForEnums<ComponentType>(Object.values(ComponentKeyType));
-
-const getEntry = <T extends DatabaseObjectType>(collectionName: CollectionName, id: string) =>
-  useCollectionStore.getState().collections[collectionName].find((g) => g.id === id) as T | undefined;
 
 const getComponentCategory = (geometryTypeId: string) => {
   const geometry = getEntry<GeometryType>(CollectionName.Geometries, geometryTypeId);
