@@ -5,8 +5,8 @@ import { MaterialCategory } from '../enums/materialCategory';
 import { RebarCategory } from '../enums/rebarCategory';
 import { UserCategory } from '../enums/user';
 import { ValueType } from '../types/valueType';
-import { AllKeyMap } from '../types/allKeyMap';
 import { ReactNode, useState } from 'react';
+import { AllKeyEntriesMap } from '../types/allKeyMap';
 import { VisualCondition } from '../enums/visualCondition';
 import { IdKeys, IdKeysCollectionMap, IdKeysType } from '../types/idKeyMap';
 import { useCollectionStore } from '../state/collectionStore';
@@ -174,7 +174,7 @@ export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: a
 
 const RawGenericUIRenderer: React.FC<{ item: Record<string, any> }> = ({ item }) =>
   Object.entries(item).map(([k, value]) => {
-    const valueType = AllKeyMap[k];
+    const valueType = AllKeyEntriesMap[k];
     return (
       <Descriptions.Item label={k}>
         <EntryRenderer k={k} value={value} valueType={valueType} />
@@ -191,7 +191,7 @@ export const GenericUIRenderer: React.FC<{ item: Record<string, any>; label: str
     items={Object.entries(item).map(([key, value]) => ({
       key,
       label: key,
-      children: <EntryRenderer k={key} value={value} valueType={AllKeyMap[key]} />
+      children: <EntryRenderer k={key} value={value} valueType={AllKeyEntriesMap[key]} />
     }))}
   />
 );
