@@ -1,11 +1,14 @@
 import { Canvas } from '@react-three/fiber';
 import { useTableStore } from '../state/tableStore';
-import Slab from './renderers/Slab';
 import { Bounds, OrbitControls, useBounds } from '@react-three/drei';
 import React, { Suspense, useEffect } from 'react';
-import { getViewForSlab } from '../lib/3d';
-import { Axis } from './utils/Axis';
-import ArchitectSlabRenderer from './renderers/ArchitectSlabRender'; // Import the new component
+// import { Axis } from './utils/Axis';
+import { useCollectionStore } from '../state/collectionStore';
+import { CollectionName } from '../enums/collectionName';
+import { ComponentInstancesRenderer } from './renderers/ComponentInstancesRenderer';
+import { ComponentKeyType } from '../enums/componentKeyType';
+import { getEntry } from '../table/lib/componentDataMethod';
+import { BuildingType } from '../types/buildingType';
 
 // This component wraps children in a group with a click handler
 // Clicking any object will refresh and fit bounds
@@ -13,15 +16,15 @@ const SelectToZoom: React.FC<{ children: any }> = ({ children }) => {
   const api = useBounds();
   const selectedIds = useTableStore((s) => s.selectedElementIds);
 
-  useEffect(() => {
-    if (selectedIds) {
-      const slab = useTableStore.getState().elements.find((p) => selectedIds.includes(p.id!));
-      if (slab) {
-        const view = getViewForSlab(slab);
-        view ? api.to(view) : api.fit();
-      } else api.fit();
-    }
-  }, [selectedIds]);
+  // useEffect(() => {
+  //   if (selectedIds) {
+  //     const slab = useTableStore.getState().elements.find((p) => selectedIds.includes(p.id!));
+  //     if (slab) {
+  //       const view = getViewForSlab(slab);
+  //       view ? api.to(view) : api.fit();
+  //     } else api.fit();
+  //   }
+  // }, [selectedIds]);
 
   return (
     <group
@@ -34,7 +37,7 @@ const SelectToZoom: React.FC<{ children: any }> = ({ children }) => {
 };
 
 export const ThreeScene: React.FC = () => {
-  const data = useTableStore((s) => s.elements);
+  const data = useCollectionStore((s) => s.collections);
   const userCategory = useTableStore((s) => s.userCategory); // Get the user category
 
   return (
@@ -48,17 +51,22 @@ export const ThreeScene: React.FC = () => {
         <group name='slabGroup'>
           <Bounds fit clip observe margin={1.2}>
             <SelectToZoom>
-              {userCategory === 'Architect' ? (
-                <ArchitectSlabRenderer /> // Render stacks for Architect view
-              ) : (
-                data.map((s, i) => <Slab key={`slab-${i}-${s.id}`} slab={s} />) // Default slab rendering
-              )}
+              {
+                data[CollectionName.Components].map((c, i) => (
+                  <ComponentInstancesRenderer
+                    key={`slab-${i}-${c.id}`}
+                    geometryTypeId={c[ComponentKeyType.GeometryTypeId]}
+                    components={[c]}
+                    building={getEntry<BuildingType>(CollectionName.Buildings, c[ComponentKeyType.BuildingId])}
+                  />
+                )) // Default slab rendering
+              }
             </SelectToZoom>
           </Bounds>
         </group>
       </Suspense>
       <OrbitControls makeDefault />
-      <Axis />
+      {/* <Axis /> */}
     </Canvas>
   );
 };

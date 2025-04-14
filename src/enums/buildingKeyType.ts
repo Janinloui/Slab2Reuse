@@ -1,5 +1,5 @@
 export enum BuildingKeyType {
-  Id = 'buildingId',
+  Id = 'id',
   Location = 'buildingLocation',
   Address = 'buildingAddress',
   OwnerId = 'buildingOwnerId',

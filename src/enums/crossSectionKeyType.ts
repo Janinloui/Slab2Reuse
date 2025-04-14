@@ -1,5 +1,5 @@
 export enum CrossSectionKeyType {
-  Id = 'crossSectionId',
+  Id = 'id',
   Width = 'crossSectionWidth',
   Height = 'crossSectionHeight',
   Moment = 'crossSectionMoment',

@@ -1,5 +1,5 @@
 export enum MaterialKeyType {
-  Id = 'materialId',
+  Id = 'id',
   CrossSectionId = 'materialCrossSectionId',
   BuildingId = 'materialBuildingId',
   MaterialCategory = 'materialMaterialCategory',
@@ -11,5 +11,5 @@ export enum MaterialKeyType {
   Fc0k = 'materialFc0k',
   Ft0k = 'materialFt0k',
   Fc90k = 'materialFc90k',
-  Ft90k = 'materialFt90k',
+  Ft90k = 'materialFt90k'
 }

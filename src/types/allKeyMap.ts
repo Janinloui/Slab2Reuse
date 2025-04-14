@@ -67,7 +67,7 @@ export type AllNestedComponentKeyType =
   | UserKeyType
   | VisualInspectionKeyType;
 
-export const AllKeyMap: Record<string, ValueType> = Object.fromEntries(allTypeEntries);
+export const AllKeyEntriesMap: Record<string, ValueType> = Object.fromEntries(allTypeEntries);
 
 export const getKeyCountMap = () => {
   const object: Record<string, number> = {};
