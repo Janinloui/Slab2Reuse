@@ -1,14 +1,18 @@
 import React from 'react';
-import { Button } from 'antd'; // Import the Button component from antd
-import { useNavigate, useParams } from 'react-router-dom';
+import { Button } from 'antd';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './MaterialPassport.css';
 
 const MaterialPassport: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+  const component = location.state?.component;
 
-  // Example variable for geometry type
-  const geometryType = "SLAB"; // Replace this with the actual value from your component data
+  if (!component) {
+    return <div>No component data available</div>;
+  }
+
+  const geometryType = component.geometryType || 'Unknown'; // Dynamically fetch geometry type
 
   const svgContent = `
   <svg width="770" height="370" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Helvetica', sans-serif;">
@@ -23,16 +27,16 @@ const MaterialPassport: React.FC = () => {
 
     <text x="60" y="90" font-size="28" text-anchor="start" fill="black" font-weight="bold">${geometryType}</text>
     <text x="60" y="130" font-size="18" text-anchor="start" fill="grey">
-      <tspan font-weight="bold">X</tspan>
-      <tspan font-weight="normal"> Pieces (x,x,x)</tspan>
+      <tspan font-weight="bold">ID:</tspan>
+      <tspan font-weight="normal"> ${component.id}</tspan>
     </text>
     <text x="60" y="170" font-size="18" text-anchor="start" fill="grey">
       <tspan font-weight="bold">Available from:</tspan>
-      <tspan font-weight="normal"> 20.07.2025</tspan>
+      <tspan font-weight="normal"> ${component.availableFrom || 'N/A'}</tspan>
     </text>
     <text x="60" y="210" font-size="18" text-anchor="start" fill="grey">
       <tspan font-weight="bold">Owner:</tspan>
-      <tspan font-weight="normal"> Jørgen Jørgensen</tspan>
+      <tspan font-weight="normal"> ${component.owner || 'Unknown'}</tspan>
     </text>
     
     <text x="60" y="306" font-size="24" text-anchor="start" fill="black">
@@ -55,7 +59,7 @@ const MaterialPassport: React.FC = () => {
 
     const link = document.createElement('a');
     link.href = url;
-    link.download = `MaterialPassport_${id || 'default'}.svg`;
+    link.download = `MaterialPassport_${component.id || 'default'}.svg`;
     link.click();
 
     URL.revokeObjectURL(url); // Clean up the URL object
