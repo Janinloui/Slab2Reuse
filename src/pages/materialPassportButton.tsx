@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { Slab2ReuseRoutes } from '../enums/routes';
 
 interface MPPButtonProps {
-  element: { id: number }; // Adjust the type based on your `element` structure
+  element: { id: number; geometryType: string; [key: string]: any }; // Adjust the type based on your `element` structure
 }
 
 const MPPButton: React.FC<MPPButtonProps> = ({ element }) => {
   const navigate = useNavigate();
 
   const handleViewMPP = () => {
-    navigate(Slab2ReuseRoutes.MaterialPassport.replace(':id', element.id.toString())); // Navigate to the Material Passport page
+    navigate(Slab2ReuseRoutes.MaterialPassport.replace(':id', element.id.toString()), { state: { component: element } }); // Pass component data
   };
 
   return (

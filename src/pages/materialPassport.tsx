@@ -7,6 +7,9 @@ const MaterialPassport: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
+  // Example variable for geometry type
+  const geometryType = "SLAB"; // Replace this with the actual value from your component data
+
   const svgContent = `
   <svg width="770" height="370" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Helvetica', sans-serif;">
     <defs>
@@ -18,7 +21,7 @@ const MaterialPassport: React.FC = () => {
     <rect x="4" y="4" width="760" height="360" fill="transparent" stroke="black" stroke-width="1" rx="40" ry="40" stroke-linejoin="round" />
     <rect x="40" y="40" width="300" height="200" fill="rgb(234, 241, 207)" stroke="black" stroke-width="0" rx="40" ry="40" stroke-linejoin="round"/>
 
-    <text x="60" y="90" font-size="28" text-anchor="start" fill="black" font-weight="bold">SLAB</text>
+    <text x="60" y="90" font-size="28" text-anchor="start" fill="black" font-weight="bold">${geometryType}</text>
     <text x="60" y="130" font-size="18" text-anchor="start" fill="grey">
       <tspan font-weight="bold">X</tspan>
       <tspan font-weight="normal"> Pieces (x,x,x)</tspan>
