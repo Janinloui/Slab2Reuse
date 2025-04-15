@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: database
+    restart: always
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: slab2reuse_database
+    ports:
+      - "5430:5432"
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: always
+    environment:
+      DATABASE_URL: postgres://username:password@database:5430/slab2reuse_database
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
