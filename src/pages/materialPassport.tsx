@@ -1,18 +1,32 @@
 import React from 'react';
 import { Button } from 'antd';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './MaterialPassport.css';
+import { useCollectionStore } from '../state/collectionStore';
+import { CollectionName } from '../enums/collectionName';
+import { getEntry } from '../table/lib/componentDataMethod';
+import { GeometryType } from '../types/geometryType';
+import { ComponentKeyType } from '../enums/componentKeyType';
+import { GeometryKeyType } from '../enums/geometryKeyType';
+import { BuildingKeyType } from '../enums/buildingKeyType';
+import { BuildingType } from '../types/buildingType';
+import { UserType } from '../types/userType';
+import { UserKeyType } from '../enums/userKeyType';
 
 const MaterialPassport: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const component = location.state?.component;
+  const collections = useCollectionStore((s) => s.collections);
+  const { componentId } = useParams();
+  if (componentId === undefined) return <div>No component given</div>;
+  const component = collections[CollectionName.Components].find((c) => c.id === componentId);
 
-  if (!component) {
-    return <div>No component data available</div>;
-  }
+  if (!component) return <div>Component not found</div>;
 
-  const geometryType = component.geometryType || 'Unknown'; // Dynamically fetch geometry type
+  const geometry = getEntry<GeometryType>(CollectionName.Geometries, component[ComponentKeyType.GeometryTypeId]);
+  if (!geometry) return <div>Geometry not found</div>;
+
+  const building = getEntry<BuildingType>(CollectionName.Buildings, component[ComponentKeyType.BuildingId]);
+  const owner = building ? getEntry<UserType>(CollectionName.Users, building[BuildingKeyType.OwnerId]) : undefined;
 
   const svgContent = `
   <svg width="770" height="370" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Helvetica', sans-serif;">
@@ -25,10 +39,12 @@ const MaterialPassport: React.FC = () => {
     <rect x="4" y="4" width="760" height="360" fill="transparent" stroke="black" stroke-width="1" rx="40" ry="40" stroke-linejoin="round" />
     <rect x="40" y="40" width="300" height="200" fill="rgb(234, 241, 207)" stroke="black" stroke-width="0" rx="40" ry="40" stroke-linejoin="round"/>
 
-    <text x="60" y="90" font-size="28" text-anchor="start" fill="black" font-weight="bold">${geometryType}</text>
+    <text x="60" y="90" font-size="28" text-anchor="start" fill="black" font-weight="bold">${
+      geometry[GeometryKeyType.ComponentCategory]
+    }</text>
     <text x="60" y="130" font-size="18" text-anchor="start" fill="grey">
       <tspan font-weight="bold">ID:</tspan>
-      <tspan font-weight="normal"> ${component.id}</tspan>
+      <tspan font-weight="normal"> ${component[ComponentKeyType.Id]}</tspan>
     </text>
     <text x="60" y="170" font-size="18" text-anchor="start" fill="grey">
       <tspan font-weight="bold">Available from:</tspan>
@@ -36,7 +52,7 @@ const MaterialPassport: React.FC = () => {
     </text>
     <text x="60" y="210" font-size="18" text-anchor="start" fill="grey">
       <tspan font-weight="bold">Owner:</tspan>
-      <tspan font-weight="normal"> ${component.owner || 'Unknown'}</tspan>
+      <tspan font-weight="normal"> ${owner ? owner[UserKeyType.Name] : 'Unknown'}</tspan>
     </text>
     
     <text x="60" y="306" font-size="24" text-anchor="start" fill="black">
@@ -66,15 +82,15 @@ const MaterialPassport: React.FC = () => {
   };
 
   return (
-    <div className="material-passport-container">
-      <div className="material-passport">
+    <div className='material-passport-container'>
+      <div className='material-passport'>
         <div dangerouslySetInnerHTML={{ __html: svgContent }} />
       </div>
-      <div className="button-container">
-        <Button type="default" onClick={handleDownload}>
+      <div className='button-container'>
+        <Button type='default' onClick={handleDownload}>
           Download Material Passport
         </Button>
-        <Button type="default" onClick={() => navigate('/viewer')}>
+        <Button type='default' onClick={() => navigate('/viewer')}>
           Back to Table View
         </Button>
       </div>
