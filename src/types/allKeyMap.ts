@@ -21,7 +21,7 @@ import { CrossSectionValueMap } from './crossSectionType';
 import { DatabaseValueArrayMap } from './databaseType';
 import { DestructiveTestValueMap } from './destructiveTestType';
 import { GeometryValueMap } from './geometryType';
-import { GPRTestValueMap } from './GPRTestType';
+import { GPRTestValueMap } from './gprTestType';
 import { LocationValueMap } from './locationType';
 import { MaterialValueMap } from './materialType';
 import { PreStressStrandValueMap } from './preStressStrandType';
