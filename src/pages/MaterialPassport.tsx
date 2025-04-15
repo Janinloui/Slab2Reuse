@@ -13,7 +13,7 @@ import { BuildingType } from '../types/buildingType';
 import { UserType } from '../types/userType';
 import { UserKeyType } from '../enums/userKeyType';
 
-const MaterialPassport: React.FC = () => {
+export const MaterialPassport: React.FC = () => {
   const navigate = useNavigate();
   const collections = useCollectionStore((s) => s.collections);
   const { componentId } = useParams();
