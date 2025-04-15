@@ -9,5 +9,5 @@ export enum Slab2ReuseRoutes {
   LabView = '/lab-view/:viewer',
   OnSiteView = '/on-site-view/:viewer',
   ArchiveView = '/archive-view/:viewer',
-  MaterialPassport = '/material-passport/:id',
+  MaterialPassport = '/material-passport/:componentId'
 }
