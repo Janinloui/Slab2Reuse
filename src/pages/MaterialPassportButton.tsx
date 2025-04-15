@@ -10,7 +10,9 @@ const MPPButton: React.FC<MPPButtonProps> = ({ element }) => {
   const navigate = useNavigate();
 
   const handleViewMPP = () => {
-    navigate(Slab2ReuseRoutes.MaterialPassport.replace(':id', element.id.toString()), { state: { component: element } }); // Pass component data
+    navigate(Slab2ReuseRoutes.MaterialPassport.replace(':id', element.id.toString()), {
+      state: { component: element }
+    }); // Pass component data
   };
 
   return (
@@ -22,7 +24,7 @@ const MPPButton: React.FC<MPPButtonProps> = ({ element }) => {
         color: 'white',
         border: 'none',
         borderRadius: '4px',
-        cursor: 'pointer',
+        cursor: 'pointer'
       }}
     >
       View MPP
