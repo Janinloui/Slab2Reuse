@@ -9,5 +9,6 @@ export enum ComponentDerivedAttributes {
   ReboundTestMean = 'componentReboundTestAverage',
   ReboundTestStdv = 'componentReboundTestStdv',
   DestructiveTest = 'desctructiveTest',
-  Rebar = 'componentRebar'
+  Rebar = 'componentRebar',
+  MaterialPassport = 'materialPassport'
 }

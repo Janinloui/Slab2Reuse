@@ -255,6 +255,11 @@ const getDerivedComponentColumns = (
     title: '.Rebar',
     dataIndex: ComponentKeyType.GeometryTypeId,
     render: () => <MissingData reason='Rebar not yet implemented' />
+  },
+  [ComponentDerivedAttributes.MaterialPassport]: {
+    title: '.Material Passport',
+    dataIndex: ComponentKeyType.GeometryTypeId,
+    render: () => <MissingData reason='Material Passport not yet implemented' />
   }
 });
 
