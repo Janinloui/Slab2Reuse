@@ -8,5 +8,6 @@ export enum Slab2ReuseRoutes {
   BoilerPlate = '/boiler-plate',
   LabView = '/lab-view/:viewer',
   OnSiteView = '/on-site-view/:viewer',
-  ArchiveView = '/archive-view/:viewer'
+  ArchiveView = '/archive-view/:viewer',
+  MaterialPassport = '/material-passport/:componentId'
 }

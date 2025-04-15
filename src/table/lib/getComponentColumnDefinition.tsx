@@ -192,9 +192,10 @@ const getCountForGeometryType = (geometryTypeId: string) => (
     valueType={'number'}
     value={useCollectionStore
       .getState()
-      .collections[
-        CollectionName.Components
-      ].reduce((count, component) => (component[ComponentKeyType.GeometryTypeId] === geometryTypeId ? count + 1 : count), 0)}
+      .collections[CollectionName.Components].reduce(
+        (count, component) => (component[ComponentKeyType.GeometryTypeId] === geometryTypeId ? count + 1 : count),
+        0
+      )}
   />
 );
 
@@ -255,6 +256,11 @@ const getDerivedComponentColumns = (
     title: '.Rebar',
     dataIndex: ComponentKeyType.GeometryTypeId,
     render: () => <MissingData reason='Rebar not yet implemented' />
+  },
+  [ComponentDerivedAttributes.MaterialPassport]: {
+    title: '.Material Passport',
+    dataIndex: ComponentKeyType.GeometryTypeId,
+    render: () => <MissingData reason='Material Passport not yet implemented' />
   }
 });
 
@@ -267,7 +273,7 @@ export const getColumnsForComponentKeys = (
       Object.values(ComponentKeyType).includes(k as ComponentKeyType)
         ? simpleComponentColumns[k as ComponentKeyType]
         : Object.values(ComponentDerivedAttributes).includes(k as ComponentDerivedAttributes)
-          ? getDerivedComponentColumns(canChange)[k as ComponentDerivedAttributes]
-          : undefined
+        ? getDerivedComponentColumns(canChange)[k as ComponentDerivedAttributes]
+        : undefined
     )
     .filter((e) => e !== undefined) as ColumnType<ComponentType>[];
