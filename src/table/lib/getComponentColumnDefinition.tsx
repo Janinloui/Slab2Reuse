@@ -192,9 +192,10 @@ const getCountForGeometryType = (geometryTypeId: string) => (
     valueType={'number'}
     value={useCollectionStore
       .getState()
-      .collections[
-        CollectionName.Components
-      ].reduce((count, component) => (component[ComponentKeyType.GeometryTypeId] === geometryTypeId ? count + 1 : count), 0)}
+      .collections[CollectionName.Components].reduce(
+        (count, component) => (component[ComponentKeyType.GeometryTypeId] === geometryTypeId ? count + 1 : count),
+        0
+      )}
   />
 );
 
@@ -272,7 +273,7 @@ export const getColumnsForComponentKeys = (
       Object.values(ComponentKeyType).includes(k as ComponentKeyType)
         ? simpleComponentColumns[k as ComponentKeyType]
         : Object.values(ComponentDerivedAttributes).includes(k as ComponentDerivedAttributes)
-          ? getDerivedComponentColumns(canChange)[k as ComponentDerivedAttributes]
-          : undefined
+        ? getDerivedComponentColumns(canChange)[k as ComponentDerivedAttributes]
+        : undefined
     )
     .filter((e) => e !== undefined) as ColumnType<ComponentType>[];
