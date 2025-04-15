@@ -113,30 +113,30 @@ export const getBoilerPlateDataForValyeType = (t: ValueType, k?: string): any =>
     case 'BuildingType':
       return normalCaseValueMapCast<BuildingType, BuildingKeyType>(BuildingValueMap);
     case 'BuildingTypeArray':
-      return [getBoilerPlateDataForValyeType('BuildingType')]
+      return [getBoilerPlateDataForValyeType('BuildingType')];
     case 'UserType':
       return normalCaseValueMapCast<UserType, UserKeyType>(UserValueMap);
     case 'UserTypeArray':
-      return [getBoilerPlateDataForValyeType('UserType')]
+      return [getBoilerPlateDataForValyeType('UserType')];
     case 'ComponentType':
       return normalCaseValueMapCast<ComponentType, ComponentKeyType>(ComponentValueMap);
     case 'ComponentTypeArray':
-      return [getBoilerPlateDataForValyeType('ComponentType')]
+      return [getBoilerPlateDataForValyeType('ComponentType')];
     case 'GeometryType':
       return normalCaseValueMapCast<GeometryType, GeometryKeyType>(GeometryValueMap);
     case 'GeometryTypeArray':
-      return [getBoilerPlateDataForValyeType('GeometryType')]
+      return [getBoilerPlateDataForValyeType('GeometryType')];
     case 'CrossSectionType':
       return normalCaseValueMapCast<CrossSectionType, CrossSectionKeyType>(CrossSectionValueMap);
     case 'CrossSectionTypeArray':
-      return [getBoilerPlateDataForValyeType('CrossSectionType')]
+      return [getBoilerPlateDataForValyeType('CrossSectionType')];
     case 'MaterialType':
       return normalCaseValueMapCast<MaterialType, MaterialKeyType>(MaterialValueMap);
     case 'MaterialTypeArray':
-      return [getBoilerPlateDataForValyeType('MaterialType')]
+      return [getBoilerPlateDataForValyeType('MaterialType')];
     case 'RebarType':
       return normalCaseValueMapCast<RebarType, RebarKeyType>(RebarValueMap);
     case 'RebarTypeArray':
-      return [getBoilerPlateDataForValyeType('RebarType')]
+      return [getBoilerPlateDataForValyeType('RebarType')];
   }
 };
