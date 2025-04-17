@@ -3,18 +3,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full viewport height */
+  height: 100vh; 
   background-color: #f9f9f9;
 }
 
 .material-passport {
   display: inline-block;
   border: 1px solid #ccc;
-  border-radius: 40px; /* Match the SVG corner radius */
-  padding: 32px; /* Double the padding */
+  border-radius: 0px; /* Match the SVG corner radius */
+  padding: 16px; /* Double the padding */
   background-color: white;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Slightly larger shadow */
   text-align: center;
+  height: 532px; /* Ensure the height adjusts to the content */
+  overflow: hidden; /* Prevent content from overflowing */
 }
 
 .header h2 {

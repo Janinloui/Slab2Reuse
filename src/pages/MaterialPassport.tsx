@@ -28,7 +28,65 @@ export const MaterialPassport: React.FC = () => {
   const building = getEntry<BuildingType>(CollectionName.Buildings, component[ComponentKeyType.BuildingId]);
   const owner = building ? getEntry<UserType>(CollectionName.Users, building[BuildingKeyType.OwnerId]) : undefined;
 
-  const svgContent = `
+
+
+const svgContent = `
+  <svg width="1000" height="580" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Helvetica Neue', Helvetica, sans-serif;">
+  <!-- Background -->
+  <rect x="0.5" y="0.5" width="999" height="529" fill="white" stroke="#ddd" stroke-width="1" vector-effect="non-scaling-stroke"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1000" height="60" fill="#e8efce"/>
+  <text x="40" y="40" font-size="32" fill="black" font-weight="bold">SLAB</text>
+  <text x="960" y="40" font-size="16" fill="#d63e6e" font-weight="bold" text-anchor="end">circrete</text>
+
+
+  <!-- Image centered and safely sized for 4:3 aspect -->
+<image x="350" y="125" width="300" height="225" 
+  href="https://1.bp.blogspot.com/-yJbJ_0ShYYM/XYNZLhU_eXI/AAAAAAAADbQ/MDLU_gBOVQgPsasrk9H3bVW1XQbyJLpxgCEwYBhgL/s1600/IMG_1782.JPG" 
+  style="border-radius: 8px;" />
+
+
+  <!-- Left Section: History + Geometry -->
+  <text x="40" y="140" font-size="20" fill="#333" font-weight="bold">History</text>
+  <text x="40" y="170" font-size="16" fill="#333"><tspan font-weight="normal">Manufacturer:</tspan> CRH</text>
+  <text x="40" y="195" font-size="16" fill="#333"><tspan font-weight="normal">Project ID:</tspan> 2</text>
+  <text x="40" y="220" font-size="16" fill="#333"><tspan font-weight="normal">Construction Date:</tspan> 1960</text>
+
+  <text x="40" y="270" font-size="20" fill="#333" font-weight="bold">Geometry</text>
+  <text x="40" y="300" font-size="16" fill="#333"><tspan font-weight="normal">Dimension:</tspan> 150x1300x2000</text>
+  <text x="40" y="325" font-size="16" fill="#333"><tspan font-weight="normal">Cross Section:</tspan> HC</text>
+
+  <!-- Right Section: Use Classes (constrained width) -->
+<text x="710" y="140" font-size="20" fill="#333" font-weight="bold">Use Classes (RG1)</text>
+
+<text font-size="16" fill="#333">
+  <tspan x="710" y="170">I. No stability criteria,</tspan>
+  <tspan x="730" y="190">Light to highly exposed</tspan>
+
+  <tspan x="710" y="225">II. Self-stable,</tspan>
+  <tspan x="730" y="245">Light to moderate exposure</tspan>
+
+  <tspan x="710" y="280">III. Stable under external loads,</tspan>
+  <tspan x="730" y="300">Light exposure</tspan>
+</text>
+
+
+
+  <!-- Footer Grey Band -->
+  <rect x="1" y="400" width="998" height="60" fill="#f7f7f7"/>
+  <text x="500" y="440" font-size="28" fill="#e3566a" font-weight="bold" text-anchor="middle">
+    DA 150 C30/37 (M=60kN/m, V=95kN)
+  </text>
+
+  <!-- Bottom Info Row -->
+  <rect x="1" y="460" width="998" height="50" fill="white"/>
+  <text x="60" y="495" font-size="14" fill="#333">ElementID: 1  Type: S1  Count: 35</text>
+</svg>
+ `;
+
+
+  /*const svgContent = `
   <svg width="770" height="370" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Helvetica', sans-serif;">
     <defs>
       <clipPath id="clip">
@@ -68,6 +126,7 @@ export const MaterialPassport: React.FC = () => {
     <image x="300" y="40" width="400" height="200" href="https://1.bp.blogspot.com/-yJbJ_0ShYYM/XYNZLhU_eXI/AAAAAAAADbQ/MDLU_gBOVQgPsasrk9H3bVW1XQbyJLpxgCEwYBhgL/s1600/IMG_1782.JPG" clip-path="url(#clip)"/>
   </svg>
   `;
+  */
 
   const handleDownload = () => {
     const blob = new Blob([svgContent], { type: 'image/svg+xml' });
