@@ -9,6 +9,7 @@ import { ComponentDerivedAttributes } from './enums/componentDerivedAttributes';
 import { ComponentKeyType } from './enums/componentKeyType';
 import { ThreeScene } from './webgl/ThreeScene';
 import { MaterialPassport } from './pages/MaterialPassport';
+import { Landing } from './Landing';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -44,11 +45,7 @@ root.render(
           path={Slab2ReuseRoutes.ThreeOnly}
         />
         <Route element={<MaterialPassport />} path={Slab2ReuseRoutes.MaterialPassport} />
-        {/* <Route element={<Landing />} path='/' />
-        <Route element={wrapper(<ExampleData />)} path={Slab2ReuseRoutes.ExampleData} />
-        <Route element={wrapper(<Viewer />)} path={Slab2ReuseRoutes.Viewer} />
-        
-        <Route element={wrapper(<SlabTable />)} path={Slab2ReuseRoutes.TableOnly} /> */}
+        <Route element={<Landing />} path='/' />
       </Routes>
     </Router>
   </React.StrictMode>
