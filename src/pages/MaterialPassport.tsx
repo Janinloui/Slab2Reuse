@@ -62,7 +62,7 @@ const svgContent = `
 
 <text font-size="16" fill="#333">
   <tspan x="710" y="170">I. No stability criteria,</tspan>
-  <tspan x="730" y="190">Light to highly exposed</tspan>
+  <tspan x="730" y="190">Light to high exposure</tspan>
 
   <tspan x="710" y="225">II. Self-stable,</tspan>
   <tspan x="730" y="245">Light to moderate exposure</tspan>
