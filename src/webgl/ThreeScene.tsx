@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import { useTableStore } from '../state/tableStore';
 import { Bounds, OrbitControls, useBounds } from '@react-three/drei';
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useMemo } from 'react';
 // import { Axis } from './utils/Axis';
 import { useCollectionStore } from '../state/collectionStore';
 import { CollectionName } from '../enums/collectionName';
@@ -9,6 +9,16 @@ import { ComponentInstancesRenderer } from './renderers/ComponentInstancesRender
 import { ComponentKeyType } from '../enums/componentKeyType';
 import { getEntry } from '../table/lib/componentDataMethod';
 import { BuildingType } from '../types/buildingType';
+import { ComponentType } from '../types/componentType';
+
+const getGeometryIdTypeComponentMap = (components: ComponentType[]): Record<string, ComponentType[]> => {
+  const geometryIdTypeComponentMap: Record<string, ComponentType[]> = {};
+  for (const component of components)
+    geometryIdTypeComponentMap[component[ComponentKeyType.GeometryTypeId]]
+      ? geometryIdTypeComponentMap[component[ComponentKeyType.GeometryTypeId]].push(component)
+      : (geometryIdTypeComponentMap[component[ComponentKeyType.GeometryTypeId]] = [component]);
+  return geometryIdTypeComponentMap;
+};
 
 // This component wraps children in a group with a click handler
 // Clicking any object will refresh and fit bounds
@@ -40,6 +50,9 @@ export const ThreeScene: React.FC = () => {
   const data = useCollectionStore((s) => s.collections);
   const userCategory = useTableStore((s) => s.userCategory); // Get the user category
 
+  const buildingId = useMemo(() => data[CollectionName.Components][0][ComponentKeyType.BuildingId], [data]); // ToDo fix logic to work with different buildings
+  const componentMap = useMemo(() => getGeometryIdTypeComponentMap(data[CollectionName.Components]), [data]);
+
   return (
     <Canvas>
       <directionalLight position={[0, 10, 0]} intensity={1} />
@@ -52,12 +65,12 @@ export const ThreeScene: React.FC = () => {
           <Bounds fit clip observe margin={1.2}>
             <SelectToZoom>
               {
-                data[CollectionName.Components].map((c, i) => (
+                Object.entries(componentMap).map(([geometryId, components]) => (
                   <ComponentInstancesRenderer
-                    key={`slab-${i}-${c.id}`}
-                    geometryTypeId={c[ComponentKeyType.GeometryTypeId]}
-                    components={[c]}
-                    building={getEntry<BuildingType>(CollectionName.Buildings, c[ComponentKeyType.BuildingId])}
+                    key={`slab-${geometryId}`}
+                    geometryTypeId={geometryId}
+                    components={components}
+                    building={getEntry<BuildingType>(CollectionName.Buildings, buildingId)}
                   />
                 )) // Default slab rendering
               }
