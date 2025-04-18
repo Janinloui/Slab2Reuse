@@ -9,16 +9,7 @@ import { ComponentInstancesRenderer } from './renderers/ComponentInstancesRender
 import { ComponentKeyType } from '../enums/componentKeyType';
 import { getEntry } from '../table/lib/componentDataMethod';
 import { BuildingType } from '../types/buildingType';
-import { ComponentType } from '../types/componentType';
-
-const getGeometryIdTypeComponentMap = (components: ComponentType[]): Record<string, ComponentType[]> => {
-  const geometryIdTypeComponentMap: Record<string, ComponentType[]> = {};
-  for (const component of components)
-    geometryIdTypeComponentMap[component[ComponentKeyType.GeometryTypeId]]
-      ? geometryIdTypeComponentMap[component[ComponentKeyType.GeometryTypeId]].push(component)
-      : (geometryIdTypeComponentMap[component[ComponentKeyType.GeometryTypeId]] = [component]);
-  return geometryIdTypeComponentMap;
-};
+import { getGeometryIdTypeComponentMap } from '../lib/getIdMapForTypes';
 
 // This component wraps children in a group with a click handler
 // Clicking any object will refresh and fit bounds
