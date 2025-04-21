@@ -93,10 +93,15 @@ const SimpleValue: React.FC<{ k: string; v: ReactNode }> = ({ k, v }) => (
 
 const removeArrayFromEnd = (s: string) => s.substring(0, s.lastIndexOf('Array'));
 
-const ArrayRenderer: React.FC<{ items: any[]; valueType: ValueType }> = ({ items, valueType }) => (
+const ArrayRenderer: React.FC<{
+  items: any[];
+  valueType: ValueType;
+  kOverwrite?: string;
+  onChange?: (e: any) => void;
+}> = ({ items, valueType, kOverwrite, onChange }) => (
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
     {items.map((item, i) => (
-      <EntryRenderer key={i} k={i.toString()} valueType={valueType} value={item} />
+      <EntryRenderer key={i} k={kOverwrite ?? i.toString()} valueType={valueType} value={item} onChange={onChange} />
     ))}
   </div>
 );
@@ -146,8 +151,18 @@ export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: a
   value: v,
   onChange
 }) => {
+  if (k === 'componentIds')
+    return (
+      <ArrayRenderer
+        items={v}
+        valueType={removeArrayFromEnd(valueType) as ValueType}
+        kOverwrite='componentId'
+        onChange={onChange}
+      />
+    );
+
   if (valueType.endsWith('Array'))
-    return <ArrayRenderer items={v} valueType={removeArrayFromEnd(valueType) as ValueType} />;
+    return <ArrayRenderer items={v} valueType={removeArrayFromEnd(valueType) as ValueType} onChange={onChange} />;
 
   switch (valueType) {
     case 'number':
@@ -179,16 +194,6 @@ export const EntryRenderer: React.FC<{ k: string; valueType: ValueType; value: a
       return <ObjectRender label={k} value={v} />;
   }
 };
-
-const RawGenericUIRenderer: React.FC<{ item: Record<string, any> }> = ({ item }) =>
-  Object.entries(item).map(([k, value]) => {
-    const valueType = AllKeyEntriesMap[k];
-    return (
-      <Descriptions.Item label={k}>
-        <EntryRenderer k={k} value={value} valueType={valueType} />
-      </Descriptions.Item>
-    );
-  });
 
 export const GenericUIRenderer: React.FC<{ item: Record<string, any>; label: string }> = ({ item, label }) => (
   <Descriptions

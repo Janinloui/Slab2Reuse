@@ -10,6 +10,7 @@ import { ComponentKeyType } from './enums/componentKeyType';
 import { ThreeScene } from './webgl/ThreeScene';
 import { MaterialPassport } from './pages/MaterialPassport';
 import { Landing } from './Landing';
+import { MultiTestKeys } from './types/dataOfTestsForGeometryType';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -30,7 +31,8 @@ root.render(
                 ComponentKeyType.GeometryTypeId,
                 ComponentDerivedAttributes.Volume,
                 ComponentDerivedAttributes.Weight,
-                ComponentDerivedAttributes.Count
+                ComponentDerivedAttributes.Count,
+                ...MultiTestKeys
               ]}
             />
           }

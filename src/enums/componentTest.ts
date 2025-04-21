@@ -1,5 +1,5 @@
 export enum ComponentTest {
-  ChemcicalTest = 'Chemical',
+  ChemicalTest = 'Chemical',
   Core = 'Core',
   Destructive = 'Destructive',
   GPR = 'GPR',

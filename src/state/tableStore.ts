@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { UserCategory } from '../enums/user';
 import { DefaultRenderValues, RenderLocal } from '../table/attributeDefinition';
+import { DerivedDataOfTestsForGeometryType } from '../types/dataOfTestsForGeometryType';
 
 type TableStore = {
   userCategory: UserCategory;
@@ -10,6 +11,8 @@ type TableStore = {
   selectedElementIds: string[];
   setSelectedElementIds: (...ids: string[]) => void;
   clearSelection: () => void;
+  derivedTestData: Record<string, Partial<DerivedDataOfTestsForGeometryType>>;
+  setDerivedTestData: (data: Record<string, Partial<DerivedDataOfTestsForGeometryType>>) => void;
 };
 
 export const useTableStore = create<TableStore>((set, get) => ({
@@ -25,7 +28,12 @@ export const useTableStore = create<TableStore>((set, get) => ({
     })),
   selectedElementIds: [],
   setSelectedElementIds: (...ids) => set(() => ({ selectedElementIds: ids })),
-  clearSelection: () => set(() => ({ selectedElementIds: [] }))
+  clearSelection: () => set(() => ({ selectedElementIds: [] })),
+  derivedTestData: {},
+  setDerivedTestData: (derivedTestData) =>
+    set((s) => ({
+      derivedTestData
+    }))
 }));
 
 //handles the process of adding, updating and deleting elements in the table

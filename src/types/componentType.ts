@@ -29,11 +29,11 @@ export type ComponentType = {
   [ComponentKeyType.Location]: LocationType;
   [ComponentKeyType.VisualInspection]: VisualInspectionType[];
   [ComponentKeyType.Liveload]: number;
-  [ComponentKeyType.DestructionTest]?: DestructiveTestType;
+  [ComponentKeyType.DestructiveTest]?: DestructiveTestType;
   [ComponentKeyType.CoreTest]?: CoreTestType;
   [ComponentKeyType.ChemicalTest]?: ChemicalTestType;
   [ComponentKeyType.GPRTest]?: GPRTestType;
-  [ComponentKeyType.ReboundTest]?: ReboundTestType;
+  [ComponentKeyType.ReboundTest]?: ReboundTestType[];
 };
 
 /**
@@ -56,10 +56,10 @@ export const ComponentValueMap: Record<ComponentKeyType, ValueType> = {
   [ComponentKeyType.VisualInspection]: 'VisualInspectionTypeArray',
   [ComponentKeyType.ManufacturerId]: 'string',
   [ComponentKeyType.GeometryTypeId]: 'string',
-  [ComponentKeyType.DestructionTest]: 'DestructiveTestType',
+  [ComponentKeyType.DestructiveTest]: 'DestructiveTestType',
   [ComponentKeyType.CoreTest]: 'CoreTestType',
   [ComponentKeyType.ChemicalTest]: 'ChemicalTestType',
   [ComponentKeyType.GPRTest]: 'GPRTestType',
-  [ComponentKeyType.ReboundTest]: 'ReboundTestType',
+  [ComponentKeyType.ReboundTest]: 'ReboundTestTypeArray',
   [ComponentKeyType.Liveload]: 'number'
 };

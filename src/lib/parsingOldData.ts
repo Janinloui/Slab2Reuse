@@ -17,6 +17,7 @@ import { CrossSectionKeyType } from '../enums/crossSectionKeyType';
 import { CrossSectionCategory } from '../enums/crossSectionCategory';
 import { RebarKeyType } from '../enums/rebarKeyType';
 import { RebarCategory } from '../enums/rebarCategory';
+import { ReboundTestKeyType } from '../enums/reboundTestKeyType';
 
 export enum SlabKeyType {
   Id = 'id',
@@ -184,6 +185,12 @@ export const getMappedData = (oldData: SlabType[]): DatabaseType => {
       geometries.push(geometry);
     }
 
+    const componentLocation = getWGSCoordinates(theBuilding, {
+      x: data[SlabKeyType.Location_x] * 1e-3,
+      y: data[SlabKeyType.Location_y] * 1e-3,
+      z: theBuilding[BuildingKeyType.Location].locationHeight + data[SlabKeyType.Floor] * 3
+    });
+
     // createing a new component
     const component: ComponentType = {
       [ComponentKeyType.Id]: data[SlabKeyType.Id],
@@ -201,12 +208,17 @@ export const getMappedData = (oldData: SlabType[]): DatabaseType => {
       [ComponentKeyType.GeometryTypeId]: geometriesMap[geometryTypeString][GeometryKeyType.Id],
       [ComponentKeyType.Floor]: data[SlabKeyType.Floor],
       [ComponentKeyType.Liveload]: data[SlabKeyType.Liveload],
-      [ComponentKeyType.Location]: getWGSCoordinates(theBuilding, {
-        x: data[SlabKeyType.Location_x] * 1e-3,
-        y: data[SlabKeyType.Location_y] * 1e-3,
-        z: theBuilding[BuildingKeyType.Location].locationHeight + data[SlabKeyType.Floor] * 3
-      }),
-      [ComponentKeyType.VisualInspection]: []
+      [ComponentKeyType.Location]: componentLocation,
+      [ComponentKeyType.VisualInspection]: [],
+      [ComponentKeyType.ReboundTest]:
+        data[SlabKeyType.ReboundTestData] && data[SlabKeyType.ReboundTestData].length
+          ? data[SlabKeyType.ReboundTestData].map((reboundTestData) => ({
+              [ReboundTestKeyType.ReboundValue]: reboundTestData,
+              [ReboundTestKeyType.ReboundDate]: '',
+              [ReboundTestKeyType.UserId]: '',
+              [ReboundTestKeyType.Location]: componentLocation
+            }))
+          : undefined
     };
     components.push(component);
   });

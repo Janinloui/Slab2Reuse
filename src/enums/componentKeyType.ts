@@ -16,7 +16,7 @@ export enum ComponentKeyType {
   VisualInspection = 'visualInspection',
   ManufacturerId = 'manufacturerId',
   GeometryTypeId = 'geometryTypeId',
-  DestructionTest = 'destructionTest',
+  DestructiveTest = 'destructiveTest',
   CoreTest = 'coreTest',
   ChemicalTest = 'chemicalTest',
   GPRTest = 'gprTest',
@@ -24,3 +24,13 @@ export enum ComponentKeyType {
   BuildingId = 'componentBuildingId',
   Liveload = 'componentLiveload'
 }
+
+export const ComponentTestKeys = [
+  ComponentKeyType.DestructiveTest,
+  ComponentKeyType.CoreTest,
+  ComponentKeyType.ChemicalTest,
+  ComponentKeyType.GPRTest,
+  ComponentKeyType.ReboundTest
+] as const;
+
+export type ComponentTestKeyType = (typeof ComponentTestKeys)[number];

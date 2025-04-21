@@ -6,9 +6,6 @@ export enum ComponentDerivedAttributes {
   Volume = 'componentVolume',
   Weight = 'componentWeight',
   Count = 'componentCount',
-  ReboundTestMean = 'componentReboundTestAverage',
-  ReboundTestStdv = 'componentReboundTestStdv',
-  DestructiveTest = 'desctructiveTest',
   Rebar = 'componentRebar',
   MaterialPassport = 'materialPassport'
 }

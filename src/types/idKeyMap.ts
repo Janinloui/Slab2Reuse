@@ -16,20 +16,11 @@ export const IdKeys = [
   GeometryKeyType.CrossSectionId,
   GeometryKeyType.OriginalGeometryId,
   MaterialKeyType.CrossSectionId,
-  RebarKeyType.RebarMaterialId
-];
+  RebarKeyType.RebarMaterialId,
+  'componentId'
+] as const;
 
-export type IdKeysType =
-  | BuildingKeyType.OwnerId
-  | ComponentKeyType.BuildingId
-  | ComponentKeyType.GeometryTypeId
-  | ComponentKeyType.ManufacturerId
-  | CrossSectionKeyType.RebarTypeId
-  | CrossSectionKeyType.ConcreteMaterialTypeId
-  | GeometryKeyType.CrossSectionId
-  | GeometryKeyType.OriginalGeometryId
-  | MaterialKeyType.CrossSectionId
-  | RebarKeyType.RebarMaterialId;
+export type IdKeysType = (typeof IdKeys)[number];
 
 export const IdKeysCollectionMap: Record<IdKeysType, CollectionName> = {
   [BuildingKeyType.OwnerId]: CollectionName.Users,
@@ -41,5 +32,6 @@ export const IdKeysCollectionMap: Record<IdKeysType, CollectionName> = {
   [GeometryKeyType.CrossSectionId]: CollectionName.CrossSections,
   [GeometryKeyType.OriginalGeometryId]: CollectionName.Geometries,
   [MaterialKeyType.CrossSectionId]: CollectionName.CrossSections,
-  [RebarKeyType.RebarMaterialId]: CollectionName.Rebars
+  [RebarKeyType.RebarMaterialId]: CollectionName.Rebars,
+  componentId: CollectionName.Components
 };

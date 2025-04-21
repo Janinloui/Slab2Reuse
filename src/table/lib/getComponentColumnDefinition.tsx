@@ -8,11 +8,19 @@ import { useCollectionStore } from '../../state/collectionStore';
 import { GeometryKeyType } from '../../enums/geometryKeyType';
 import { MissingData } from '../MissingData';
 import { ComponentCategory } from '../../enums/componentCategory';
-import { EntryRenderer } from '../../generic/GenericUIRenderer';
+import { EntryRenderer, GenericUIRenderer } from '../../generic/GenericUIRenderer';
 import { GeometryType } from '../../types/geometryType';
 import { CrossSectionKeyType } from '../../enums/crossSectionKeyType';
 import { CrossSectionType } from '../../types/crossSectionType';
 import { getEntry } from './componentDataMethod';
+import {
+  DerivedTestData,
+  getComponentTestKeyForKey,
+  MultiTestKeys,
+  MultiTestKeysType
+} from '../../types/dataOfTestsForGeometryType';
+import { useTableStore } from '../../state/tableStore';
+import { Button, Popover } from 'antd';
 
 const WEIGHT_MULTIPLIER = 2.6;
 
@@ -192,12 +200,47 @@ const getCountForGeometryType = (geometryTypeId: string) => (
     valueType={'number'}
     value={useCollectionStore
       .getState()
-      .collections[CollectionName.Components].reduce(
-        (count, component) => (component[ComponentKeyType.GeometryTypeId] === geometryTypeId ? count + 1 : count),
-        0
-      )}
+      .collections[
+        CollectionName.Components
+      ].reduce((count, component) => (component[ComponentKeyType.GeometryTypeId] === geometryTypeId ? count + 1 : count), 0)}
   />
 );
+
+const getDataForTestKey = (
+  geometryTypeId: string,
+  testKey: MultiTestKeysType
+): undefined | [string[], DerivedTestData] => {
+  const derivedData = useTableStore.getState().derivedTestData;
+
+  derivedData[geometryTypeId][getComponentTestKeyForKey[testKey]] &&
+    console.log(derivedData[geometryTypeId][getComponentTestKeyForKey[testKey]] as any);
+
+  return derivedData[geometryTypeId] && derivedData[geometryTypeId][getComponentTestKeyForKey[testKey]]
+    ? [
+        (derivedData[geometryTypeId][getComponentTestKeyForKey[testKey]] as any).componentIds,
+        (derivedData[geometryTypeId][getComponentTestKeyForKey[testKey]] as any)[testKey] as DerivedTestData
+      ]
+    : undefined;
+};
+
+const SimpleDerivedTestDataRenderer = (testKey: MultiTestKeysType, data: DerivedTestData, componentIds: string[]) => (
+  <Popover content={<GenericUIRenderer item={{ ...data, componentIds }} label={testKey} />}>
+    <Button>avg: {data.average.toFixed(2)}</Button>
+  </Popover>
+);
+
+const getSimpleTestKeyRenderer = (testKey: MultiTestKeysType): ColumnType<Partial<ComponentType>> => ({
+  title: testKey,
+  dataIndex: ComponentKeyType.GeometryTypeId,
+  render: (geometryTypeId) => {
+    const data = getDataForTestKey(geometryTypeId, testKey);
+    return data ? (
+      SimpleDerivedTestDataRenderer(testKey, data[1], data[0])
+    ) : (
+      <MissingData reason={`missing: ${testKey}`} />
+    );
+  }
+});
 
 const getDerivedComponentColumns = (
   canChange: boolean
@@ -237,21 +280,6 @@ const getDerivedComponentColumns = (
     dataIndex: ComponentKeyType.GeometryTypeId,
     render: (geometryTypeId) => getCountForGeometryType(geometryTypeId)
   },
-  [ComponentDerivedAttributes.ReboundTestMean]: {
-    title: '.ReboundTestMean',
-    dataIndex: ComponentKeyType.GeometryTypeId,
-    render: () => <MissingData reason='ReboundTestMean not yet implemented' />
-  },
-  [ComponentDerivedAttributes.ReboundTestStdv]: {
-    title: '.ReboundTestStdv',
-    dataIndex: ComponentKeyType.GeometryTypeId,
-    render: () => <MissingData reason='ReboundTestStdv not yet implemented' />
-  },
-  [ComponentDerivedAttributes.DestructiveTest]: {
-    title: '.DestructiveTest',
-    dataIndex: ComponentKeyType.GeometryTypeId,
-    render: () => <MissingData reason='DestructiveTest not yet implemented' />
-  },
   [ComponentDerivedAttributes.Rebar]: {
     title: '.Rebar',
     dataIndex: ComponentKeyType.GeometryTypeId,
@@ -265,7 +293,7 @@ const getDerivedComponentColumns = (
 });
 
 export const getColumnsForComponentKeys = (
-  keys: (ComponentDerivedAttributes | ComponentKeyType)[],
+  keys: (ComponentDerivedAttributes | ComponentKeyType | MultiTestKeysType)[],
   canChange: boolean
 ) =>
   keys
@@ -273,7 +301,9 @@ export const getColumnsForComponentKeys = (
       Object.values(ComponentKeyType).includes(k as ComponentKeyType)
         ? simpleComponentColumns[k as ComponentKeyType]
         : Object.values(ComponentDerivedAttributes).includes(k as ComponentDerivedAttributes)
-        ? getDerivedComponentColumns(canChange)[k as ComponentDerivedAttributes]
-        : undefined
+          ? getDerivedComponentColumns(canChange)[k as ComponentDerivedAttributes]
+          : Object.values(MultiTestKeys).includes(k as MultiTestKeysType)
+            ? getSimpleTestKeyRenderer(k as MultiTestKeysType)
+            : undefined
     )
     .filter((e) => e !== undefined) as ColumnType<ComponentType>[];

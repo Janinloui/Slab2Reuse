@@ -19,6 +19,7 @@ import { ComponentValueMap } from './componentType';
 import { CoreTestValueMap } from './coreTestType';
 import { CrossSectionValueMap } from './crossSectionType';
 import { DatabaseValueArrayMap } from './databaseType';
+import { DerivedTestKeyValueMap } from './dataOfTestsForGeometryType';
 import { DestructiveTestValueMap } from './destructiveTestType';
 import { GeometryValueMap } from './geometryType';
 import { GPRTestValueMap } from './gprTestType';
@@ -47,7 +48,9 @@ const allTypeEntries = [
   ...Object.entries(RebarValueMap),
   ...Object.entries(ReboundTestValueMap),
   ...Object.entries(UserValueMap),
-  ...Object.entries(VisualInspectionValueMap)
+  ...Object.entries(VisualInspectionValueMap),
+  ...Object.entries(DerivedTestKeyValueMap),
+  ['componentIds', 'stringArray']
 ];
 
 export type AllNestedComponentKeyType =

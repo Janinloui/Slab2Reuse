@@ -19,7 +19,10 @@ export const exampleData: Partial<SlabType>[] = [
     rebarDiameterBottom: 12.5,
     rebarAmountBottom: 8,
     condition: VisualCondition.Good,
-    reboundTestData: [],
+    reboundTestData: [
+      [1, 2, 3, 4, 5],
+      [12, 14, 15, 16, 17]
+    ],
     visualInspectionImages: [
       [
         'https://www.bft-international.com/imgs/1/3/5/3/7/4/0/kn_2736_fig._4_echo_engineering_ducon_s_liner_hollow_core_slabs-3501dff1a1b78e01.jpeg',

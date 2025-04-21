@@ -1,7 +1,6 @@
 import { CrossSectionCategory } from '../enums/crossSectionCategory';
 import { ValueType } from './valueType';
 import { CrossSectionKeyType } from '../enums/crossSectionKeyType';
-import { RebarType } from './rebarType';
 import { PreStressStrandType } from './preStressStrandType';
 
 export type CrossSectionType = {
@@ -14,7 +13,7 @@ export type CrossSectionType = {
   [CrossSectionKeyType.Normal]: number;
   [CrossSectionKeyType.RebarTypeId]: string;
   [CrossSectionKeyType.ConcreteMaterialTypeId]: string;
-  [CrossSectionKeyType.PreStressStrandType]: PreStressStrandType;
+  [CrossSectionKeyType.PreStressStrandType]?: PreStressStrandType;
 };
 
 export const CrossSectionValueMap: Record<keyof CrossSectionType, ValueType> = {

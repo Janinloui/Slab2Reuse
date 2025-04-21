@@ -23,6 +23,7 @@ export type ValueType =
   | 'ChemicalTestType'
   | 'GPRTestType'
   | 'ReboundTestType'
+  | 'ReboundTestTypeArray'
   | 'BuildingType'
   | 'BuildingTypeArray'
   | 'UserType'
