@@ -4,23 +4,24 @@ import { useTableStore } from '../state/tableStore';
 import { useEffect, useState } from 'react';
 import { AllDefinedRenders, RenderLocal } from '../table/attributeDefinition';
 import { IoSettingsSharp } from 'react-icons/io5';
+import { NamedViews } from '../enums/viewer';
 
 export const ActiveSettings: React.FC = () => {
   const globalActiveUserCategory = useTableStore((s) => s.viewer);
-  const attributeMap = useTableStore((s) => s.userAttributeMap);
-  const [userCategory, setUserCategory] = useState(globalActiveUserCategory);
+  const attributeMap = useTableStore((s) => s.viewerAttributeMap);
+  const [viewer, setUserCategory] = useState(globalActiveUserCategory);
   const [activeStrings, setActiveStrings] = useState(new Set(attributeMap[globalActiveUserCategory]));
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setActiveStrings(new Set(attributeMap[userCategory]));
-  }, [userCategory, attributeMap]);
+    setActiveStrings(new Set(attributeMap[viewer]));
+  }, [viewer, attributeMap]);
 
-  const onChange = (attribute: string) => {
+  const onChange = (attribute: any) => {
     activeStrings.has(attribute) ? activeStrings.delete(attribute) : activeStrings.add(attribute);
-    useTableStore.getState().setUserAttributeMap(
-      userCategory,
-      AllDefinedRenders.filter((s) => activeStrings.has(s))
+    useTableStore.getState().setViewerAttributeMap(
+      viewer,
+      AllDefinedRenders.filter((s) => activeStrings.has(s as any))
     );
     setActiveStrings(activeStrings);
   };
@@ -36,14 +37,17 @@ export const ActiveSettings: React.FC = () => {
       <Drawer open={open} width={509} mask={false} placement='right' onClose={() => setOpen(false)}>
         <Radio.Group
           optionType='button'
-          onChange={(e) => setUserCategory(e.target.value as UserCategory)}
-          value={userCategory}
-          options={Object.values(UserCategory).map((value) => ({ label: value, value }))}
+          onChange={(e) => setUserCategory(e.target.value as NamedViews)}
+          value={viewer}
+          options={Object.values(NamedViews).map((value) => ({ label: value, value }))}
         />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {AllDefinedRenders.map((s) => (
-            <span key={s} style={{ paddingTop: 12, display: 'flex', flexDirection: 'row', gap: 6, alignItems: 'center' }}>
-              <Checkbox onChange={() => onChange(s)} checked={activeStrings.has(s)} />
+            <span
+              key={s}
+              style={{ paddingTop: 12, display: 'flex', flexDirection: 'row', gap: 6, alignItems: 'center' }}
+            >
+              <Checkbox onChange={() => onChange(s)} checked={activeStrings.has(s as any)} />
               {RenderLocal[s]}
             </span>
           ))}

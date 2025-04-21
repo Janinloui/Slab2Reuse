@@ -1,6 +1,6 @@
 import { Splitter } from 'antd';
 import { ThreeScene } from '../webgl/ThreeScene';
-import { SlabTable } from '../table/SlabTable';
+import { ComponentTypeTable } from '../table/ComponentTypeTable';
 
 export const BothView: React.FC = () => (
   <Splitter layout='vertical' style={{ height: '100svh', width: '100%' }}>
@@ -8,7 +8,7 @@ export const BothView: React.FC = () => (
       <ThreeScene />
     </Splitter.Panel>
     <Splitter.Panel>
-      <SlabTable />
+      <ComponentTypeTable />
     </Splitter.Panel>
   </Splitter>
 );

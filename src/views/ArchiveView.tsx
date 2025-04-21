@@ -1,8 +1,8 @@
 // the archive view is where the table view is in focus
 
 import { useParams } from 'react-router-dom';
-import { SlabTable } from '../table/SlabTable';
 import { useState } from 'react';
+import { ComponentTypeTable } from '../table/ComponentTypeTable';
 
 export const ArchiveView = () => {
   const { viewer } = useParams();
@@ -11,8 +11,7 @@ export const ArchiveView = () => {
   return (
     <div>
       <>placeholder header</>
-      <SlabTable />
-      <Modal></Modal>
+      <ComponentTypeTable canChange={edit} height={window.innerHeight - 120} />
     </div>
   );
 };

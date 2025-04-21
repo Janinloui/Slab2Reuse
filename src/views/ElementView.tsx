@@ -1,11 +1,11 @@
 import { Drawer } from 'antd';
 import { EditorType } from '../types/editorType';
-import { SlabType } from '../types/slabType';
 import { getType } from '../table/attributeDefinition';
+import { ComponentType } from '../types/componentType';
 
 type ElementViewProps = {
   editorType: EditorType;
-  element: SlabType | null;
+  element: ComponentType | null;
   close: (() => void) | null;
 };
 
