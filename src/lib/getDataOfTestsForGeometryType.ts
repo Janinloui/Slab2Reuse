@@ -62,7 +62,7 @@ const getDataForPreStressStrandTest = (
     ? (Object.fromEntries(
         SelectedPreStressStrandKeys.map((k) => [
           k,
-          crossSectionIdMap[geometry[GeometryKeyType.CrossSectionId]][CrossSectionKeyType.PreStressStrandType][k]
+          crossSectionIdMap[geometry[GeometryKeyType.CrossSectionId]][CrossSectionKeyType.PreStressStrandType]![k]
         ])
       ) as DerivedDataOfTestsForGeometryType[ComponentTest.PreStressStrand])
     : undefined;

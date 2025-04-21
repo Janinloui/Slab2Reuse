@@ -10,7 +10,7 @@ import { ComponentKeyType } from './enums/componentKeyType';
 import { ThreeScene } from './webgl/ThreeScene';
 import { MaterialPassport } from './pages/MaterialPassport';
 import { Landing } from './Landing';
-import { MultiTestKeys } from './types/dataOfTestsForGeometryType';
+import { MultiTestKeys, SelectedPreStressStrandKeys } from './types/dataOfTestsForGeometryType';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -19,25 +19,7 @@ root.render(
       <Routes>
         <Route element={<BoilerPlateData />} path={Slab2ReuseRoutes.BoilerPlate} />
         <Route element={<GenericTableEntry />} path={Slab2ReuseRoutes.RawTableView} />
-        <Route
-          element={
-            <ComponentTypeTable
-              canChange
-              keys={[
-                ComponentDerivedAttributes.ComponentType,
-                ComponentDerivedAttributes.Height,
-                ComponentDerivedAttributes.Width,
-                ComponentDerivedAttributes.Length,
-                ComponentKeyType.GeometryTypeId,
-                ComponentDerivedAttributes.Volume,
-                ComponentDerivedAttributes.Weight,
-                ComponentDerivedAttributes.Count,
-                ...MultiTestKeys
-              ]}
-            />
-          }
-          path={Slab2ReuseRoutes.TableOnly}
-        />
+        <Route element={<ComponentTypeTable canChange />} path={Slab2ReuseRoutes.TableOnly} />
         <Route
           element={
             <div style={{ height: '100svh' }}>

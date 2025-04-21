@@ -15,16 +15,49 @@ import { CrossSectionType } from '../../types/crossSectionType';
 import { getEntry } from './componentDataMethod';
 import {
   DerivedTestData,
+  SelectedPreStressStrandKeys,
   getComponentTestKeyForKey,
   MultiTestKeys,
   MultiTestKeysType
 } from '../../types/dataOfTestsForGeometryType';
 import { useTableStore } from '../../state/tableStore';
 import { Button, Popover } from 'antd';
+import { ComponentTest } from '../../enums/componentTest';
+import { VisualConditionTag } from '../VisualConditionTag';
+import { VisualCondition } from '../../enums/visualCondition';
+import { LocationType } from '../../types/locationType';
+import { getLocalCoordinates } from '../../lib/locationMapping';
+import { xyzToWebgl } from '../../webgl/utils/coordinateSystem';
+import { BuildingType } from '../../types/buildingType';
 
 const WEIGHT_MULTIPLIER = 2.6;
 
-const simpleComponentColumns = getColumTypeForEnums<ComponentType>(Object.values(ComponentKeyType));
+export const levelRenderer = (level: number | undefined): string | undefined => {
+  if (level === undefined) return undefined;
+  if (level > 0) return `OG ${level}`;
+  if (level === 0) return `EG`;
+  return `UG ${Math.abs(level)}`;
+};
+
+const simpleComponentColumns = {
+  ...getColumTypeForEnums<ComponentType>(Object.values(ComponentKeyType)),
+  [ComponentKeyType.Floor]: {
+    dataIndex: ComponentKeyType.Floor,
+    title: ComponentKeyType.Floor,
+    render: (value: number, e: ComponentType) =>
+      value !== undefined ? levelRenderer(value) : <MissingData key={e.id + ComponentKeyType.Floor} />
+  },
+  [ComponentKeyType.Condition]: {
+    dataIndex: ComponentKeyType.Condition,
+    title: ComponentKeyType.Condition,
+    render: (condition: VisualCondition, element: ComponentType) =>
+      condition ? (
+        <VisualConditionTag condition={condition} />
+      ) : (
+        <MissingData key={element.id + ComponentKeyType.Condition} />
+      )
+  }
+};
 
 const getComponentCategory = (geometryTypeId: string) => {
   const geometry = getEntry<GeometryType>(CollectionName.Geometries, geometryTypeId);
@@ -211,10 +244,6 @@ const getDataForTestKey = (
   testKey: MultiTestKeysType
 ): undefined | [string[], DerivedTestData] => {
   const derivedData = useTableStore.getState().derivedTestData;
-
-  derivedData[geometryTypeId][getComponentTestKeyForKey[testKey]] &&
-    console.log(derivedData[geometryTypeId][getComponentTestKeyForKey[testKey]] as any);
-
   return derivedData[geometryTypeId] && derivedData[geometryTypeId][getComponentTestKeyForKey[testKey]]
     ? [
         (derivedData[geometryTypeId][getComponentTestKeyForKey[testKey]] as any).componentIds,
@@ -236,6 +265,21 @@ const getSimpleTestKeyRenderer = (testKey: MultiTestKeysType): ColumnType<Partia
     const data = getDataForTestKey(geometryTypeId, testKey);
     return data ? (
       SimpleDerivedTestDataRenderer(testKey, data[1], data[0])
+    ) : (
+      <MissingData reason={`missing: ${testKey}`} />
+    );
+  }
+});
+
+const getStressStrandTestRenderer = (
+  testKey: (typeof SelectedPreStressStrandKeys)[number]
+): ColumnType<Partial<ComponentType>> => ({
+  title: testKey,
+  dataIndex: ComponentKeyType.GeometryTypeId,
+  render: (geometryTypeId) => {
+    const data = useTableStore.getState().derivedTestData[geometryTypeId][ComponentTest.PreStressStrand];
+    return data && data[testKey] ? (
+      <GenericUIRenderer item={data} label={testKey} />
     ) : (
       <MissingData reason={`missing: ${testKey}`} />
     );
@@ -289,11 +333,30 @@ const getDerivedComponentColumns = (
     title: '.Material Passport',
     dataIndex: ComponentKeyType.GeometryTypeId,
     render: () => <MissingData reason='Material Passport not yet implemented' />
+  },
+  [ComponentDerivedAttributes.LocationInRelationToBuilding]: {
+    title: '.Location in Relation to Building',
+    dataIndex: ComponentKeyType.Location,
+    render: (e, c) => {
+      const building = getEntry<BuildingType>(CollectionName.Buildings, c[ComponentKeyType.BuildingId]!);
+      if (!building) return <MissingData reason='Building not found' />;
+      const [x, y, z] = xyzToWebgl(getLocalCoordinates(building, e)).map((v) => v * 1e3) as [number, number, number];
+      return (
+        <span>
+          ({x.toFixed(2)}, {y.toFixed(2)}, {z.toFixed(2)})
+        </span>
+      );
+    }
   }
 });
 
 export const getColumnsForComponentKeys = (
-  keys: (ComponentDerivedAttributes | ComponentKeyType | MultiTestKeysType)[],
+  keys: (
+    | ComponentDerivedAttributes
+    | ComponentKeyType
+    | MultiTestKeysType
+    | (typeof SelectedPreStressStrandKeys)[number]
+  )[],
   canChange: boolean
 ) =>
   keys
@@ -304,6 +367,8 @@ export const getColumnsForComponentKeys = (
           ? getDerivedComponentColumns(canChange)[k as ComponentDerivedAttributes]
           : Object.values(MultiTestKeys).includes(k as MultiTestKeysType)
             ? getSimpleTestKeyRenderer(k as MultiTestKeysType)
-            : undefined
+            : Object.values(SelectedPreStressStrandKeys).includes(k as any)
+              ? getStressStrandTestRenderer(k as any)
+              : undefined
     )
     .filter((e) => e !== undefined) as ColumnType<ComponentType>[];

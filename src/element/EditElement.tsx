@@ -7,7 +7,7 @@ import { SlabKeyType } from '../enums/componentKeyType';
 import { InputRendererForData } from './InputRendererForData';
 
 export const EditElement: React.FC<{ element: Partial<SlabType> }> = ({ element }) => {
-  const activeGlobalUserCategory = useTableStore((s) => s.userCategory);
+  const activeGlobalUserCategory = useTableStore((s) => s.viewer);
   const [open, setOpen] = useState(false);
   const formRef = useRef<any>(null);
 

@@ -39,7 +39,7 @@ const SelectToZoom: React.FC<{ children: any }> = ({ children }) => {
 
 export const ThreeScene: React.FC = () => {
   const data = useCollectionStore((s) => s.collections);
-  const userCategory = useTableStore((s) => s.userCategory); // Get the user category
+  const userCategory = useTableStore((s) => s.viewer); // Get the user category
 
   const buildingId = useMemo(() => data[CollectionName.Components][0][ComponentKeyType.BuildingId], [data]); // ToDo fix logic to work with different buildings
   const componentMap = useMemo(() => getGeometryIdTypeComponentMap(data[CollectionName.Components]), [data]);

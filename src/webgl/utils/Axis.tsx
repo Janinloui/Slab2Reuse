@@ -10,7 +10,7 @@ const AXIS_ORIGIN_OFFSET_SCALE = 0.05;
 
 export const Axis: React.FC = () => {
   const elements = useTableStore((s) => s.elements);
-  const user = useTableStore((s) => s.userCategory);
+  const user = useTableStore((s) => s.viewer);
   const { scene } = useThree();
 
   const axesRef = useRef<AxesHelper>(null);

@@ -19,13 +19,6 @@ export const suffixMap: Partial<Record<SlabKeyType | DerivativeAttributeNames, s
   [SlabKeyType.Yaw]: '°'
 };
 
-export const levelRenderer = (level: number | undefined): string | undefined => {
-  if (level === undefined) return undefined;
-  if (level > 0) return `OG ${level}`;
-  if (level === 0) return `EG`;
-  return `UG ${Math.abs(level)}`;
-};
-
 export const RenderLocal: Record<SlabKeyType | DerivativeAttributeNames | 'edit', string | undefined> = {
   [SlabKeyType.Id]: 'Id',
   [SlabKeyType.PlanReference]: 'Plan Reference',

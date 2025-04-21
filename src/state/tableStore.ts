@@ -1,13 +1,21 @@
 import { create } from 'zustand';
-import { UserCategory } from '../enums/user';
-import { DefaultRenderValues, RenderLocal } from '../table/attributeDefinition';
-import { DerivedDataOfTestsForGeometryType } from '../types/dataOfTestsForGeometryType';
+import {
+  DerivedDataOfTestsForGeometryType,
+  MultiTestKeysType,
+  SelectedPreStressStrandKeys
+} from '../types/dataOfTestsForGeometryType';
+import { DefaultViewerColumnMap, NamedViews } from '../enums/viewer';
+import { ComponentDerivedAttributes } from '../enums/componentDerivedAttributes';
+import { ComponentKeyType } from '../enums/componentKeyType';
 
 type TableStore = {
-  userCategory: UserCategory;
-  setUserCategory: (c: UserCategory) => void;
-  userAttributeMap: Record<UserCategory, string[]>;
-  setUserAttributeMap: (userCategory: UserCategory, attributes: string[]) => void;
+  viewer: NamedViews;
+  setViewer: (v: NamedViews) => void;
+  viewerAttributeMap: Record<
+    NamedViews,
+    (ComponentDerivedAttributes | ComponentKeyType | MultiTestKeysType | (typeof SelectedPreStressStrandKeys)[number])[]
+  >;
+  setViewerAttributeMap: (viewer: NamedViews, attributes: string[]) => void;
   selectedElementIds: string[];
   setSelectedElementIds: (...ids: string[]) => void;
   clearSelection: () => void;
@@ -16,14 +24,14 @@ type TableStore = {
 };
 
 export const useTableStore = create<TableStore>((set, get) => ({
-  userCategory: UserCategory.Slab2Reuse,
-  setUserCategory: (userCategory: UserCategory) => set((s) => ({ userCategory })),
-  userAttributeMap: DefaultRenderValues,
-  setUserAttributeMap: (userCategory, attributes) =>
+  viewer: NamedViews.ArchiveReusePotential,
+  setViewer: (viewer) => set(() => ({ viewer })),
+  viewerAttributeMap: DefaultViewerColumnMap,
+  setViewerAttributeMap: (viewer, attributes) =>
     set((s) => ({
-      userAttributeMap: {
-        ...s.userAttributeMap,
-        [userCategory]: attributes.filter((s) => (RenderLocal as any)[s] !== undefined)
+      viewerAttributeMap: {
+        ...s.viewerAttributeMap,
+        [viewer]: attributes
       }
     })),
   selectedElementIds: [],

@@ -1,4 +1,4 @@
-import { SlabTable } from './table/SlabTable';
+import { ComponentTable } from './element/ComponentTable';
 import { ThreeScene } from './webgl/ThreeScene';
 
 export const Viewer: React.FC = () => {
@@ -7,7 +7,7 @@ export const Viewer: React.FC = () => {
       <div style={{ height: '50vh' }}>
         <ThreeScene key='scene' />
       </div>
-      <SlabTable key='slabTable' />
+      <ComponentTable />
     </>
   );
 };

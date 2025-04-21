@@ -3,7 +3,7 @@ import { UserCategory } from '../enums/user';
 import { useTableStore } from '../state/tableStore';
 
 export const UserSelect: React.FC = () => {
-  const activeGlobalUserCategory = useTableStore((s) => s.userCategory);
+  const activeGlobalUserCategory = useTableStore((s) => s.viewer);
 
   return (
     <Select value={activeGlobalUserCategory} onChange={(v) => useTableStore.getState().setUserCategory(v)}>

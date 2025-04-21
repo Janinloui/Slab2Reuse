@@ -6,7 +6,7 @@ import { AllDefinedRenders, RenderLocal } from '../table/attributeDefinition';
 import { IoSettingsSharp } from 'react-icons/io5';
 
 export const ActiveSettings: React.FC = () => {
-  const globalActiveUserCategory = useTableStore((s) => s.userCategory);
+  const globalActiveUserCategory = useTableStore((s) => s.viewer);
   const attributeMap = useTableStore((s) => s.userAttributeMap);
   const [userCategory, setUserCategory] = useState(globalActiveUserCategory);
   const [activeStrings, setActiveStrings] = useState(new Set(attributeMap[globalActiveUserCategory]));

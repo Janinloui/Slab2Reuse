@@ -7,5 +7,6 @@ export enum ComponentDerivedAttributes {
   Weight = 'componentWeight',
   Count = 'componentCount',
   Rebar = 'componentRebar',
-  MaterialPassport = 'materialPassport'
+  MaterialPassport = 'materialPassport',
+  LocationInRelationToBuilding = 'locationInRelationToBuilding'
 }
