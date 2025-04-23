@@ -1,15 +1,14 @@
 import { Canvas } from '@react-three/fiber';
 import { useTableStore } from '../state/tableStore';
 import { Bounds, OrbitControls, useBounds } from '@react-three/drei';
-import React, { Suspense, useEffect, useMemo } from 'react';
-// import { Axis } from './utils/Axis';
+import React, { Suspense, useMemo } from 'react';
 import { useCollectionStore } from '../state/collectionStore';
 import { CollectionName } from '../enums/collectionName';
 import { ComponentInstancesRenderer } from './renderers/ComponentInstancesRenderer';
 import { ComponentKeyType } from '../enums/componentKeyType';
-import { getEntry } from '../table/lib/componentDataMethod';
-import { BuildingType } from '../types/buildingType';
-import { getGeometryIdTypeComponentMap } from '../lib/getIdMapForTypes';
+import { NamedViews } from '../enums/viewer';
+import { getPreprocessedGeometryDatatForComponents } from './utils/getGeometry';
+import { Axis } from './utils/Axis';
 
 // This component wraps children in a group with a click handler
 // Clicking any object will refresh and fit bounds
@@ -41,8 +40,21 @@ export const ThreeScene: React.FC = () => {
   const data = useCollectionStore((s) => s.collections);
   const userCategory = useTableStore((s) => s.viewer); // Get the user category
 
-  const buildingId = useMemo(() => data[CollectionName.Components][0][ComponentKeyType.BuildingId], [data]); // ToDo fix logic to work with different buildings
-  const componentMap = useMemo(() => getGeometryIdTypeComponentMap(data[CollectionName.Components]), [data]);
+  const geometryDisplayMap = useMemo(() => {
+    const building = data[CollectionName.Buildings].find(
+      (b) => b.id === data[CollectionName.Components][0][ComponentKeyType.BuildingId]
+    );
+    if (!building) return {};
+    return getPreprocessedGeometryDatatForComponents(data[CollectionName.Components], building);
+  }, [data]);
+
+  const isAbstractPlanes = useMemo(
+    () =>
+      [NamedViews.ArchiveReusePotential, NamedViews.ArchiveProjectLevel, NamedViews.OnSiteTransport].includes(
+        userCategory
+      ),
+    [userCategory]
+  );
 
   return (
     <Canvas>
@@ -55,22 +67,20 @@ export const ThreeScene: React.FC = () => {
         <group name='slabGroup'>
           <Bounds fit clip observe margin={1.2}>
             <SelectToZoom>
-              {
-                Object.entries(componentMap).map(([geometryId, components]) => (
-                  <ComponentInstancesRenderer
-                    key={`slab-${geometryId}`}
-                    geometryTypeId={geometryId}
-                    components={components}
-                    building={getEntry<BuildingType>(CollectionName.Buildings, buildingId)}
-                  />
-                )) // Default slab rendering
-              }
+              {Object.entries(geometryDisplayMap).map(([geometryId, geometryDisplay]) => (
+                <ComponentInstancesRenderer
+                  key={`slab-${geometryId}`}
+                  geometryTypeId={geometryId}
+                  widthHeightLength={geometryDisplay.widthHeightLength}
+                  planes={isAbstractPlanes ? geometryDisplay.abstractStackPlanes : geometryDisplay.realityPlanes}
+                />
+              ))}
             </SelectToZoom>
           </Bounds>
         </group>
       </Suspense>
       <OrbitControls makeDefault />
-      {/* <Axis /> */}
+      <Axis />
     </Canvas>
   );
 };
