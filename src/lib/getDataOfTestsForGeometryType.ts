@@ -75,10 +75,7 @@ const getDataForPreStressStrandTest = (
  */
 const getMultiTestDataForSelectedKeys = (components: ComponentType[], testKey: ComponentTestKeyType) => {
   // find all components that have values for the given testKey
-  console.log(components);
   const relevantComponents = components.filter((c) => c[testKey]);
-
-  console.log(relevantComponents);
 
   if (!relevantComponents.length) return undefined;
   switch (testKey) {
