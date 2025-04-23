@@ -1,5 +1,8 @@
 version: '3.8'
-
+networks:
+  default:
+    name: slab2reuse_network
+    driver: bridge
 services:
   postgres:
     image: postgres:15
@@ -13,6 +16,8 @@ services:
       - "5430:5432"
     volumes: 
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - default
   backend:
     build:
       context: ./backend/
@@ -20,7 +25,7 @@ services:
     container_name: backend
     restart: always
     environment:
-      DATABASE_URL: postgres://username:password@database:5430/slab2reuse_database
+      DATABASE_URL: postgres://username:password@database:5432/slab2reuse_database
     ports:
       - "8000:8000"
     depends_on:
