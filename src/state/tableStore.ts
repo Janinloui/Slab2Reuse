@@ -7,13 +7,20 @@ import {
 import { DefaultViewerColumnMap, NamedViews } from '../enums/viewer';
 import { ComponentDerivedAttributes } from '../enums/componentDerivedAttributes';
 import { ComponentKeyType } from '../enums/componentKeyType';
+import { MaterialKeyType } from '../enums/materialKeyType';
 
 type TableStore = {
   viewer: NamedViews;
   setViewer: (v: NamedViews) => void;
   viewerAttributeMap: Record<
     NamedViews,
-    (ComponentDerivedAttributes | ComponentKeyType | MultiTestKeysType | (typeof SelectedPreStressStrandKeys)[number])[]
+    (
+      | ComponentDerivedAttributes
+      | ComponentKeyType
+      | MultiTestKeysType
+      | MaterialKeyType
+      | (typeof SelectedPreStressStrandKeys)[number]
+    )[]
   >;
   setViewerAttributeMap: (viewer: NamedViews, attributes: string[]) => void;
   selectedElementIds: string[];
