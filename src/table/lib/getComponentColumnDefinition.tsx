@@ -25,10 +25,11 @@ import { Button, Popover } from 'antd';
 import { ComponentTest } from '../../enums/componentTest';
 import { VisualConditionTag } from '../VisualConditionTag';
 import { VisualCondition } from '../../enums/visualCondition';
-import { LocationType } from '../../types/locationType';
 import { getLocalCoordinates } from '../../lib/locationMapping';
 import { xyzToWebgl } from '../../webgl/utils/coordinateSystem';
 import { BuildingType } from '../../types/buildingType';
+import { MaterialKeyType } from '../../enums/materialKeyType';
+import { MaterialType } from '../../types/materialType';
 
 const WEIGHT_MULTIPLIER = 2.6;
 
@@ -286,6 +287,30 @@ const getStressStrandTestRenderer = (
   }
 });
 
+const getMaterialAttributes = (materialKey: MaterialKeyType): ColumnType<Partial<ComponentType>> => ({
+  title: materialKey,
+  dataIndex: ComponentKeyType.GeometryTypeId,
+  render: (geometryTypeId) => {
+    const geometry = getEntry<GeometryType>(CollectionName.Geometries, geometryTypeId);
+    if (!geometry) return <MissingData reason='geometry not found' />;
+    const crossSection = getEntry<CrossSectionType>(
+      CollectionName.CrossSections,
+      geometry[GeometryKeyType.CrossSectionId]
+    );
+    if (!crossSection) return <MissingData reason='crossSection not found' />;
+    const material = getEntry<MaterialType>(
+      CollectionName.Materials,
+      crossSection[CrossSectionKeyType.ConcreteMaterialTypeId]
+    );
+    if (!material) return <MissingData reason='material not found' />;
+    return (material as any)[materialKey] ? (
+      (material as any)[materialKey]
+    ) : (
+      <MissingData reason={`missing: ${materialKey}`} />
+    );
+  }
+});
+
 const getDerivedComponentColumns = (
   canChange: boolean
 ): Record<ComponentDerivedAttributes, ColumnType<Partial<ComponentType>>> => ({
@@ -355,6 +380,7 @@ export const getColumnsForComponentKeys = (
     | ComponentDerivedAttributes
     | ComponentKeyType
     | MultiTestKeysType
+    | MaterialKeyType
     | (typeof SelectedPreStressStrandKeys)[number]
   )[],
   canChange: boolean
@@ -367,8 +393,10 @@ export const getColumnsForComponentKeys = (
           ? getDerivedComponentColumns(canChange)[k as ComponentDerivedAttributes]
           : Object.values(MultiTestKeys).includes(k as MultiTestKeysType)
             ? getSimpleTestKeyRenderer(k as MultiTestKeysType)
-            : Object.values(SelectedPreStressStrandKeys).includes(k as any)
-              ? getStressStrandTestRenderer(k as any)
-              : undefined
+            : Object.values(MaterialKeyType).includes(k as MaterialKeyType)
+              ? getMaterialAttributes(k as MaterialKeyType)
+              : Object.values(SelectedPreStressStrandKeys).includes(k as any)
+                ? getStressStrandTestRenderer(k as any)
+                : undefined
     )
     .filter((e) => e !== undefined) as ColumnType<ComponentType>[];

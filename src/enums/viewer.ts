@@ -5,6 +5,7 @@ import { ComponentKeyType } from './componentKeyType';
 import { CoreTestKeyType } from './coreTestKeyType';
 import { DestructiveTestKeyType } from './destructiveTestKeyType';
 import { GPRTestKeyType } from './gprTestKeyType';
+import { MaterialKeyType } from './materialKeyType';
 import { PreStressStrandKeyType } from './preStressStrandKeyType';
 import { ReboundTestKeyType } from './reboundTestKeyType';
 
@@ -28,7 +29,13 @@ export enum NamedViews {
 
 export const DefaultViewerColumnMap: Record<
   NamedViews,
-  (ComponentDerivedAttributes | ComponentKeyType | MultiTestKeysType | (typeof SelectedPreStressStrandKeys)[number])[]
+  (
+    | ComponentDerivedAttributes
+    | ComponentKeyType
+    | MultiTestKeysType
+    | MaterialKeyType
+    | (typeof SelectedPreStressStrandKeys)[number]
+  )[]
 > = {
   [NamedViews.ArchiveProjectLevel]: [],
   [NamedViews.ArchiveElementLevelGeometry]: [
@@ -48,7 +55,12 @@ export const DefaultViewerColumnMap: Record<
     ComponentKeyType.Id,
     ComponentKeyType.PlanReference,
     ComponentKeyType.Floor,
-    PreStressStrandKeyType.PreStressSteelClass
+    PreStressStrandKeyType.PreStressSteelClass,
+    MaterialKeyType.CompressiveStrength,
+    MaterialKeyType.TensileStrength,
+    MaterialKeyType.ElasticModulus,
+    MaterialKeyType.Density,
+    MaterialKeyType.ExposureClass
   ],
   [NamedViews.ArchiveElementCapacity]: [
     ComponentDerivedAttributes.ComponentType,
