@@ -1,7 +1,6 @@
 import { VisualCondition } from '../enums/visualCondition';
-import { SlabType } from '../types/componentType';
 
-export const exampleData: Partial<SlabType>[] = [
+export const exampleData = [
   {
     id: '0',
     planReference: 'U-Y/1-8',
