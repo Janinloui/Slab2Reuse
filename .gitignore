@@ -131,3 +131,10 @@ dist
 build
 .DS_Store
 **/.DS_Store
+
+# Ignore local database
+database/data
+
+# Ignore build files
+.idea
+backend/.idea
