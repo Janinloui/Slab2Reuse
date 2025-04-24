@@ -1,4 +1,4 @@
-import { MultiTestKeysType, SelectedPreStressStrandKeys } from '../types/dataOfTestsForGeometryType';
+import { MultiTestKeys, MultiTestKeysType, SelectedPreStressStrandKeys } from '../types/dataOfTestsForGeometryType';
 import { ChemicalTestKeyType } from './chemicalTestKeyType';
 import { ComponentDerivedAttributes } from './componentDerivedAttributes';
 import { ComponentKeyType } from './componentKeyType';
@@ -26,6 +26,14 @@ export enum NamedViews {
   LabCoreTesting = 'lab-core-testing',
   LabFullScaleTest = 'lab-full-scale-test'
 }
+
+export const AllKeysWithColumnDefined = [
+  ...Object.values(ComponentDerivedAttributes),
+  ...Object.values(ComponentKeyType),
+  ...MultiTestKeys,
+  ...Object.values(MaterialKeyType),
+  ...SelectedPreStressStrandKeys
+];
 
 export const DefaultViewerColumnMap: Record<
   NamedViews,

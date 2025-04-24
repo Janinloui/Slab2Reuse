@@ -1,4 +1,3 @@
-import DownloadCSV from '../table/io/DownloadCsv';
 import { ActiveSettings } from './ActiveSettingsUI';
 import { UserSelect } from './UserSelect';
 
@@ -14,11 +13,10 @@ export const SettingsAndFilterPanel: React.FC = () => (
       zIndex: 10,
       backgroundColor: 'white',
       flexDirection: 'row',
-      gap: 12,
+      gap: 12
     }}
   >
     <ActiveSettings />
     <UserSelect />
-    <DownloadCSV />
   </div>
 );

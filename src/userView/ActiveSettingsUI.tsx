@@ -1,10 +1,8 @@
 import { Button, Checkbox, Drawer, Radio } from 'antd';
-import { UserCategory } from '../enums/user';
 import { useTableStore } from '../state/tableStore';
 import { useEffect, useState } from 'react';
-import { AllDefinedRenders, RenderLocal } from '../table/attributeDefinition';
 import { IoSettingsSharp } from 'react-icons/io5';
-import { NamedViews } from '../enums/viewer';
+import { AllKeysWithColumnDefined, NamedViews } from '../enums/viewer';
 
 export const ActiveSettings: React.FC = () => {
   const globalActiveUserCategory = useTableStore((s) => s.viewer);
@@ -21,7 +19,7 @@ export const ActiveSettings: React.FC = () => {
     activeStrings.has(attribute) ? activeStrings.delete(attribute) : activeStrings.add(attribute);
     useTableStore.getState().setViewerAttributeMap(
       viewer,
-      AllDefinedRenders.filter((s) => activeStrings.has(s as any))
+      AllKeysWithColumnDefined.filter((s) => activeStrings.has(s as any))
     );
     setActiveStrings(activeStrings);
   };
@@ -42,13 +40,13 @@ export const ActiveSettings: React.FC = () => {
           options={Object.values(NamedViews).map((value) => ({ label: value, value }))}
         />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {AllDefinedRenders.map((s) => (
+          {AllKeysWithColumnDefined.map((s) => (
             <span
               key={s}
               style={{ paddingTop: 12, display: 'flex', flexDirection: 'row', gap: 6, alignItems: 'center' }}
             >
               <Checkbox onChange={() => onChange(s)} checked={activeStrings.has(s as any)} />
-              {RenderLocal[s]}
+              {s}
             </span>
           ))}
         </div>

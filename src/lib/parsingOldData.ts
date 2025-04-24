@@ -18,8 +18,13 @@ import { CrossSectionCategory } from '../enums/crossSectionCategory';
 import { RebarKeyType } from '../enums/rebarKeyType';
 import { RebarCategory } from '../enums/rebarCategory';
 import { ReboundTestKeyType } from '../enums/reboundTestKeyType';
+import { PreStressStrandKeyType } from '../enums/preStressStrandKeyType';
+import { LocationKeyType } from '../enums/locationKeyType';
 
-export enum SlabKeyType {
+/**
+ * Old SlabType data
+ */
+enum SlabKeyType {
   Id = 'id',
   PlanReference = 'planReference',
   Location_x = 'location_x',
@@ -41,7 +46,10 @@ export enum SlabKeyType {
   VisualInspectionImages = 'visualInspectionImages'
 }
 
-export type SlabType = {
+/**
+ * Old SlabType data
+ */
+type SlabType = {
   [SlabKeyType.Id]: string;
   [SlabKeyType.PlanReference]: string;
   [SlabKeyType.Location_x]: number;
@@ -61,31 +69,6 @@ export type SlabType = {
   [SlabKeyType.ReboundTestData]: number[][];
   [SlabKeyType.Yaw]: number;
   [SlabKeyType.VisualInspectionImages]: [string, string][];
-};
-
-/**
- * Map that describes what the type values of each of the SlabKeys are
- */
-export const SlabTypeValueMap: Record<SlabKeyType, ValueType> = {
-  [SlabKeyType.Id]: 'string',
-  [SlabKeyType.PlanReference]: 'string',
-  [SlabKeyType.Location_x]: 'number',
-  [SlabKeyType.Location_y]: 'number',
-  [SlabKeyType.Floor]: 'number',
-  [SlabKeyType.Strength]: 'string',
-  [SlabKeyType.Dimensions_l]: 'number',
-  [SlabKeyType.Dimensions_w]: 'number',
-  [SlabKeyType.Dimensions_h]: 'number',
-  [SlabKeyType.Liveload]: 'number',
-  [SlabKeyType.TypeOfElement]: 'string',
-  [SlabKeyType.RebarDiameterTop]: 'number',
-  [SlabKeyType.RebarAmountTop]: 'number',
-  [SlabKeyType.RebarDiameterBottom]: 'number',
-  [SlabKeyType.RebarAmountBottom]: 'number',
-  [SlabKeyType.Condition]: 'VisualCondition',
-  [SlabKeyType.ReboundTestData]: 'numberArrayArray',
-  [SlabKeyType.Yaw]: 'number',
-  [SlabKeyType.VisualInspectionImages]: 'stringPairArray'
 };
 
 export const getMappedData = (oldData: SlabType[]): DatabaseType => {
@@ -157,17 +140,17 @@ export const getMappedData = (oldData: SlabType[]): DatabaseType => {
           [CrossSectionKeyType.RebarTypeId]: rebarMap[rebarTypeString][RebarKeyType.Id],
           [CrossSectionKeyType.ConcreteMaterialTypeId]: '',
           [CrossSectionKeyType.PreStressStrandType]: {
-            preStressStrandForce: 0,
-            preStressStrandSteelClass: '',
-            preStressStrandSteelDiameter: 0,
-            preStressStrandAmount: 0,
-            preStressStrandDate: '',
-            preStressStrandLocation: {
-              locationLongitude: 0,
-              locationLatitude: 0,
-              locationHeight: 0
+            [PreStressStrandKeyType.PreStressForce]: 0,
+            [PreStressStrandKeyType.PreStressSteelClass]: '',
+            [PreStressStrandKeyType.PreStressSteelDiameter]: 0,
+            [PreStressStrandKeyType.PreStressAmount]: 0,
+            [PreStressStrandKeyType.Date]: '',
+            [PreStressStrandKeyType.Location]: {
+              [LocationKeyType.Longitude]: 0,
+              [LocationKeyType.Latitude]: 0,
+              [LocationKeyType.Height]: 0
             },
-            preStressManufacturerId: ''
+            [PreStressStrandKeyType.ManufacturerId]: ''
           }
         };
 

@@ -1,10 +1,15 @@
 import { Button, Carousel, Input, Modal } from 'antd';
-import { SlabType } from '../types/componentType';
 import { FaImages } from 'react-icons/fa6';
 import { useEffect, useState } from 'react';
 import './caroussel-style.css';
 import { BiPlus, BiTrash } from 'react-icons/bi';
-import { useTableStore } from '../state/tableStore';
+import { useCollectionStore } from '../state/collectionStore';
+import { ComponentType } from '../types/componentType';
+import { ComponentKeyType } from '../enums/componentKeyType';
+import { VisualInspectionType } from '../types/visualInspectionType';
+import { CollectionName } from '../enums/collectionName';
+import { VisualInspectionKeyType } from '../enums/visualInspectionKeyType';
+import { LocationKeyType } from '../enums/locationKeyType';
 
 const contentStyle: React.CSSProperties = {
   position: 'absolute',
@@ -12,38 +17,39 @@ const contentStyle: React.CSSProperties = {
   width: '65svw',
   top: 0,
   color: '#000',
-  textAlign: 'center',
+  textAlign: 'center'
 };
 
 const imageSyle: React.CSSProperties = {
   maxHeight: '60svh',
   maxWidth: '60svw',
-  margin: 'auto',
+  margin: 'auto'
 };
 
 const modalStyle: React.CSSProperties = {
   minHeight: '70svh',
-  minWidth: '70svw',
+  minWidth: '70svw'
 };
 
 const carouselStyle: React.CSSProperties = {
   minHeight: '60svh',
-  minWidth: '100%',
+  minWidth: '100%'
 };
 
-const VisualInspectionEntry: React.FC<{ data: [string, string]; updateData: (updatedDate: [string, string]) => void; deleteData: () => void }> = ({
-  data,
-  updateData,
-  deleteData,
-}) => {
-  const [url, setUrl] = useState(data[0]);
-  const [comment, setComment] = useState(data[1]);
+const VisualInspectionEntry: React.FC<{
+  data: VisualInspectionType;
+  updateData: (updatedDate: VisualInspectionType) => void;
+  deleteData: () => void;
+}> = ({ data, updateData, deleteData }) => {
+  const [url, setUrl] = useState(data[VisualInspectionKeyType.Img]);
+  const [comment, setComment] = useState(data[VisualInspectionKeyType.DamageType]);
 
-  const registerChanges = () => updateData([url, comment]);
+  const registerChanges = () =>
+    updateData({ ...data, [VisualInspectionKeyType.Img]: url, [VisualInspectionKeyType.DamageType]: comment });
 
   useEffect(() => {
-    setUrl(data[0]);
-    setComment(data[1]);
+    setUrl(data[VisualInspectionKeyType.Img]);
+    setComment(data[VisualInspectionKeyType.DamageType]);
   }, [data]);
 
   return (
@@ -67,25 +73,48 @@ const VisualInspectionEntry: React.FC<{ data: [string, string]; updateData: (upd
   );
 };
 
-export const VisualInspectionImages: React.FC<{ element: Partial<SlabType> }> = ({ element }) => {
+export const VisualInspectionImages: React.FC<{ component: Partial<ComponentType> }> = ({ component }) => {
   const [open, setOpen] = useState(false);
 
-  const updateData = (index: number, updatedData: [string, string]) => {
-    const visualInspectionDataCopy = element.visualInspectionImages ? [...element.visualInspectionImages] : [];
+  const updateData = (index: number, updatedData: VisualInspectionType) => {
+    const visualInspectionDataCopy = component[ComponentKeyType.VisualInspection]
+      ? [...component[ComponentKeyType.VisualInspection]]
+      : [];
     visualInspectionDataCopy[index] = updatedData;
 
-    useTableStore.getState().updateElement(element.id!, { ...element, visualInspectionImages: visualInspectionDataCopy });
+    useCollectionStore.getState().updateEntry(CollectionName.Components, {
+      ...(component as ComponentType),
+      [ComponentKeyType.VisualInspection]: visualInspectionDataCopy
+    });
   };
 
   const deleteData = (index: number) => {
-    const vIDC = element.visualInspectionImages ? [...element.visualInspectionImages] : [];
-    useTableStore.getState().updateElement(element.id!, { ...element, visualInspectionImages: [...vIDC.slice(0, index), ...vIDC.slice(index + 1)] });
+    const vIDC = component[ComponentKeyType.VisualInspection] ? [...component[ComponentKeyType.VisualInspection]] : [];
+    useCollectionStore.getState().updateEntry(CollectionName.Components, {
+      ...(component as ComponentType),
+      [ComponentKeyType.VisualInspection]: [...vIDC.slice(0, index), ...vIDC.slice(index + 1)]
+    });
   };
 
   const addData = () => {
-    const visualInspectionDataCopy = element.visualInspectionImages ? [...element.visualInspectionImages] : [];
-    visualInspectionDataCopy.push(['', '']);
-    useTableStore.getState().updateElement(element.id!, { ...element, visualInspectionImages: visualInspectionDataCopy });
+    const visualInspectionDataCopy = component[ComponentKeyType.VisualInspection]
+      ? [...component[ComponentKeyType.VisualInspection]]
+      : [];
+    visualInspectionDataCopy.push({
+      [VisualInspectionKeyType.Img]: '',
+      [VisualInspectionKeyType.DamageType]: '',
+      [VisualInspectionKeyType.Date]: '',
+      [VisualInspectionKeyType.UserId]: '',
+      [VisualInspectionKeyType.Location]: {
+        [LocationKeyType.Height]: 0,
+        [LocationKeyType.Longitude]: 0,
+        [LocationKeyType.Latitude]: 0
+      }
+    });
+    useCollectionStore.getState().updateEntry(CollectionName.Components, {
+      ...(component as ComponentType),
+      [ComponentKeyType.VisualInspection]: visualInspectionDataCopy
+    });
   };
 
   return (
@@ -101,21 +130,30 @@ export const VisualInspectionImages: React.FC<{ element: Partial<SlabType> }> = 
         <Carousel style={carouselStyle} arrows infinite={false}>
           <div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              {element.visualInspectionImages &&
-                element.visualInspectionImages.map((data, i) => (
-                  <VisualInspectionEntry data={data} updateData={(d) => updateData(i, d)} deleteData={() => deleteData(i)} />
+              {component[ComponentKeyType.VisualInspection] &&
+                component[ComponentKeyType.VisualInspection].map((data, i) => (
+                  <VisualInspectionEntry
+                    data={data}
+                    updateData={(d) => updateData(i, d)}
+                    deleteData={() => deleteData(i)}
+                  />
                 ))}
-              <Button onClick={addData} style={{ display: 'flex', flexDirection: 'row', gap: 8, alignItems: 'center', width: 150 }}>
+              <Button
+                onClick={addData}
+                style={{ display: 'flex', flexDirection: 'row', gap: 8, alignItems: 'center', width: 150 }}
+              >
                 <BiPlus size={20} /> add image
               </Button>
             </div>
           </div>
-          {element.visualInspectionImages
-            ? element.visualInspectionImages.map(([url, comment]) => {
+          {component[ComponentKeyType.VisualInspection]
+            ? component[ComponentKeyType.VisualInspection].map((data) => {
                 return (
                   <div style={{ position: 'relative' }}>
-                    {url !== '' ? <img style={imageSyle} src={url}></img> : null}
-                    <span style={contentStyle}>{comment}</span>
+                    {data[VisualInspectionKeyType.Img] !== '' ? (
+                      <img style={imageSyle} src={data[VisualInspectionKeyType.Img]}></img>
+                    ) : null}
+                    <span style={contentStyle}>{data[VisualInspectionKeyType.DamageType]}</span>
                   </div>
                 );
               })
