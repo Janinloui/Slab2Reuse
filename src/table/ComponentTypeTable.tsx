@@ -17,7 +17,7 @@ export const ComponentTypeTable: React.FC<{
   const viewerAttributeMap = useTableStore((s) => s.viewerAttributeMap);
 
   // loading in the example data
-  useEffect(() => useCollectionStore.getState()._setCollections(getMappedData(exampleData)), []);
+  useEffect(() => useCollectionStore.getState()._setCollections(getMappedData(exampleData as any)), []);
 
   return (
     <div>

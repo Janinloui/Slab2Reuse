@@ -5,12 +5,9 @@ import { Slab2ReuseRoutes } from './enums/routes';
 import { BoilerPlateData } from './element/BoilerPlateData';
 import { GenericTableEntry } from './table/GenericTypeTable';
 import { ComponentTypeTable } from './table/ComponentTypeTable';
-import { ComponentDerivedAttributes } from './enums/componentDerivedAttributes';
-import { ComponentKeyType } from './enums/componentKeyType';
 import { ThreeScene } from './webgl/ThreeScene';
 import { MaterialPassport } from './pages/MaterialPassport';
 import { Landing } from './Landing';
-import { MultiTestKeys, SelectedPreStressStrandKeys } from './types/dataOfTestsForGeometryType';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
