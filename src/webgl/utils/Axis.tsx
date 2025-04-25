@@ -3,21 +3,23 @@ import { AxesHelper, BoxHelper } from 'three';
 import { useTableStore } from '../../state/tableStore';
 import { Text } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
+import { useCollectionStore } from '../../state/collectionStore';
+import { CollectionName } from '../../enums/collectionName';
 
 // proportional to longest extent
 const AXIS_LENGTH_SCALE = 0.1;
 const AXIS_ORIGIN_OFFSET_SCALE = 0.05;
 
 export const Axis: React.FC = () => {
-  const elements = useTableStore((s) => s.elements);
-  const user = useTableStore((s) => s.userCategory);
+  const data = useCollectionStore((s) => s.collections);
+  const user = useTableStore((s) => s.viewer);
   const { scene } = useThree();
 
   const axesRef = useRef<AxesHelper>(null);
   const [axesSize, setAxesSize] = useState(500);
   const [axesPosition, setAxesPosition] = useState<[number, number, number]>([0, 0, 0]);
   useEffect(() => {
-    if (elements.length > 0) {
+    if (data[CollectionName.Components].length > 0) {
       const boundingBoxHelper = new BoxHelper(scene.getObjectByName('slabGroup')!); // using building three helper method
 
       const minX = boundingBoxHelper.geometry.attributes.position.getX(2);
@@ -35,9 +37,13 @@ export const Axis: React.FC = () => {
       setAxesSize(maxExtent * AXIS_LENGTH_SCALE); // Scale factor for better visibility
 
       // Offset the axes slightly outside the bounding box
-      setAxesPosition([minX - maxExtent * AXIS_ORIGIN_OFFSET_SCALE, minY - maxExtent * AXIS_ORIGIN_OFFSET_SCALE, maxZ - maxExtent * AXIS_ORIGIN_OFFSET_SCALE]); // Offset in X and Z in three.js coordinates
+      setAxesPosition([
+        minX - maxExtent * AXIS_ORIGIN_OFFSET_SCALE,
+        minY - maxExtent * AXIS_ORIGIN_OFFSET_SCALE,
+        maxZ - maxExtent * AXIS_ORIGIN_OFFSET_SCALE
+      ]); // Offset in X and Z in three.js coordinates
     }
-  }, [elements, user]);
+  }, [data, user]);
 
   return (
     <group position={axesPosition}>

@@ -1,4 +1,4 @@
 export enum ComponentCategory {
-    Slab = 'Slab',
-    Column = 'Column'
-  }
+  Slab = 'Slab',
+  Column = 'Column'
+}

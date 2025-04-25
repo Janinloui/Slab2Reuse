@@ -1,47 +1,54 @@
 import { create } from 'zustand';
-import { SlabType } from '../types/componentType';
-import { UserCategory } from '../enums/user';
-import { DefaultRenderValues, RenderLocal } from '../table/attributeDefinition';
-import { SlabKeyType } from '../enums/componentKeyType';
+import {
+  DerivedDataOfTestsForGeometryType,
+  MultiTestKeysType,
+  SelectedPreStressStrandKeys
+} from '../types/dataOfTestsForGeometryType';
+import { DefaultViewerColumnMap, NamedViews } from '../enums/viewer';
+import { ComponentDerivedAttributes } from '../enums/componentDerivedAttributes';
+import { ComponentKeyType } from '../enums/componentKeyType';
+import { MaterialKeyType } from '../enums/materialKeyType';
 
 type TableStore = {
-  elements: Partial<SlabType>[];
-  updateElement: (id: string, element: Partial<SlabType>) => void;
-  userCategory: UserCategory;
-  setUserCategory: (c: UserCategory) => void;
-  userAttributeMap: Record<UserCategory, string[]>;
-  setUserAttributeMap: (userCategory: UserCategory, attributes: string[]) => void;
-  addElement: (element: Partial<SlabType>) => void;
+  viewer: NamedViews;
+  setViewer: (v: NamedViews) => void;
+  viewerAttributeMap: Record<
+    NamedViews,
+    (
+      | ComponentDerivedAttributes
+      | ComponentKeyType
+      | MultiTestKeysType
+      | MaterialKeyType
+      | (typeof SelectedPreStressStrandKeys)[number]
+    )[]
+  >;
+  setViewerAttributeMap: (viewer: NamedViews, attributes: string[]) => void;
   selectedElementIds: string[];
   setSelectedElementIds: (...ids: string[]) => void;
   clearSelection: () => void;
+  derivedTestData: Record<string, Partial<DerivedDataOfTestsForGeometryType>>;
+  setDerivedTestData: (data: Record<string, Partial<DerivedDataOfTestsForGeometryType>>) => void;
 };
 
 export const useTableStore = create<TableStore>((set, get) => ({
-  elements: [],
-  updateElement: (id: string, element: Partial<SlabType>) =>
-    set((s) => {
-      const index = s.elements.findIndex((e) => e.id === id);
-      if (index !== -1) {
-        const updatedElements = [...s.elements]; // Create a new array reference
-        updatedElements[index] = { ...s.elements[index], ...element }; // Update the specific element
-        console.log('Updated Elements:', updatedElements); // Debugging log
-        return { elements: updatedElements }; // Return the new array
+  viewer: NamedViews.ArchiveReusePotential,
+  setViewer: (viewer) => set(() => ({ viewer })),
+  viewerAttributeMap: DefaultViewerColumnMap,
+  setViewerAttributeMap: (viewer, attributes) =>
+    set((s) => ({
+      viewerAttributeMap: {
+        ...s.viewerAttributeMap,
+        [viewer]: attributes
       }
-      return { elements: s.elements }; // No changes if the element is not found
-    }),
-  userCategory: UserCategory.Slab2Reuse,
-  setUserCategory: (userCategory: UserCategory) => set((s) => ({ userCategory })),
-  userAttributeMap: DefaultRenderValues,
-  setUserAttributeMap: (userCategory, attributes) =>
-    set((s) => ({ userAttributeMap: { ...s.userAttributeMap, [userCategory]: attributes.filter((s) => RenderLocal[s as SlabKeyType] !== undefined) } })),
-  addElement: (element) => {
-    if (!element[SlabKeyType.Id]) element[SlabKeyType.Id] = new Date().getMilliseconds().toString();
-    set((s) => ({ elements: [...s.elements, element] }));
-  },
+    })),
   selectedElementIds: [],
   setSelectedElementIds: (...ids) => set(() => ({ selectedElementIds: ids })),
   clearSelection: () => set(() => ({ selectedElementIds: [] })),
+  derivedTestData: {},
+  setDerivedTestData: (derivedTestData) =>
+    set((s) => ({
+      derivedTestData
+    }))
 }));
 
 //handles the process of adding, updating and deleting elements in the table

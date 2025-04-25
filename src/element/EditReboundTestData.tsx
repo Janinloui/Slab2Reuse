@@ -1,17 +1,21 @@
 import { Button, InputNumber, Popover } from 'antd';
-import { SlabType } from '../types/componentType';
-import { getType } from '../table/attributeDefinition';
-import { useTableStore } from '../state/tableStore';
 import { useEffect, useState } from 'react';
 import { LuListPlus } from 'react-icons/lu';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import { FaHammer } from 'react-icons/fa6';
-import { BiCross, BiTrash } from 'react-icons/bi';
-import { UploadReboundTestCSV } from '../table/io/UploadReboundTest.Csv';
-import DownloadReboundTestCSV from '../table/io/DownloadReboundTestCsv';
+import { BiTrash } from 'react-icons/bi';
 import { CgClose } from 'react-icons/cg';
+import { ComponentType } from '../types/componentType';
+import { ComponentKeyType } from '../enums/componentKeyType';
+import { useCollectionStore } from '../state/collectionStore';
+import { CollectionName } from '../enums/collectionName';
+import { ReboundTestKeyType } from '../enums/reboundTestKeyType';
+import { LocationKeyType } from '../enums/locationKeyType';
 
-const EditReboundArray: React.FC<{ values: number[]; update: (newNumbers: number[]) => void }> = ({ values, update }) => {
+const EditReboundArray: React.FC<{ values: number[]; update: (newNumbers: number[]) => void }> = ({
+  values,
+  update
+}) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'row', gap: 4, alignItems: 'center' }}>
       {values.map((v, i) => (
@@ -31,22 +35,37 @@ const EditReboundArray: React.FC<{ values: number[]; update: (newNumbers: number
   );
 };
 
-export const EditReboundTestData: React.FC<{ element: Partial<SlabType> }> = ({ element }) => {
+export const EditReboundTestData: React.FC<{ component: Partial<ComponentType> }> = ({ component }) => {
   const [open, setOpen] = useState(false);
 
   const updateReboundElementArrayIndex = (index: number, newNumbers: number[]) => {
-    const copiedArray = element.reboundTestData ? [...element.reboundTestData] : [];
-    copiedArray[index] = newNumbers;
-    useTableStore.getState().updateElement(element.id!, { ...element, reboundTestData: copiedArray } as SlabType);
+    const copiedArray = component[ComponentKeyType.ReboundTest] ? [...component[ComponentKeyType.ReboundTest]] : [];
+    copiedArray[index][ReboundTestKeyType.ReboundValue] = newNumbers;
+    useCollectionStore
+      .getState()
+      .updateEntry(CollectionName.Components, {
+        ...(component as ComponentType),
+        [ComponentKeyType.ReboundTest]: copiedArray
+      });
   };
 
   const deleteLastIndex = () => {
-    if (!element.reboundTestData || element.reboundTestData.length === 1)
-      useTableStore.getState().updateElement(element.id!, { ...element, reboundTestData: [] } as SlabType);
+    if (!component[ComponentKeyType.ReboundTest] || component[ComponentKeyType.ReboundTest].length === 1)
+      useCollectionStore
+        .getState()
+        .updateEntry(CollectionName.Components, {
+          ...(component as ComponentType),
+          [ComponentKeyType.ReboundTest]: []
+        });
     else {
-      const copiedArray = [...element.reboundTestData];
+      const copiedArray = [...component[ComponentKeyType.ReboundTest]];
       copiedArray.pop();
-      useTableStore.getState().updateElement(element.id!, { ...element, reboundTestData: copiedArray } as SlabType);
+      useCollectionStore
+        .getState()
+        .updateEntry(CollectionName.Components, {
+          ...(component as ComponentType),
+          [ComponentKeyType.ReboundTest]: copiedArray
+        });
     }
   };
 
@@ -56,26 +75,48 @@ export const EditReboundTestData: React.FC<{ element: Partial<SlabType> }> = ({ 
   }, []);
 
   const addArray = () => {
-    const copiedArray = element.reboundTestData ? [...element.reboundTestData] : [];
-    copiedArray.push([0]);
-    useTableStore.getState().updateElement(element.id!, { ...element, reboundTestData: copiedArray } as SlabType);
+    const copiedArray = component[ComponentKeyType.ReboundTest] ? [...component[ComponentKeyType.ReboundTest]] : [];
+    copiedArray.push({
+      [ReboundTestKeyType.ReboundValue]: [],
+      [ReboundTestKeyType.ReboundDate]: '',
+      [ReboundTestKeyType.UserId]: '',
+      [ReboundTestKeyType.Location]: {
+        [LocationKeyType.Height]: 0,
+        [LocationKeyType.Longitude]: 0,
+        [LocationKeyType.Latitude]: 0
+      }
+    });
+    useCollectionStore
+      .getState()
+      .updateEntry(CollectionName.Components, {
+        ...(component as ComponentType),
+        [ComponentKeyType.ReboundTest]: copiedArray
+      });
   };
 
   return (
     <Popover
       open={open}
-      title={`Editing Rebound Test Data for: ${getType(element) ?? element.id}`}
+      title={`Editing Rebound Test Data for: ${component[ComponentKeyType.GeometryTypeId]}`}
       content={
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          {element.reboundTestData &&
-            element.reboundTestData.map((vs, i, array) =>
+          {component[ComponentKeyType.ReboundTest] &&
+            component[ComponentKeyType.ReboundTest].map((reboundTest, i, array) =>
               array.length - 1 === i ? (
                 <span style={{ display: 'flex', flexDirection: 'row', gap: 8, alignItems: 'center' }}>
-                  <EditReboundArray key={i} values={vs} update={(newNumbers: number[]) => updateReboundElementArrayIndex(i, newNumbers)} />
+                  <EditReboundArray
+                    key={i}
+                    values={reboundTest[ReboundTestKeyType.ReboundValue]}
+                    update={(newNumbers: number[]) => updateReboundElementArrayIndex(i, newNumbers)}
+                  />
                   <BiTrash size={20} onClick={deleteLastIndex} />
                 </span>
               ) : (
-                <EditReboundArray key={i} values={vs} update={(newNumbers: number[]) => updateReboundElementArrayIndex(i, newNumbers)} />
+                <EditReboundArray
+                  key={i}
+                  values={reboundTest[ReboundTestKeyType.ReboundValue]}
+                  update={(newNumbers: number[]) => updateReboundElementArrayIndex(i, newNumbers)}
+                />
               )
             )}
           <LuListPlus size={20} onClick={addArray} />
@@ -83,8 +124,6 @@ export const EditReboundTestData: React.FC<{ element: Partial<SlabType> }> = ({ 
             <Button onClick={() => setOpen(false)}>
               <CgClose size={20} /> close
             </Button>
-            <DownloadReboundTestCSV element={element as SlabType} />
-            <UploadReboundTestCSV element={element as SlabType} setElement={(e) => useTableStore.getState().updateElement(element.id!, e)} />
           </span>
         </div>
       }

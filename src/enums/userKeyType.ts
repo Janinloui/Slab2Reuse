@@ -1,8 +1,8 @@
 export enum UserKeyType {
-  Id = 'userId',
+  Id = 'id',
   Name = 'userName',
   Address = 'userAddress',
   Company = 'userCompany',
   Mail = 'userMail',
-  UserCategory = 'userCategory',
+  UserCategory = 'userCategory'
 }
