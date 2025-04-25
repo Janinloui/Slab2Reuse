@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
-import './MaterialPassport.css';
+
 import { useCollectionStore } from '../state/collectionStore';
 import { CollectionName } from '../enums/collectionName';
 import { getEntry } from '../table/lib/componentDataMethod';
