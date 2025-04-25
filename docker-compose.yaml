@@ -1,17 +1,14 @@
-version: '3.8'
 networks:
   default:
     name: slab2reuse_network
     driver: bridge
 services:
   postgres:
-    image: postgres:15
+    build:
+      context: ./database/
+      dockerfile: dockerfile
     container_name: database
     restart: always
-    environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: slab2reuse_database
     ports:
       - "5430:5432"
     volumes: 
@@ -21,7 +18,7 @@ services:
   backend:
     build:
       context: ./backend/
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     container_name: backend
     restart: always
     environment:
@@ -32,6 +29,16 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
-
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: dockerfile
+    container_name: frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+      
 volumes:
   postgres_data:
