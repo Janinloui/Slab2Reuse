@@ -8,8 +8,8 @@ import { ComponentTypeTable } from './table/ComponentTypeTable';
 import { ThreeScene } from './webgl/ThreeScene';
 import { MaterialPassport } from './pages/MaterialPassport';
 import { Landing } from './Landing';
-import './index.css';
 import { Header } from './globalUI/Header';
+import { Viewer } from './Viewer';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -20,6 +20,7 @@ root.render(
         <Route element={<BoilerPlateData />} path={Slab2ReuseRoutes.BoilerPlate} />
         <Route element={<GenericTableEntry />} path={Slab2ReuseRoutes.RawTableView} />
         <Route element={<ComponentTypeTable />} path={Slab2ReuseRoutes.TableOnly} />
+        <Route element={<Viewer />} path={Slab2ReuseRoutes.Viewer} />
         <Route
           element={
             <div style={{ height: '100svh' }}>

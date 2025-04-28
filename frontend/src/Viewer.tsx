@@ -7,7 +7,7 @@ export const Viewer: React.FC = () => {
       <div style={{ height: '50vh' }}>
         <ThreeScene key='scene' />
       </div>
-      <ComponentTypeTable />
+      <ComponentTypeTable height={window.innerHeight * 0.5} />
     </>
   );
 };

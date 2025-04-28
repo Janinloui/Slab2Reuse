@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { getMappedData } from '../lib/parsingOldData';
 import { exampleData } from '../state/exampleData';
 import { useTableStore } from '../state/tableStore';
-import { NamedViews } from '../enums/viewer';
 
 export const ComponentTypeTable: React.FC<{
   canChange?: boolean;
@@ -26,7 +25,7 @@ export const ComponentTypeTable: React.FC<{
       size='small'
       columns={getColumnsForComponentKeys(viewerAttributeMap[viewer], canChange)}
       dataSource={collections[CollectionName.Components].map((e, key) => ({ ...e, key }))}
-      scroll={{ x: 'max-content', y: height ?? window.innerHeight - 120 }}
+      scroll={{ x: 'max-content', y: (height ?? window.innerHeight) - 120 }}
     />
   );
 };
