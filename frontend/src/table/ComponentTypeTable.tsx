@@ -20,22 +20,13 @@ export const ComponentTypeTable: React.FC<{
   useEffect(() => useCollectionStore.getState()._setCollections(getMappedData(exampleData as any)), []);
 
   return (
-    <div>
-      <span>
-        <Select value={viewer} onChange={(e) => useTableStore.getState().setViewer(e)}>
-          {Object.values(NamedViews).map((e) => (
-            <Select.Option key={e} value={e}>
-              {e}
-            </Select.Option>
-          ))}
-        </Select>
-      </span>
-      <Table
-        size='small'
-        columns={getColumnsForComponentKeys(viewerAttributeMap[viewer], canChange)}
-        dataSource={collections[CollectionName.Components].map((e, key) => ({ ...e, key }))}
-        scroll={{ x: 'max-content', y: height ?? window.innerHeight - 120 }}
-      />
-    </div>
+    <Table
+      virtual
+      pagination={false}
+      size='small'
+      columns={getColumnsForComponentKeys(viewerAttributeMap[viewer], canChange)}
+      dataSource={collections[CollectionName.Components].map((e, key) => ({ ...e, key }))}
+      scroll={{ x: 'max-content', y: height ?? window.innerHeight - 120 }}
+    />
   );
 };
