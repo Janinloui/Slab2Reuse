@@ -7,15 +7,16 @@ dns.setDefaultResultOrder('verbatim');
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000,
+    host: true,
+    port: 3000
   },
   build: {
-    outDir: './build',
+    outDir: './build'
   },
-  base: '/Slab2Reuse/',
+  base: '/Slab2Reuse',
   resolve: {
     alias: {
-      src: '/src',
-    },
-  },
+      src: '/src'
+    }
+  }
 });

@@ -1,0 +1,44 @@
+networks:
+  default:
+    name: slab2reuse_network
+    driver: bridge
+services:
+  postgres:
+    build:
+      context: ./database/
+      dockerfile: dockerfile
+    container_name: database
+    restart: always
+    ports:
+      - "5430:5432"
+    volumes: 
+      - ./database/data:/var/lib/postgresql/data
+    networks:
+      - default
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: dockerfile
+    container_name: backend
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/slab2reuse_database
+      SPRING_DATASOURCE_USERNAME: username
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: dockerfile
+    container_name: frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+      
+volumes:
+  postgres_data:
