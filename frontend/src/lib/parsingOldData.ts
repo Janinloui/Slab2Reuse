@@ -180,7 +180,7 @@ export const getMappedData = (oldData: SlabType[]): DatabaseType => {
       [ComponentKeyType.BuildingId]: theBuilding[BuildingKeyType.Id],
       [ComponentKeyType.Img]: '',
       [ComponentKeyType.ManufacturerId]: '',
-      [ComponentKeyType.Condition]: VisualCondition.Good,
+      [ComponentKeyType.Condition]: data[SlabKeyType.Condition] ?? VisualCondition.Good,
       [ComponentKeyType.NoHarmfulSubstance]: false,
       [ComponentKeyType.AvailableFrom]: '',
       [ComponentKeyType.Buyer]: '',
