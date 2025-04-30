@@ -1,14 +1,13 @@
 import { Button, Select } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Slab2ReuseRoutes } from '../enums/routes';
+import { Slab2ReuseRoutes, Slab2ReuseRouteLocal } from '../enums/routes';
 import { useTableStore } from '../state/tableStore';
-import { NamedViews } from '../enums/viewer';
+import { NamedViews, NamedViewsLocal } from '../enums/viewer';
 
-const options = [
-  { value: Slab2ReuseRoutes.Viewer, label: 'Both' },
-  { value: Slab2ReuseRoutes.TableOnly, label: 'Table' },
-  { value: Slab2ReuseRoutes.ThreeOnly, label: '3D' }
-];
+const options = [Slab2ReuseRoutes.Viewer, Slab2ReuseRoutes.TableOnly, Slab2ReuseRoutes.ThreeOnly].map((value) => ({
+  value,
+  label: Slab2ReuseRouteLocal[value]
+}));
 
 /**
  * Header Component
@@ -45,13 +44,19 @@ export const Header: React.FC = () => {
       </nav>
       <div style={{ gap: 8, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <Select
-          style={{ width: 200 }}
+          style={{ width: 160 }}
           value={viewer}
           variant='filled'
           onChange={(e) => useTableStore.getState().setViewer(e)}
-          options={Object.values(NamedViews).map((e) => ({ value: e, label: e }))} // Use NamedViews enum for options
+          options={Object.values(NamedViews).map((e) => ({ value: e, label: NamedViewsLocal[e] }))} // Use NamedViews enum for options
         />
-        <Select variant='filled' value={location.pathname} onChange={(v) => navigate(v)} options={options} />
+        <Select
+          style={{ width: 120 }}
+          variant='filled'
+          value={location.pathname}
+          onChange={(v) => navigate(v)}
+          options={options}
+        />
       </div>
     </header>
   );
