@@ -27,6 +27,21 @@ export enum NamedViews {
   LabFullScaleTest = 'lab-full-scale-test'
 }
 
+export const NamedViewsLocal: Record<NamedViews, string> = {
+  [NamedViews.ArchiveProjectLevel]: 'Project View',
+  [NamedViews.ArchiveElementLevelGeometry]: 'Component Geometry',
+  [NamedViews.ArchiveElementMaterial]: 'Material Properties',
+  [NamedViews.ArchiveElementCapacity]: 'Capacity',
+  [NamedViews.ArchiveReusePotential]: 'Reuse Potential',
+  [NamedViews.OnSiteTransport]: 'Transport',
+  [NamedViews.OnSiteVisualInspection]: 'Visual Inspection',
+  [NamedViews.OnSiteReboundTesting]: 'Rebound Testing',
+  [NamedViews.OnSiteReinforcementScreening]: 'Reinforcement Screening',
+  [NamedViews.OnSiteDeconstruction]: 'Deconstruction',
+  [NamedViews.LabCoreTesting]: 'Core Testing',
+  [NamedViews.LabFullScaleTest]: 'Full Scale Test'
+};
+
 export const AllKeysWithColumnDefined = [
   ...Object.values(ComponentDerivedAttributes),
   ...Object.values(ComponentKeyType),
