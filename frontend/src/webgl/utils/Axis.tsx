@@ -48,7 +48,7 @@ export const Axis: React.FC = () => {
   return (
     <group position={axesPosition}>
       <axesHelper ref={axesRef} args={[axesSize]} />
-      <Text position={[axesSize, 0, 0]} fontSize={axesSize / 20} color='red'>
+      {/* <Text position={[axesSize, 0, 0]} fontSize={axesSize / 20} color='red'>
         X
       </Text>
       <Text position={[0, axesSize, 0]} fontSize={axesSize / 20} color='green'>
@@ -56,7 +56,7 @@ export const Axis: React.FC = () => {
       </Text>
       <Text position={[0, 0, axesSize]} fontSize={axesSize / 20} color='blue'>
         Y
-      </Text>
+      </Text> */}
     </group>
   );
 };
