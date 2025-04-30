@@ -6,13 +6,14 @@ export const ComponentInstancesRenderer: React.FC<{
   planes: {
     position: [number, number, number];
     yaw: number;
+    color?: [number, number, number];
   }[];
 }> = ({ widthHeightLength, planes }) => (
   <Instances>
     <boxGeometry args={[widthHeightLength.length, widthHeightLength.height, widthHeightLength.width]} />
-    <meshNormalMaterial />
+    <meshStandardMaterial />
     {planes.map((plane, i) => (
-      <Instance key={i} position={plane.position} rotation={[0, plane.yaw, 0]} />
+      <Instance key={i} position={plane.position} rotation={[0, plane.yaw, 0]} color={plane.color} />
     ))}
   </Instances>
 );

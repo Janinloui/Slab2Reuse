@@ -1,4 +1,5 @@
 import { ComponentKeyType } from '../../enums/componentKeyType';
+import { getColorForCondition, hexToRgb } from '../../lib/colors';
 import { getGeometryIdTypeComponentMap } from '../../lib/getIdMapForTypes';
 import { getLocalCoordinates } from '../../lib/locationMapping';
 import { getWidthHeightLenghtForGeometryId } from '../../table/lib/componentDataMethod';
@@ -39,7 +40,8 @@ export const getPreprocessedGeometryDatatForComponents = (
           number,
           number
         ],
-        yaw: (c[ComponentKeyType.Yaw] * Math.PI) / 180
+        yaw: (c[ComponentKeyType.Yaw] * Math.PI) / 180,
+        color: hexToRgb(getColorForCondition(c.condition))
       })),
       abstractStackPlanes: components.map((c, i) => ({
         position: [
@@ -47,7 +49,8 @@ export const getPreprocessedGeometryDatatForComponents = (
           (widthHeightLength.height + VERTICAL_SPACING) * i,
           0
         ],
-        yaw: 0
+        yaw: 0,
+        color: hexToRgb(getColorForCondition(c.condition))
       }))
     };
     cumulativeLength += widthHeightLength.length + HORIZONTAL_SPACING;
