@@ -25,7 +25,7 @@ export const ComponentTypeTable: React.FC<{
       size='small'
       columns={getColumnsForComponentKeys(viewerAttributeMap[viewer], canChange)}
       dataSource={collections[CollectionName.Components].map((e, key) => ({ ...e, key }))}
-      scroll={{ x: 'max-content', y: (height ?? window.innerHeight) - 120 }}
+      scroll={{ x: window.innerWidth, y: (height ?? window.innerHeight) - 120 }}
     />
   );
 };
