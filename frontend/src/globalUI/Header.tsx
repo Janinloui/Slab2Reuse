@@ -41,6 +41,14 @@ export const Header: React.FC = () => {
             {label}
           </Button>
         ))}
+        <Button
+          variant='solid'
+          key={Slab2ReuseRoutes.DataModelGraph}
+          color='geekblue'
+          onClick={() => navigate(Slab2ReuseRoutes.DataModelGraph)}
+        >
+          {Slab2ReuseRouteLocal[Slab2ReuseRoutes.DataModelGraph]}
+        </Button>
       </nav>
       <div style={{ gap: 8, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <Select
