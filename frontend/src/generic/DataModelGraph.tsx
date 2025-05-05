@@ -156,8 +156,14 @@ const createObjectComponent = (json: object) => (
     }}
   >
     {Object.entries(json).map(([k, value]) => (
-      <div key={k} style={{ display: 'flex', flexDirection: 'row' }}>
-        <span>{k}</span>
+      <div
+        key={k}
+        style={{
+          display: 'flex',
+          flexDirection: 'row'
+        }}
+      >
+        <span style={k.endsWith('Id') ? { paddingRight: 4, borderRight: 'solid 5px blue' } : {}}>{k}</span>
         {Array.isArray(value) ? (
           createArrayComponent(value)
         ) : typeof value === 'object' ? (
@@ -170,6 +176,7 @@ const createObjectComponent = (json: object) => (
   </div>
 );
 
+// blue indicates retrieved from another collection
 export const DataModelGraph: React.FC = () => (
   <div style={{ height: 'calc(100svh - 60px)', overflow: 'auto' }}>
     {createObjectComponent(getNestedValueType('ComponentType'))}
