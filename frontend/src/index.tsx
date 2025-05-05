@@ -10,6 +10,7 @@ import { MaterialPassport } from './pages/MaterialPassport';
 import { Landing } from './Landing';
 import { Header } from './globalUI/Header';
 import { Viewer } from './Viewer';
+import { DataModelGraph } from './generic/DataModelGraph';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -31,6 +32,7 @@ root.render(
         />
         <Route element={<MaterialPassport />} path={Slab2ReuseRoutes.MaterialPassport} />
         <Route element={<Landing />} path='/' />
+        <Route element={<DataModelGraph />} path={Slab2ReuseRoutes.DataModelGraph} />
       </Routes>
     </Router>
   </React.StrictMode>

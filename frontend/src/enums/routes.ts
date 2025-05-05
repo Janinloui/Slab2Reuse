@@ -9,7 +9,8 @@ export enum Slab2ReuseRoutes {
   LabView = '/lab-view/:viewer',
   OnSiteView = '/on-site-view/:viewer',
   ArchiveView = '/archive-view/:viewer',
-  MaterialPassport = '/material-passport/:componentId'
+  MaterialPassport = '/material-passport/:componentId',
+  DataModelGraph = '/data-model-graph'
 }
 
 export const Slab2ReuseRouteLocal: Record<Slab2ReuseRoutes, string> = {
@@ -23,5 +24,6 @@ export const Slab2ReuseRouteLocal: Record<Slab2ReuseRoutes, string> = {
   [Slab2ReuseRoutes.LabView]: 'Lab View',
   [Slab2ReuseRoutes.OnSiteView]: 'On Site View',
   [Slab2ReuseRoutes.ArchiveView]: 'Archive View',
-  [Slab2ReuseRoutes.MaterialPassport]: 'Material Passport'
+  [Slab2ReuseRoutes.MaterialPassport]: 'Material Passport',
+  [Slab2ReuseRoutes.DataModelGraph]: 'Data Model Graph'
 };
