@@ -65,6 +65,6 @@ Either clone this repository and run it locally using `bun` (though `npm` or `ya
   "geometries": GeometryType[],
   "crossSections": CrossSectionType[],
   "materials": MaterialType[],
-  "rebars": RebarConfigurationType[],
+  "rebars": RebarType[],
 }
 ```
