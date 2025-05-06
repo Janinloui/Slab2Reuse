@@ -40,7 +40,6 @@ export type RebarType = HomogeneusRebarType | TwoTypesRebarType | ThreeTypesReba
 export const RebarValueMap: Record<RebarKeyType, ValueType> = {
   [RebarKeyType.Id]: 'string',
   [RebarKeyType.RebarCategory]: 'RebarCategory',
-  [RebarKeyType.RebarConfigurationId]: 'string',
   [RebarKeyType.RebarDiameter]: 'number',
   [RebarKeyType.RebarAmount]: 'number',
   [RebarKeyType.RebarEntries]: 'RebarEntryArray',
