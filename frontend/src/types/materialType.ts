@@ -5,7 +5,6 @@ import { ValueType } from './valueType';
 export type ConcreteType = {
   [MaterialKeyType.Id]: string;
   [MaterialKeyType.CrossSectionId]: string;
-  [MaterialKeyType.BuildingId]: string;
   [MaterialKeyType.MaterialCategory]: MaterialCategory.Concrete;
   [MaterialKeyType.CompressiveStrength]: number;
   [MaterialKeyType.TensileStrength]: number;
@@ -17,7 +16,6 @@ export type ConcreteType = {
 export type TimberType = {
   [MaterialKeyType.Id]: string;
   [MaterialKeyType.CrossSectionId]: string;
-  [MaterialKeyType.BuildingId]: string;
   [MaterialKeyType.MaterialCategory]: MaterialCategory.Timber;
   [MaterialKeyType.Fc0k]: number;
   [MaterialKeyType.Ft0k]: number;
@@ -33,7 +31,6 @@ export type MaterialType = ConcreteType | TimberType;
 export const MaterialValueMap: Record<MaterialKeyType, ValueType> = {
   [MaterialKeyType.Id]: 'string',
   [MaterialKeyType.CrossSectionId]: 'string',
-  [MaterialKeyType.BuildingId]: 'string',
   [MaterialKeyType.MaterialCategory]: 'MaterialCategory',
   [MaterialKeyType.CompressiveStrength]: 'number',
   [MaterialKeyType.TensileStrength]: 'number',

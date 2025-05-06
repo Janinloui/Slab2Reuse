@@ -40,7 +40,6 @@ export const getNestedValueType = (t: ValueType, k?: string): any => {
   if (k?.endsWith('Id')) {
     switch (k) {
       case 'componentBuildingId':
-      case 'materialBuildingId':
         return getNestedValueType('BuildingType');
       case 'geometryTypeId':
         return getNestedValueType('GeometryType');

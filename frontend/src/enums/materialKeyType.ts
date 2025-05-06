@@ -1,7 +1,6 @@
 export enum MaterialKeyType {
   Id = 'id',
   CrossSectionId = 'materialCrossSectionId',
-  BuildingId = 'materialBuildingId',
   MaterialCategory = 'materialMaterialCategory',
   CompressiveStrength = 'materialCompressiveStrength',
   TensileStrength = 'materialTensileStrength',
