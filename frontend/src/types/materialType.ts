@@ -40,5 +40,5 @@ export const MaterialValueMap: Record<MaterialKeyType, ValueType> = {
   [MaterialKeyType.Fc0k]: 'number',
   [MaterialKeyType.Ft0k]: 'number',
   [MaterialKeyType.Fc90k]: 'number',
-  [MaterialKeyType.Ft90k]: 'number',
+  [MaterialKeyType.Ft90k]: 'number'
 };
