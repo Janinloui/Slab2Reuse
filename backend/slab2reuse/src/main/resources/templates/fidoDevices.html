@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Fido Devices</title>
+        <link th:href="@{/CSS/fidoDevices.css}" rel="stylesheet"/>
+    </head>
+    <body>
+        <div th:insert="~{navbar.html}"></div>
+        <div class="text-center">
+            <button
+                    class="btn btn-primary float-left mt-2 mb-1 ml-1"
+                    type="submit"
+                    id="registerNewDevice"
+                    onclick="fidoFlow()"
+            >
+                Register new device
+            </button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date created</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="device: ${devices}">
+                        <td id="deviceName" th:text="${device.getDisplayName()}"></td>
+                        <td th:text="${device.getRegistrationTime()}"></td>
+                        <td>
+                            <form
+                                    th:action="@{/fidoDevices/deleteDevice/{id}(id=${device.getCredentialId()})}"
+                                    method="post"
+                            >
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <button
+                                    class="btn btn-primary"
+                                    th:data="${device.getCredentialId()}"
+                                    onclick="switchToEditMode(this , this.getAttribute('data'))"
+                            >
+                                <i class="fa-solid fa-pencil"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <span th:unless="${!devices.isEmpty()}">No devices found</span>
+        </div>
+    </body>
+    <script type="text/javascript" th:src="@{/JS/fidoEdit.js}"></script>
+    <script th:src="@{/JS/base64.js}"></script>
+    <script th:src="@{/JS/fido.js}"></script>
+</html>

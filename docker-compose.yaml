@@ -1,8 +1,5 @@
-networks:
-  default:
-    name: slab2reuse_network
-    driver: bridge
 services:
+
   postgres:
     build:
       context: ./database/
@@ -15,6 +12,8 @@ services:
       - ./database/data:/var/lib/postgresql/data
     networks:
       - default
+
+
   backend:
     build:
       context: ./backend/
@@ -29,6 +28,8 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
+      - wso2is
+
   frontend:
     build:
       context: ./frontend/
@@ -39,6 +40,19 @@ services:
       - "3000:3000"
     depends_on:
       - backend
-      
+
+  wso2is:
+    build:
+      context: backend/slab2reuse/wso2is/
+      dockerfile: dockerfile
+    container_name: wso2
+    restart: always
+    ports:
+      - "9443:9443"
 volumes:
   postgres_data:
+
+networks:
+  default:
+    name: slab2reuse_network
+    driver: bridge

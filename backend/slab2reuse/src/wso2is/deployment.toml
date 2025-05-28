@@ -1,0 +1,5 @@
+[fido.trusted]
+origins=["https://localhost:9443", "http://localhost:8080", "https://localhost:8443"]
+
+[identity_mgt.endpoint]
+enable_self_signup_endpoint=false

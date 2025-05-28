@@ -1,0 +1,4 @@
+<context-param>
+        <param-name>EnableRecoveryEndpoint</param-name>
+        <param-value>false</param-value>
+    </context-param>
