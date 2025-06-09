@@ -49,7 +49,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no \
               ${{ secrets.MAC_MINI_USER }}@${{ secrets.MAC_MINI_HOST }} << 'EOF'
-            cd /Users/youruser/projects/Slab2Reuse
+            cd /Users/slab2reuse/projects/Slab2Reuse
             git pull origin main
             docker compose down
             docker compose build
