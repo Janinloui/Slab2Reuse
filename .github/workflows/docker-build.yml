@@ -53,7 +53,7 @@ jobs:
       - name: Deploy to Mac mini
         run: |
           ssh target-host << 'EOF'
-            cd /Users/youruser/projects/Slab2Reuse
+            cd /Users/slab2reuse/projects/Slab2Reuse
             git pull origin main
             docker compose down
             docker compose build
