@@ -40,16 +40,17 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
-      - name: Restrict SSH to loaded key only
+      - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
-          echo -e "Host *\n  IdentitiesOnly yes\n  IdentityAgent \$SSH_AUTH_SOCK" > ~/.ssh/config
+          echo "Host *" > ~/.ssh/config
+          echo "  IdentitiesOnly yes" >> ~/.ssh/config
+          echo "  IdentityAgent \$SSH_AUTH_SOCK" >> ~/.ssh/config
       
       - name: Deploy to Mac mini
         run: |
-          ssh -o StrictHostKeyChecking=no \
-              ${{ secrets.MAC_MINI_USER }}@${{ secrets.MAC_MINI_HOST }} << 'EOF'
-            cd /Users/slab2reuse/projects/Slab2Reuse
+          ssh -o StrictHostKeyChecking=no ${{ secrets.MAC_MINI_USER }}@${{ secrets.MAC_MINI_HOST }} << 'EOF'
+            cd /Users/youruser/projects/Slab2Reuse
             git pull origin main
             docker compose down
             docker compose build
