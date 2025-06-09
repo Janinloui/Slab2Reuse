@@ -40,16 +40,17 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.MAC_MINI_SSH_KEY }}
 
-      - name: SSH deploy to Mac mini
+      - name: Deploy to Mac mini
         run: |
-          ssh -v \
-            -o StrictHostKeyChecking=no \
-            -o IdentitiesOnly=yes \
-            -o IdentityAgent=$SSH_AUTH_SOCK \
-            ${{ secrets.MAC_MINI_USER }}@${{ secrets.MAC_MINI_HOST }} << 'EOF'
-              cd /Users/${{ secrets.MAC_MINI_USER }}/projects/Slab2Reuse
-              git pull origin main
-              docker compose down
-              docker compose build
-              docker compose up -d
+          echo "${{ secrets.MAC_MINI_KEY }}" > id_ed25519
+          chmod 600 id_ed25519
+          ssh -o StrictHostKeyChecking=no \
+              -o IdentitiesOnly=yes \
+              -i id_ed25519 \
+              ${{ secrets.MAC_MINI_USER }}@${{ secrets.MAC_MINI_HOST }} << 'EOF'
+            cd /Users/${{ secrets.MAC_MINI_USER }}/projects/Slab2Reuse
+            git pull origin main
+            docker compose down
+            docker compose build
+            docker compose up -d
           EOF
