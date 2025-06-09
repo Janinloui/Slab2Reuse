@@ -43,14 +43,17 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
-          echo "Host *" > ~/.ssh/config
+          echo "Host target-host" > ~/.ssh/config
+          echo "  HostName ${{ secrets.MAC_MINI_HOST }}" >> ~/.ssh/config
+          echo "  User ${{ secrets.MAC_MINI_USER }}" >> ~/.ssh/config
           echo "  IdentitiesOnly yes" >> ~/.ssh/config
           echo "  IdentityAgent \$SSH_AUTH_SOCK" >> ~/.ssh/config
-      
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+        
       - name: Deploy to Mac mini
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.MAC_MINI_USER }}@${{ secrets.MAC_MINI_HOST }} << 'EOF'
-            cd /Users/slab2reuse/projects/Slab2Reuse
+          ssh target-host << 'EOF'
+            cd /Users/youruser/projects/Slab2Reuse
             git pull origin main
             docker compose down
             docker compose build
