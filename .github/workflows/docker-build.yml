@@ -35,17 +35,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Add SSH key
+      - name: Set up SSH key
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
+      
+      - name: Restrict SSH to loaded key only
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "Host *\n  IdentitiesOnly yes\n  IdentityAgent \$SSH_AUTH_SOCK" > ~/.ssh/config
+      
       - name: Deploy to Mac mini
         run: |
           ssh -o StrictHostKeyChecking=no \
-              -o IdentitiesOnly=yes \
               ${{ secrets.MAC_MINI_USER }}@${{ secrets.MAC_MINI_HOST }} << 'EOF'
-            cd /Users/slab2reuse/projects/Slab2Reuse
+            cd /Users/youruser/projects/Slab2Reuse
             git pull origin main
             docker compose down
             docker compose build
