@@ -1,0 +1,47 @@
+.material-passport-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #f9f9f9;
+}
+
+.material-passport {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 40px; /* Match the SVG corner radius */
+  padding: 32px; /* Double the padding */
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Slightly larger shadow */
+  text-align: center;
+}
+
+.header h2 {
+  color: #ff5722;
+  margin: 0 0 8px;
+}
+
+.details p {
+  margin: 8px 0;
+}
+
+.button-container {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px; /* Space between buttons */
+}
+
+.download-button {
+  padding: 8px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: 0.1px solid rgb(194, 192, 192);
+}
+
+.download-button:hover {
+  background-color: #c2c4c2;
+}

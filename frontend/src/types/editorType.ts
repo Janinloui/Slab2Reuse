@@ -1,0 +1,1 @@
+export type EditorType = 'drawer' | 'div' | null;
