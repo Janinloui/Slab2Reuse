@@ -50,12 +50,22 @@ jobs:
           echo "  IdentityAgent \$SSH_AUTH_SOCK" >> ~/.ssh/config
           echo "  StrictHostKeyChecking no" >> ~/.ssh/config
         
+      - name: Verify SSH keys loaded
+        run: ssh-add -l
+        env:
+          SSH_AUTH_SOCK: ${{ env.SSH_AUTH_SOCK }}
+
       - name: Deploy to Mac mini
         run: |
-          ssh target-host << 'EOF'
+          ssh -o StrictHostKeyChecking=no \
+              -o IdentitiesOnly=yes \
+              -o IdentityAgent="$SSH_AUTH_SOCK" \
+              ${{ secrets.MAC_MINI_USER }}@${{ secrets.MAC_MINI_HOST }} << 'EOF'
             cd /Users/slab2reuse/projects/Slab2Reuse
             git pull origin main
             docker compose down
             docker compose build
             docker compose up -d
           EOF
+        env:
+          SSH_AUTH_SOCK: ${{ env.SSH_AUTH_SOCK }}
